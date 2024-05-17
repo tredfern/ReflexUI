@@ -1,11 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+counter = 0;
+
+var foo = $"template string {29231}";
+
 Reflex(
 	new ReflexBlock({}, [
-		new ReflexBlock({ styles: "" }, [
-			new ReflexText({ text: "Hello World" }),
-			new ReflexText({ text: "Hello World2" })
+		new ReflexBlock({ styles: "pink" }, [
+			new FrameCounter(),
+			"Hello World2"
 		]),
 		new ReflexBlock({ styles: "big_blue"}, [
 			new ReflexText({ text: "Hello World3" }),

@@ -15,7 +15,7 @@ function reflexDraw(_component) {
 	//	Painters draw component
 	reflexDrawBackground(_component, _screenRect);
 	reflexDrawBorder(_component, _screenRect);
-	reflexSafeEvent(_component, EVENT_ON_DRAW, _screenRect);
+	reflexSafeEvent(_component, REFLEX_EVENT_ON_DRAW, _screenRect);
 
 	//	Draw children
 	array_foreach(_component.children, reflexDraw);

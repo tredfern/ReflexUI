@@ -8,7 +8,16 @@ function ReflexText(_props, _children) : ReflexComponent(_props, _children) cons
 	}
 	
 	static onDraw = function(_drawArea) {
+		
 		draw_set_color(color);
-		draw_text(_drawArea.left, _drawArea.top, text);
+		if(isTemplated()) {
+			draw_text(_drawArea.left, _drawArea.top, reflexTemplatizeText(self, text));
+		} else {
+			draw_text(_drawArea.left, _drawArea.top, text);
+		}
+	}
+	
+	static isTemplated = function() {
+		return string_pos("{", text) != 0;
 	}
 }

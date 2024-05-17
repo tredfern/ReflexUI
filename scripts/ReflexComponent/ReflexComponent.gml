@@ -49,4 +49,9 @@ function ReflexComponent(_props = {}, _children = [], _type = instanceof(self)) 
 			}
 		}
 	}
+	
+	static inherit = function(_method, _override) {
+		
+		
+	}
 }
