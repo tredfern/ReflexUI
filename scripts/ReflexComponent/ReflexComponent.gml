@@ -1,22 +1,28 @@
-function ReflexComponent(_props = {}, _children = []) constructor {
+function ReflexComponent(_props = {}, _children = [], _type = instanceof(self)) constructor {
+	baseStyles = ["__default"];
 	properties = _props;
 	parent = undefined;
 	children = _children;
 	boxModel = new ReflexBoxModel(self);
 	layout = ReflexLayout.block;
+	isLoaded = false;
 
 	static loadComponent = function() {
-		var _names = struct_get_names(properties);
-	
-		for(var _i = 0; _i < array_length(_names); _i++) {
-			var _n = _names[_i];
-			var _v = properties[$ _n];
-		
-			self[$ _n] = _v;
+		// Apply default styles
+		reflexApplyDefaultStyles(self);
+
+		// Apply any styles first, properties should override the styles;
+		if(struct_exists(properties, REFLEX_PROPERTY_STYLES)) {
+			reflexApplyStyles(self, properties.styles);	
 		}
 		
+		reflexStructMergeValues(self, properties);
+		calculateInheritedPropertyValues();
+	
 		//Connect children to parent in hierarchy
 		setChildrenParent();
+		
+		isLoaded = true;
 	}
 	
 	static setChildrenParent = function() {
@@ -27,5 +33,20 @@ function ReflexComponent(_props = {}, _children = []) constructor {
 	
 	static hasChildren = function() { return array_length(children) > 0; }
 	
-	loadComponent();
+	static setParent = function(_parent) {
+		self.parent = _parent;
+		
+	}
+	
+	static calculateInheritedPropertyValues = function() {
+		//Inherit any property values	
+		var _properties = struct_get_names(self);
+		for(var _i = 0; _i < array_length(_properties); _i++) {
+			var _property = _properties[_i];
+			
+			if(self[$ _property] == ReflexProperty.inherit) {
+				self[$ _property] = parent[$ _property];
+			}
+		}
+	}
 }

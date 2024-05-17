@@ -10,23 +10,26 @@ function ReflexBoxModel(_component) constructor {
 	border = reflexBoundaryRect(component[$ REFLEX_PROPERTY_BORDER]);
 	
 	static maximize = function() {
+		var _wMargin = margin.totalLR - border.totalLR - padding.totalLR;
+		var _hMargin = margin.totalTB - border.totalTB - padding.totalTB;
+		
 		if(!is_undefined(component.parent)) {
 			//Take up as much room as our parent will let us
-			contentWidth = component.parent.boxModel.contentWidth;
-			contentHeight = component.parent.boxModel.contentHeight;
+			contentWidth = component.parent.boxModel.contentWidth - _wMargin;
+			contentHeight = component.parent.boxModel.contentHeight - _hMargin;
 		} else {
 			// We have no parent, get the whole screen!
-			contentWidth = display_get_gui_width();
-			contentHeight = display_get_gui_height();
+			contentWidth = display_get_gui_width() - _wMargin;
+			contentHeight = display_get_gui_height() - _hMargin;
 		}
 	}
 	
 	static getFullWidth = function() {
-		return contentWidth;	
+		return contentWidth + margin.totalLR + border.totalLR + padding.totalLR;	
 	}
 	
 	static getFullHeight = function() {
-		return contentHeight;	
+		return contentHeight + margin.totalTB + border.totalTB + padding.totalTB;	
 	}
 	
 	///
@@ -47,8 +50,8 @@ function ReflexBoxModel(_component) constructor {
 	///
 	/// Screen Rects are p
 	static getScreenRect = function() {
-		var _x = x + margin.totalLR;
-		var _y = y + margin.totalTB;
+		var _x = x + margin.left;
+		var _y = y + margin.top;
 		var _w = border.totalLR + padding.totalLR + contentWidth;
 		var _h = border.totalTB + padding.totalTB + contentHeight;
 		
@@ -63,8 +66,8 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static getContentRect = function() {
-		var _x = x + margin.totalLR + border.totalLR + padding.totalLR;
-		var _y = y + margin.totalTB + border.totalTB + padding.totalTB;
+		var _x = x + margin.left + border.left + padding.left;
+		var _y = y + margin.top + border.top + padding.top;
 		var _w = contentWidth;
 		var _h = contentHeight;
 		

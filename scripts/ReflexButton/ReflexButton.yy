@@ -1,12 +1,12 @@
 {
   "$GMScript":"",
-  "%Name":"ReflexRender",
+  "%Name":"ReflexButton",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"ReflexRender",
+  "name":"ReflexButton",
   "parent":{
-    "name":"System",
-    "path":"folders/ReflexUI/System.yy",
+    "name":"Components",
+    "path":"folders/ReflexUI/Components.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ReflexUtility",
   "parent":{
-    "name":"ReflexUI",
-    "path":"folders/ReflexUI.yy",
+    "name":"System",
+    "path":"folders/ReflexUI/System.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

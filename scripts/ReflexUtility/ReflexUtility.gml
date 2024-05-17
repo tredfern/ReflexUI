@@ -12,3 +12,18 @@ function reflexStructMergeValues(_base, _override) {
 	}
 	return _base;
 }
+
+function reflexIsPercentageString(_stringValue) {
+	return string_ends_with(_stringValue, "%");
+}	
+
+function reflexGetPercentage(_stringValue) {
+	var _num = string_trim(_stringValue, ["%", " "]);
+	
+	reflexAssert(is_numeric(_num), "Expected a numeric percentage string, got this instead: {_stringValue}");
+	return 	_num / 100;
+}
+
+function reflexPropertyOn(_struct, _property) {
+	return _struct[$ _property] != ReflexProperty.off;
+}

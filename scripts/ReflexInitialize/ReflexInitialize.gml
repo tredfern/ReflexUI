@@ -5,10 +5,14 @@ function reflexInitialize() {
 
 	REFLEX_GLOBAL = {};
 	REFLEX_ROOTS = [];
+	REFLEX_STYLESHEET = {};
 
 	
-	reflexCreateEngine()
-	reflexFlagRefresh();
+	//Load the configuration
+	ReflexConfiguration();
+	
+	// Create the engine that will drive the GUI experience
+	reflexCreateEngine();
 }
 
 

@@ -5,7 +5,7 @@ function reflexPerformLayout(_root) {
 	// Root is a special component with just one child
 	// This allows the top level to be set to the full screen area
 	// And the child components can use that to reference and align their size around
-	reflexLayoutComponent(_root.children[0]);
+	reflexLayoutComponent(_root);
 }
 
 ///
@@ -13,6 +13,12 @@ function reflexPerformLayout(_root) {
 ///
 function reflexLayoutComponent(_component) {
 	with(_component) {
+		if(!isLoaded) {
+			_component.loadComponent();	
+		}
+		
+		//Need to recompute the box model
+		boxModel = new ReflexBoxModel(_component);
 		
 		var _contentSize = { contentWidth: 0, contentHeight: 0 }
 		
@@ -81,15 +87,53 @@ function reflexMaxWidth(_component) {
 
 function reflexCalculateWidth(_component) {
 	with(_component) {
+		var _maxContentWidth = display_get_gui_width();
+		if(!is_undefined(parent))
+			_maxContentWidth = parent.boxModel.contentWidth;
+	
+		_maxContentWidth = _maxContentWidth - boxModel.margin.totalLR - boxModel.border.totalLR - boxModel.padding.totalLR;
+	
+		//If we are not an "auto" width, we need to set our width to the settings provided
+		if(width != ReflexProperty.auto) {
+			var _w = _component.width;
+		
+			// If we are a percentage, than eat up a percentage of your parent
+			if(reflexIsPercentageString(_w)) {
+				_w = reflexGetPercentage(_w);
+				return _maxContentWidth * _w;
+			}
+		
+			// Otherwise, your size is your size
+			return _w; //min(_w, _maxContentWidth); <-- could consider setting to the smaller value
+		}
+	
+	
 		switch(layout) {
 			case ReflexLayout.inline:
 				return boxModel.contentWidth;
 			case ReflexLayout.block:
-				return parent.boxModel.contentWidth;
+				return _maxContentWidth;
 		}
+		
 	}
 }
 
 function reflexCalculateHeight(_component) {
+	var _maxContentHeight = display_get_gui_height();
+	if(!is_undefined(parent))
+		_maxContentHeight = parent.boxModel.contentHeight;
+	
+	if(_component.height != ReflexProperty.auto) {
+		var _h = _component.height;
+			// If we are a percentage, than eat up a percentage of your parent
+		if(reflexIsPercentageString(_h)) {
+			_h = reflexGetPercentage(_h);
+			return _maxContentHeight * _h;
+		}
+		
+		// Otherwise, your size is your size
+		return _h; //min(_h, _maxContentHeight); <-- could consider setting to the smaller value
+	}
+	
 	return boxModel.contentHeight;
 }

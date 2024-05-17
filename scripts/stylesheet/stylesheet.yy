@@ -1,12 +1,12 @@
 {
   "$GMScript":"",
-  "%Name":"ReflexRender",
+  "%Name":"stylesheet",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"ReflexRender",
+  "name":"stylesheet",
   "parent":{
-    "name":"System",
-    "path":"folders/ReflexUI/System.yy",
+    "name":"Demo",
+    "path":"folders/Demo.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
