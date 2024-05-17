@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"",
+  "%Name":"Philosophy",
+  "name":"Philosophy",
+  "parent":{
+    "name":"Notes",
+    "path":"folders/ReflexUI/Notes.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

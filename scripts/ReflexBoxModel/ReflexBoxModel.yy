@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexBoxModel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexBoxModel",
+  "parent":{
+    "name":"System",
+    "path":"folders/ReflexUI/System.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

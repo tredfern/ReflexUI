@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexRoot",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexRoot",
+  "parent":{
+    "name":"Components",
+    "path":"folders/ReflexUI/Components.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

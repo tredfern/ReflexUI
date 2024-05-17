@@ -1,0 +1,10 @@
+Since video games are all UI. It makes sense to scope down what problem we are trying to solve with a library for UI.
+1. Simplify the tedium of laying out UI
+2. Allow customization to make the UI look great for games
+3. Integrate controllers and Keyboard/Mouse easily. 
+
+
+* Easy to use and set up components
+* Smart layouts by default using a system similar to how browsers structure content
+* Support animations and UI juiciness
+* Let the people figure out what they want to draw

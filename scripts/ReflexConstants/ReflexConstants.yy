@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexConstants",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexConstants",
+  "parent":{
+    "name":"System",
+    "path":"folders/ReflexUI/System.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexProcessStep",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexProcessStep",
+  "parent":{
+    "name":"System",
+    "path":"folders/ReflexUI/System.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
