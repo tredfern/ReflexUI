@@ -3,7 +3,11 @@
 
 counter = 0;
 
-var foo = $"template string {29231}";
+with(new ReflexBlock()) {
+	new ReflexText();
+	new ReflexText();
+}
+
 
 Reflex(
 	new ReflexBlock({}, [

@@ -22,6 +22,8 @@ function ReflexComponent(_props = {}, _children = [], _type = instanceof(self)) 
 		//Connect children to parent in hierarchy
 		setChildrenParent();
 		
+		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
+		
 		isLoaded = true;
 	}
 	
