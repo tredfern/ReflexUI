@@ -49,6 +49,11 @@ function ReflexConfiguration() {
 		
 		},
 		
+		ReflexMenuOptionText: {
+			halign: fa_center,
+			valign: fa_middle
+		},
+		
 		ReflexText: {
 			layout:							ReflexLayout.inline
 		}

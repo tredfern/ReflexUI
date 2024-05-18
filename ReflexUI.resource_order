@@ -68,6 +68,7 @@
     {"name":"ReflexProcessStep","order":2,"path":"scripts/ReflexProcessStep/ReflexProcessStep.yy",},
     {"name":"ReflexRender","order":10,"path":"scripts/ReflexRender/ReflexRender.yy",},
     {"name":"ReflexRoot","order":3,"path":"scripts/ReflexRoot/ReflexRoot.yy",},
+    {"name":"ReflexStateManager","order":12,"path":"scripts/ReflexStateManager/ReflexStateManager.yy",},
     {"name":"ReflexStyleSheet","order":8,"path":"scripts/ReflexStyleSheet/ReflexStyleSheet.yy",},
     {"name":"ReflexText","order":1,"path":"scripts/ReflexText/ReflexText.yy",},
     {"name":"ReflexTreeNavigator","order":11,"path":"scripts/ReflexTreeNavigator/ReflexTreeNavigator.yy",},

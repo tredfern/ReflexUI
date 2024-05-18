@@ -2,6 +2,7 @@
 #macro REFLEX_ROOTS REFLEX_GLOBAL.roots
 #macro REFLEX_STYLESHEET REFLEX_GLOBAL.stylesheet
 #macro REFLEX_EMPTY REFLEX_GLOBAL.emptyStruct
+#macro REFLEX_STATE REFLEX_GLOBAL.stateManager
 
 
 // Properties

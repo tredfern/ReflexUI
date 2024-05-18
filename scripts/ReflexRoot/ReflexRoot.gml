@@ -1,3 +1,3 @@
-function ReflexRoot(_children = []) : ReflexComponent({}, _children) constructor {
-	reflexBaseStyle(self, "ReflexRoot");
+function ReflexRoot(_children = []) : ReflexComponent({}, _children, "ReflexRoot") constructor {
+
 }

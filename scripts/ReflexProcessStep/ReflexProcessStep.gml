@@ -1,4 +1,8 @@
 function reflexProcessStep() {
+	// Update any state
+	REFLEX_STATE.step();
+	
+	
 	//Trigger any step events
 	for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
 		ReflexTreeOperator(REFLEX_ROOTS[_i], reflexTreeStepEvent);
@@ -18,7 +22,9 @@ function reflexProcessStep() {
 }
 
 function reflexTreeStepEvent(_component) {
-	reflexSafeEvent(_component, REFLEX_EVENT_ON_STEP);
+	if(_component.isLoaded) {
+		reflexSafeEvent(_component, REFLEX_EVENT_ON_STEP);
+	}
 }
 
 function reflexCacheLayouts(_component) {

@@ -5,12 +5,18 @@ function reflexAssert(_expression, _error) {
 
 function reflexStructMergeValues(_base, _override) {
 	var _names = struct_get_names(_override);
+	var _changes = {};
 	for(var _i = 0; _i < array_length(_names); _i++) {
 		var _name = _names[_i];
 		
+		//Only update value if things are different
+		if(struct_exists(_base, _name) && _base[$ _name] != _override[$ _name]) {
+			_changes[$ _name] = _base[$ _name];	
+		}
 		_base[$ _name] = _override[$ _name];
+		
 	}
-	return _base;
+	return _changes;
 }
 
 function reflexIsPercentageString(_stringValue) {
@@ -41,4 +47,18 @@ function reflexTemplatizeText(_struct, _text) {
 	}
 	
 	return _text;
+}
+
+function reflexWeakRef(_obj) {
+	if(is_struct(_obj))
+		return weak_ref_create(_obj);
+	
+	return _obj;
+}
+
+function reflexCheckWeakRef(_obj) {
+	if(is_struct(_obj))
+		return weak_ref_alive(_obj);
+		
+	return instance_exists(_obj);
 }

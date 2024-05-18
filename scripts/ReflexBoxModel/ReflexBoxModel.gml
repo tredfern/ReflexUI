@@ -127,12 +127,16 @@ function ReflexBoundaryRect(_left, _top, _right, _bottom) constructor {
 }
 
 function reflexBoundaryRect(_value) {
+	var _default = new ReflexBoundaryRect(0, 0, 0, 0);
+	
 	if(is_undefined(_value))
-		return new ReflexBoundaryRect(0, 0, 0, 0);
+		return _default;
 		
 	if(is_numeric(_value))
 		return new ReflexBoundaryRect(_value, _value, _value, _value);
 	
-	if(is_struct(_value))
-		return reflexStructMergeValues(new ReflexBoundaryRect(0, 0, 0, 0), _value);
+	if(is_struct(_value)) {
+		reflexStructMergeValues(_default, _value);
+		return _default; 	
+	}
 }

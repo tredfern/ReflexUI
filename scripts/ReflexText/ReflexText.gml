@@ -1,15 +1,16 @@
-function ReflexText(_props, _children) : ReflexComponent(_props, _children) constructor {
-	reflexBaseStyle(self, "ReflexText");
+function ReflexText(_props, _children) : ReflexComponent(_props, _children, "ReflexText") constructor {
 	textMgr = undefined;
 	layout = ReflexLayout.inline;
+	templateText = undefined;
 	
 	static onLayout = function(_contentSize) {
 		if(textMgr != undefined) {
 			_contentSize.width = textMgr.GetWidth();
 			_contentSize.height = textMgr.GetHeight();
 		} else {
-			_contentSize.width = string_width(text);
-			_contentSize.height = string_height(text);
+			var _t = reflexTemplatizeText(self, templateText);
+			_contentSize.width = string_width(_t);
+			_contentSize.height = string_height(_t);
 		}
 	}
 	
@@ -17,7 +18,7 @@ function ReflexText(_props, _children) : ReflexComponent(_props, _children) cons
 		
 		draw_set_color(color);
 		if(isTemplated()) {
-			ScribblejrDrawNative(_drawArea.left, _drawArea.top, reflexTemplatizeText(self, text));
+			ScribblejrDrawNative(_drawArea.left, _drawArea.top, reflexTemplatizeText(self, templateText));
 		} else {
 			textMgr.Draw(_drawArea.left, _drawArea.top);
 		}
@@ -26,10 +27,22 @@ function ReflexText(_props, _children) : ReflexComponent(_props, _children) cons
 	static onLoad = function() {
 		if(!isTemplated()) {
 			textMgr = Scribblejr(text, fa_left, fa_top, font);
+		} else {
+			templateText = text;
+			text = reflexTemplatizeText(self, templateText);
 		}
 	}
 	
 	static isTemplated = function() {
-		return string_pos("{", text) != 0;
+		return templateText != undefined || string_pos("{", text) != 0;
+	}
+	
+	static onUpdate = function() {		
+		//Check if our size changed, if so, we need to refresh the layout
+		var _size = { width: 0, height: 0 };
+		
+		onLayout(_size);
+		if(_size.width != boxModel.contentWidth || _size.height != boxModel.contentHeight)
+			reflexFlagRefresh();
 	}
 }

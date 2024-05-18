@@ -93,6 +93,7 @@
     {"id":{"name":"ReflexProcessStep","path":"scripts/ReflexProcessStep/ReflexProcessStep.yy",},},
     {"id":{"name":"ReflexRender","path":"scripts/ReflexRender/ReflexRender.yy",},},
     {"id":{"name":"ReflexRoot","path":"scripts/ReflexRoot/ReflexRoot.yy",},},
+    {"id":{"name":"ReflexStateManager","path":"scripts/ReflexStateManager/ReflexStateManager.yy",},},
     {"id":{"name":"ReflexStyleSheet","path":"scripts/ReflexStyleSheet/ReflexStyleSheet.yy",},},
     {"id":{"name":"ReflexText","path":"scripts/ReflexText/ReflexText.yy",},},
     {"id":{"name":"ReflexTreeNavigator","path":"scripts/ReflexTreeNavigator/ReflexTreeNavigator.yy",},},

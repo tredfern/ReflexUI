@@ -1,3 +1,3 @@
-function ReflexBlock(_props = {}, _children = []) : ReflexComponent(_props, _children) constructor {
-	reflexBaseStyle(self, "ReflexBlock");
+function ReflexBlock(_props = {}, _children = []) : ReflexComponent(_props, _children, "ReflexBlock") constructor {
+
 }

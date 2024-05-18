@@ -1,5 +1,5 @@
-function ReflexComponent(_props = {}, _children = [], _type = instanceof(self)) constructor {
-	baseStyles = ["__default"];
+function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexComponent") constructor {
+	baseStyles = ["__default", _baseStyle];
 	properties = _props;
 	parent = undefined;
 	children = _children;
