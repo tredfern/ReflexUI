@@ -6,7 +6,8 @@ function reflexInitialize() {
 	REFLEX_GLOBAL = {};
 	REFLEX_ROOTS = [];
 	REFLEX_STYLESHEET = {};
-
+	REFLEX_EMPTY = {};
+	REFLEX_GLOBAL.canCache = false;
 	
 	//Load the configuration
 	ReflexConfiguration();

@@ -8,6 +8,7 @@ function ReflexBoxModel(_component) constructor {
 	padding = reflexBoundaryRect(component[$ REFLEX_PROPERTY_PADDING]);
 	margin = reflexBoundaryRect(component[$ REFLEX_PROPERTY_MARGIN]);
 	border = reflexBoundaryRect(component[$ REFLEX_PROPERTY_BORDER]);
+	__cached = undefined;
 	
 	static maximize = function() {
 		var _wMargin = margin.totalLR - border.totalLR - padding.totalLR;
@@ -36,6 +37,9 @@ function ReflexBoxModel(_component) constructor {
 	/// FullRects represent the entire space in the UI the component is occupying
 	/// This is all the margin, padding, border, and content
 	static getFullRect = function() {
+		if(!is_undefined(__cached))
+			return __cached.full;
+			
 		var width = margin.totalLR + border.totalLR + padding.totalLR + contentWidth;
 		var height = margin.totalTB + border.totalTB + padding.totalTB + contentHeight;
 		
@@ -50,6 +54,9 @@ function ReflexBoxModel(_component) constructor {
 	///
 	/// Screen Rects are p
 	static getScreenRect = function() {
+		if(!is_undefined(__cached))
+			return __cached.screen;
+			
 		var _x = x + margin.left;
 		var _y = y + margin.top;
 		var _w = border.totalLR + padding.totalLR + contentWidth;
@@ -66,6 +73,9 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static getContentRect = function() {
+		if(!is_undefined(__cached))
+			return __cached.content;
+			
 		var _x = x + margin.left + border.left + padding.left;
 		var _y = y + margin.top + border.top + padding.top;
 		var _w = contentWidth;
@@ -79,6 +89,14 @@ function ReflexBoxModel(_component) constructor {
 		} else {
 			return new ReflexLayoutRect(_x, _y, _w, _h);	
 		}	
+	}
+	
+	static cache = function() {
+		__cached = {
+			full: getFullRect(),
+			screen: getScreenRect(),
+			content: getContentRect()
+		}
 	}
 }
 

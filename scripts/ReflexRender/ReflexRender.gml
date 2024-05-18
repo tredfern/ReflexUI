@@ -1,8 +1,12 @@
-function reflexRender(_component) {
+function reflexRender(_components) {
+	if(is_struct(_components)) {
+		_components = [_components];	
+	}
+	var _root = new ReflexRoot(_components);
 	// Convert any strings to ReflexText components
-	ReflexTreeOperator(_component, reflexReplaceStringWithText);
+	ReflexTreeOperator(_root, reflexReplaceStringWithText);
 	
-	array_push(REFLEX_ROOTS, new ReflexRoot([_component]));
+	array_push(REFLEX_ROOTS, _root);
 	reflexFlagRefresh();
 }
 

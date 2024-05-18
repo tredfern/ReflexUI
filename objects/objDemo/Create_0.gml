@@ -1,15 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+show_debug_overlay(true);
 counter = 0;
 
-with(new ReflexBlock()) {
-	new ReflexText();
-	new ReflexText();
-}
-
-
 Reflex(
+	new ReflexMenu({}, [
+		new ReflexMenuItem({ text: "Menu 1" }),
+		new ReflexMenuItem({ text: "Menu 2" }),
+		new ReflexMenuItem({ text: "Menu 3" })
+	]),
 	new ReflexBlock({}, [
 		new ReflexBlock({ styles: "pink" }, [
 			new FrameCounter(),

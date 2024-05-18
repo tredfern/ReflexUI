@@ -20,12 +20,12 @@ function reflexLayoutComponent(_component) {
 		//Need to recompute the box model
 		boxModel = new ReflexBoxModel(_component);
 		
-		var _contentSize = { contentWidth: 0, contentHeight: 0 }
+		var _contentSize = { width: 0, height: 0 }
 		
 		// Let the component perform any layout calculations for content size
 		reflexSafeEvent(_component, REFLEX_EVENT_ON_LAYOUT, _contentSize);
-		boxModel.contentWidth = _contentSize.contentWidth;
-		boxModel.contentHeight = _contentSize.contentHeight;
+		boxModel.contentWidth = _contentSize.width;
+		boxModel.contentHeight = _contentSize.height;
 		
 		//Perform children layout	
 		if(hasChildren()) {			

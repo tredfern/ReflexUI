@@ -19,8 +19,9 @@ function reflexIsPercentageString(_stringValue) {
 
 function reflexGetPercentage(_stringValue) {
 	var _num = string_trim(_stringValue, ["%", " "]);
+	_num = real(_num);
 	
-	reflexAssert(is_numeric(_num), "Expected a numeric percentage string, got this instead: {_stringValue}");
+	reflexAssert(is_numeric(_num), $"Expected a numeric percentage string, got this instead: {_stringValue}");
 	return 	_num / 100;
 }
 

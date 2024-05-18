@@ -5,13 +5,11 @@
 ///
 ///
 function ReflexTreeOperator(_component, _operation) {
-	if(!_component.hasChildren())
-		return;
-		
-		
 	for(var _i = 0; _i < array_length(_component.children); _i++) {
 		_operation(_component.children[_i], _i, _component);
 		
-		ReflexTreeOperator(_component.children[_i], _operation);
+		//Cascade to children
+		if(_component.children[_i].hasChildren())
+			ReflexTreeOperator(_component.children[_i], _operation);
 	}
 }

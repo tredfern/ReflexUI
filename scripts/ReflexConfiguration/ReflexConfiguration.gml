@@ -39,6 +39,16 @@ function ReflexConfiguration() {
 				
 		},
 		
+		ReflexMenu: {
+			width: "50%",
+			halign: fa_center,
+			valign: fa_middle
+		},
+		
+		ReflexMenuItem: {
+		
+		},
+		
 		ReflexText: {
 			layout:							ReflexLayout.inline
 		}
@@ -46,7 +56,9 @@ function ReflexConfiguration() {
 }
 
 function Reflex() {
+	var _components = [];
 	for(var _c = 0; _c < argument_count; _c++) {
-		reflexRender(argument[_c]);
+		array_push(_components, argument[_c]);
 	}
+	reflexRender(_components);
 }

@@ -1,11 +1,16 @@
 function ReflexText(_props, _children) : ReflexComponent(_props, _children) constructor {
 	reflexBaseStyle(self, "ReflexText");
-
+	textMgr = undefined;
 	layout = ReflexLayout.inline;
 	
 	static onLayout = function(_contentSize) {
-		_contentSize.contentWidth = string_width(text);
-		_contentSize.contentHeight = string_height(text);
+		if(textMgr != undefined) {
+			_contentSize.width = textMgr.GetWidth();
+			_contentSize.height = textMgr.GetHeight();
+		} else {
+			_contentSize.width = string_width(text);
+			_contentSize.height = string_height(text);
+		}
 	}
 	
 	static onDraw = function(_drawArea) {

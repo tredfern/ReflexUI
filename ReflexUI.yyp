@@ -88,6 +88,8 @@
     {"id":{"name":"ReflexEvents","path":"scripts/ReflexEvents/ReflexEvents.yy",},},
     {"id":{"name":"ReflexInitialize","path":"scripts/ReflexInitialize/ReflexInitialize.yy",},},
     {"id":{"name":"ReflexLayout","path":"scripts/ReflexLayout/ReflexLayout.yy",},},
+    {"id":{"name":"ReflexMenu","path":"scripts/ReflexMenu/ReflexMenu.yy",},},
+    {"id":{"name":"ReflexMenuItem","path":"scripts/ReflexMenuItem/ReflexMenuItem.yy",},},
     {"id":{"name":"ReflexProcessStep","path":"scripts/ReflexProcessStep/ReflexProcessStep.yy",},},
     {"id":{"name":"ReflexRender","path":"scripts/ReflexRender/ReflexRender.yy",},},
     {"id":{"name":"ReflexRoot","path":"scripts/ReflexRoot/ReflexRoot.yy",},},
