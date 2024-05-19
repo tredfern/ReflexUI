@@ -9,6 +9,7 @@ function reflexInitialize() {
 	REFLEX_EMPTY = {};
 	REFLEX_GLOBAL.canCache = false;
 	REFLEX_STATE = new ReflexStateManager();
+	REFLEX_COLORS = {};
 	
 	//Load the configuration
 	ReflexConfiguration();

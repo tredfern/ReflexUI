@@ -3,6 +3,7 @@
 #macro REFLEX_STYLESHEET REFLEX_GLOBAL.stylesheet
 #macro REFLEX_EMPTY REFLEX_GLOBAL.emptyStruct
 #macro REFLEX_STATE REFLEX_GLOBAL.stateManager
+#macro REFLEX_COLORS REFLEX_GLOBAL.colors
 
 
 // Properties

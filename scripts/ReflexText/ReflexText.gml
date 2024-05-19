@@ -37,6 +37,7 @@ function ReflexText(_props, _children) : ReflexComponent(_props, _children, "Ref
 		return templateText != undefined || string_pos("{", text) != 0;
 	}
 	
+	//TODO: This should be cleaned up 
 	static onUpdate = function() {		
 		//Check if our size changed, if so, we need to refresh the layout
 		var _size = { width: 0, height: 0 };

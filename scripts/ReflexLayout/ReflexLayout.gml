@@ -55,13 +55,14 @@ function reflexLayoutComponent(_component) {
 					_y += _lineHeight;
 					_lineHeight = 0;
 				}
+				_lineHeight = max(_lineHeight, _h);
 				
 				// Set Child Position
-				_child.boxModel.x = _x;
-				_child.boxModel.y = _y;
+				_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
+				_child.boxModel.y = reflexAlign(_child.valign, _y, _lineHeight, _h);
 				
 				_x += _w;
-				_lineHeight = max(_lineHeight, _h);
+				
 				
 				_childContentWidth = max(_childContentWidth, _x);
 				_childContentHeight = max(_childContentHeight, _y + _lineHeight);
@@ -136,4 +137,18 @@ function reflexCalculateHeight(_component) {
 	}
 	
 	return boxModel.contentHeight;
+}
+
+
+function reflexAlign(_alignment, _min, _max, _size) {
+	if (_alignment == fa_left || _alignment == fa_top)
+		return _min;
+	
+	if (_alignment == fa_middle || _alignment == fa_center)
+		return (_max - _min - _size) / 2;
+		
+	if (_alignment == fa_right || _alignment == fa_bottom)
+		return _max - _size;
+	
+	return _min;
 }

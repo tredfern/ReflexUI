@@ -1,4 +1,14 @@
 function ReflexConfiguration() {
+	reflexColors({
+		textDark: c_black,
+		textLight: c_ltgray,
+		lightShade: c_ltgray,
+		lightAccent: c_yellow,
+		darkShade: c_navy,
+		darkAccent: c_olive,
+		primary: c_purple
+	});
+		
 	
 	// Default styles for components
 	
@@ -40,9 +50,10 @@ function ReflexConfiguration() {
 		},
 		
 		ReflexMenu: {
-			width: "50%",
 			halign: fa_center,
-			valign: fa_middle
+			valign: fa_middle,
+			backgroundColor: REFLEX_COLORS.lightShade,
+			width: "50%"
 		},
 		
 		ReflexMenuItem: {

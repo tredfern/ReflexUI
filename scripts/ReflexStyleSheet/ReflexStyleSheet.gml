@@ -42,3 +42,7 @@ function reflexApplyDefaultStyles(_component) {
 		reflexApplyStyles(self, _component.baseStyles[_i]);	
 	}
 }
+
+function reflexColors(_palette) {
+	reflexStructMergeValues(REFLEX_COLORS, _palette);
+}

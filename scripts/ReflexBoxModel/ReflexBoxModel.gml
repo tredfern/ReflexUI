@@ -1,6 +1,5 @@
 function ReflexBoxModel(_component) constructor {
 	component = _component;
-	
 	x = 0;
 	y = 0;
 	contentWidth = 0;
@@ -15,9 +14,11 @@ function ReflexBoxModel(_component) constructor {
 		var _hMargin = margin.totalTB - border.totalTB - padding.totalTB;
 		
 		if(!is_undefined(component.parent)) {
-			//Take up as much room as our parent will let us
-			contentWidth = component.parent.boxModel.contentWidth - _wMargin;
-			contentHeight = component.parent.boxModel.contentHeight - _hMargin;
+			var _w = component.parent.boxModel.contentWidth;
+			var _h = component.parent.boxModel.contentHeight;
+		
+			contentWidth = __reflexCalcMaxSize(component.width, _w) - _wMargin;
+			contentheight = __reflexCalcMaxSize(component.height, _h) - _hMargin;
 		} else {
 			// We have no parent, get the whole screen!
 			contentWidth = display_get_gui_width() - _wMargin;
@@ -26,11 +27,11 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static getFullWidth = function() {
-		return contentWidth + margin.totalLR + border.totalLR + padding.totalLR;	
+		return contentWidth + margin.totalLR + border.totalLR + padding.totalLR;
 	}
 	
 	static getFullHeight = function() {
-		return contentHeight + margin.totalTB + border.totalTB + padding.totalTB;	
+		return contentHeight + margin.totalTB + border.totalTB + padding.totalTB;
 	}
 	
 	///
@@ -48,7 +49,7 @@ function ReflexBoxModel(_component) constructor {
 			return new ReflexLayoutRect(_pRect.left + x, _pRect.top + y, width, height);
 		}
 		
-		return new ReflexLayoutRect(x, y, width, height);	
+		return new ReflexLayoutRect(x, y, width, height);
 	}
 	
 	///
@@ -68,7 +69,7 @@ function ReflexBoxModel(_component) constructor {
 			return new ReflexLayoutRect(
 				_pRect.left + _x, _pRect.top + _y, _w, _h);
 		} else {
-			return new ReflexLayoutRect(_x, _y, _w, _h);	
+			return new ReflexLayoutRect(_x, _y, _w, _h);
 		}
 	}
 	
@@ -87,7 +88,7 @@ function ReflexBoxModel(_component) constructor {
 			return new ReflexLayoutRect(
 				_pRect.left + _x, _pRect.top + _y, _w, _h);
 		} else {
-			return new ReflexLayoutRect(_x, _y, _w, _h);	
+			return new ReflexLayoutRect(_x, _y, _w, _h);
 		}	
 	}
 	
@@ -139,4 +140,14 @@ function reflexBoundaryRect(_value) {
 		reflexStructMergeValues(_default, _value);
 		return _default; 	
 	}
+}
+function __reflexCalcMaxSize(_value, _parentSize) {
+	if(_value == ReflexProperty.auto) {
+		return _parentSize;	
+	}
+	
+	if(reflexIsPercentageString(_value))
+		return reflexGetPercentage(_value) * _parentSize;
+		
+	return _value;
 }
