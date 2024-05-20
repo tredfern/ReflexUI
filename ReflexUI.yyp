@@ -87,6 +87,7 @@
     {"id":{"name":"ReflexDrawing","path":"scripts/ReflexDrawing/ReflexDrawing.yy",},},
     {"id":{"name":"ReflexEvents","path":"scripts/ReflexEvents/ReflexEvents.yy",},},
     {"id":{"name":"ReflexInitialize","path":"scripts/ReflexInitialize/ReflexInitialize.yy",},},
+    {"id":{"name":"ReflexInput","path":"scripts/ReflexInput/ReflexInput.yy",},},
     {"id":{"name":"ReflexLayout","path":"scripts/ReflexLayout/ReflexLayout.yy",},},
     {"id":{"name":"ReflexMenu","path":"scripts/ReflexMenu/ReflexMenu.yy",},},
     {"id":{"name":"ReflexMenuItem","path":"scripts/ReflexMenuItem/ReflexMenuItem.yy",},},

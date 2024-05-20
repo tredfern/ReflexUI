@@ -10,6 +10,8 @@ function reflexInitialize() {
 	REFLEX_GLOBAL.canCache = false;
 	REFLEX_STATE = new ReflexStateManager();
 	REFLEX_COLORS = {};
+	REFLEX_MOUSE_DEVICE = 0;
+	REFLEX_INPUT = new ReflexInput();
 	
 	//Load the configuration
 	ReflexConfiguration();

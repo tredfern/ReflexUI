@@ -99,6 +99,11 @@ function ReflexBoxModel(_component) constructor {
 			content: getContentRect()
 		}
 	}
+	
+	static inScreenRect = function(_x, _y) {
+		var _sr = getScreenRect();
+		return _sr.left < _x && _x < _sr.right && _sr.top < _y && _y < _sr.bottom;
+	}
 }
 
 ///

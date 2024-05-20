@@ -2,11 +2,10 @@ function reflexProcessStep() {
 	// Update any state
 	REFLEX_STATE.step();
 	
+	REFLEX_INPUT.step();
 	
-	//Trigger any step events
-	for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
-		ReflexTreeOperator(REFLEX_ROOTS[_i], reflexTreeStepEvent);
-	}
+	ReflexOperationOnAll(reflexTreeStepEvent)
+	
 	
 	if(REFLEX_GLOBAL.needsRefresh) {
 		array_foreach(REFLEX_ROOTS, reflexPerformLayout);

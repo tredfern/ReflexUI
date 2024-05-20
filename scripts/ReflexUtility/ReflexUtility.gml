@@ -62,3 +62,16 @@ function reflexCheckWeakRef(_obj) {
 		
 	return instance_exists(_obj);
 }
+
+//
+// Returns all entries that are missing from the second array
+//
+function reflexArrayMissing(_array, _searchArray) {
+	var _out = [];
+	for(var _i = 0; _i < array_length(_array); _i++) {
+		if(!array_contains(_searchArray, _array[_i]))
+			array_push(_out, _array[_i]);
+	}
+	
+	return _out;
+}

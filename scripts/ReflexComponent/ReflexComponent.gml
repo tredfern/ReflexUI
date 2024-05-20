@@ -6,6 +6,13 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	boxModel = new ReflexBoxModel(self);
 	layout = ReflexLayout.block;
 	isLoaded = false;
+	styleCache = {};
+	
+	drawingColors = {
+		color: c_white,
+		backgroundColor: c_white,
+		borderColor: c_white
+	}
 
 	static loadComponent = function() {
 		// Apply default styles

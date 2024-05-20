@@ -62,6 +62,7 @@
     {"name":"ReflexConstants","order":5,"path":"scripts/ReflexConstants/ReflexConstants.yy",},
     {"name":"ReflexDrawing","order":4,"path":"scripts/ReflexDrawing/ReflexDrawing.yy",},
     {"name":"ReflexEvents","order":6,"path":"scripts/ReflexEvents/ReflexEvents.yy",},
+    {"name":"ReflexInput","order":13,"path":"scripts/ReflexInput/ReflexInput.yy",},
     {"name":"ReflexLayout","order":7,"path":"scripts/ReflexLayout/ReflexLayout.yy",},
     {"name":"ReflexMenu","order":6,"path":"scripts/ReflexMenu/ReflexMenu.yy",},
     {"name":"ReflexMenuItem","order":7,"path":"scripts/ReflexMenuItem/ReflexMenuItem.yy",},

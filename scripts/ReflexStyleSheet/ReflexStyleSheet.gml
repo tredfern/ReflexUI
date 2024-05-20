@@ -46,3 +46,25 @@ function reflexApplyDefaultStyles(_component) {
 function reflexColors(_palette) {
 	reflexStructMergeValues(REFLEX_COLORS, _palette);
 }
+
+function reflexApplyTempStyle(_components, _style) {
+	for(var _i = 0; _i < array_length(_components); _i++) {
+		var _c = _components[_i];
+		
+		if (struct_exists(_c, _style)) {	
+			var _changes = reflexStructMergeValues(_c, _c[$ _style]);
+			_c.styleCache[$ _style] = _changes;
+		}
+	}
+}
+
+function reflexRemoveTempStyle(_components, _style) {
+	for(var _i = 0; _i < array_length(_components); _i++) {
+		var _c = _components[_i];
+		
+		if (struct_exists(_c.styleCache, _style)) {	
+			reflexStructMergeValues(_c, _c.styleCache[$ _style]);
+			struct_remove(_c.styleCache, _style);
+		}
+	}
+}

@@ -1,4 +1,13 @@
 
+
+
+function ReflexOperationOnAll(_operation) {
+	//Trigger any step events
+	for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
+		ReflexTreeOperator(REFLEX_ROOTS[_i], _operation);
+	}
+}
+
 ///
 ///
 /// Operation is a callback with these parameters (_component, _itsIndex, _parent)

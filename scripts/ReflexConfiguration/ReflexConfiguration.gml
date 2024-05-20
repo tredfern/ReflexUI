@@ -11,7 +11,6 @@ function ReflexConfiguration() {
 		
 	
 	// Default styles for components
-	
 	reflexStyleSheet({
 		__default: {
 			// Position Properties
@@ -35,7 +34,8 @@ function ReflexConfiguration() {
 			color:							ReflexProperty.inherit,		// Use the foreground color of your parent
 			backgroundColor:				ReflexProperty.off,			// Disable background color
 			borderColor:					ReflexProperty.off,			// Disable border color
-			isVisible:						true						// By default all components should be seen
+			isVisible:						true,						// By default all components should be seen
+			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1				
 		},
 		
 		// Root is a container wrapped around any render
@@ -52,12 +52,17 @@ function ReflexConfiguration() {
 		ReflexMenu: {
 			halign: fa_center,
 			valign: fa_middle,
-			backgroundColor: REFLEX_COLORS.lightShade,
 			width: "50%"
 		},
 		
 		ReflexMenuItem: {
-		
+			colorChangeRate: 0.1,
+			backgroundColor: REFLEX_COLORS.lightShade,
+			margin: 5,
+			hover: {
+				backgroundColor: REFLEX_COLORS.lightAccent,
+				color: merge_color(REFLEX_COLORS.lightShade, REFLEX_COLORS.textDark, 0.01)
+			}
 		},
 		
 		ReflexMenuOptionText: {
@@ -66,7 +71,7 @@ function ReflexConfiguration() {
 		},
 		
 		ReflexText: {
-			layout:							ReflexLayout.inline
+			layout:	ReflexLayout.inline
 		}
 	});
 }

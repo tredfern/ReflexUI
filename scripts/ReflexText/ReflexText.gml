@@ -14,13 +14,14 @@ function ReflexText(_props, _children) : ReflexComponent(_props, _children, "Ref
 		}
 	}
 	
-	static onDraw = function(_drawArea) {
+	static onDraw = function(_params) {
+		var _drawArea = _params.location;
+		var _colors = _params.colors;
 		
-		draw_set_color(color);
 		if(isTemplated()) {
-			ScribblejrDrawNative(_drawArea.left, _drawArea.top, reflexTemplatizeText(self, templateText));
+			ScribblejrDrawNative(_drawArea.left, _drawArea.top, reflexTemplatizeText(self, templateText), _colors.color);
 		} else {
-			textMgr.Draw(_drawArea.left, _drawArea.top);
+			textMgr.Draw(_drawArea.left, _drawArea.top, _colors.color);
 		}
 	}
 	
