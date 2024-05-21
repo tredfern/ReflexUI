@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"exampleComponents",
   "parent":{
-    "name":"Demo",
-    "path":"folders/Demo.yy",
+    "name":"ReflexUI - Demo",
+    "path":"folders/ReflexUI - Demo.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

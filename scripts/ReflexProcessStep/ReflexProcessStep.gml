@@ -1,12 +1,7 @@
 function reflexProcessStep() {
-	// Update any state
-	REFLEX_STATE.step();
+	REFLEX_GLOBAL.__inputCooldown--;
 	
-	REFLEX_INPUT.step();
-	
-	ReflexOperationOnAll(reflexTreeStepEvent)
-	
-	
+	// Load and perform any layouts
 	if(REFLEX_GLOBAL.needsRefresh) {
 		array_foreach(REFLEX_ROOTS, reflexPerformLayout);
 		REFLEX_GLOBAL.needsRefresh = false;
@@ -18,6 +13,15 @@ function reflexProcessStep() {
 		}
 		REFLEX_GLOBAL.canCache = false;
 	}
+	
+	// Update any state
+	REFLEX_STATE.step();
+	
+	// Process input commands
+	REFLEX_INPUT.step();
+	
+	// Trigger any component custom step events
+	ReflexOperationOnAll(reflexTreeStepEvent)
 }
 
 function reflexTreeStepEvent(_component) {

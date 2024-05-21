@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexTreeFindFirst",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexTreeFindFirst",
+  "parent":{
+    "name":"TreeTraversal",
+    "path":"folders/ReflexUI/System/TreeTraversal.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

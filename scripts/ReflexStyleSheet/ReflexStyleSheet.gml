@@ -48,8 +48,10 @@ function reflexColors(_palette) {
 }
 
 function reflexApplyTempStyle(_components, _style) {
-	for(var _i = 0; _i < array_length(_components); _i++) {
-		var _c = _components[_i];
+	var _array = reflexEnsureArray(_components);
+
+	for(var _i = 0; _i < array_length(_array); _i++) {
+		var _c = _array[_i];
 		
 		if (struct_exists(_c, _style)) {	
 			var _changes = reflexStructMergeValues(_c, _c[$ _style]);
@@ -59,8 +61,10 @@ function reflexApplyTempStyle(_components, _style) {
 }
 
 function reflexRemoveTempStyle(_components, _style) {
-	for(var _i = 0; _i < array_length(_components); _i++) {
-		var _c = _components[_i];
+	var _array = reflexEnsureArray(_components);
+
+	for(var _i = 0; _i < array_length(_array); _i++) {
+		var _c = _array[_i];
 		
 		if (struct_exists(_c.styleCache, _style)) {	
 			reflexStructMergeValues(_c, _c.styleCache[$ _style]);

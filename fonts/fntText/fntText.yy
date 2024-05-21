@@ -119,8 +119,8 @@
   "maintainGms1Font":false,
   "name":"fntText",
   "parent":{
-    "name":"Demo",
-    "path":"folders/Demo.yy",
+    "name":"ReflexUI - Demo",
+    "path":"folders/ReflexUI - Demo.yy",
   },
   "pointRounding":0,
   "ranges":[

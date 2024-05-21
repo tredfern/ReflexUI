@@ -9,8 +9,8 @@
   "name":"objDemo",
   "overriddenProperties":[],
   "parent":{
-    "name":"Demo",
-    "path":"folders/Demo.yy",
+    "name":"ReflexUI - Demo",
+    "path":"folders/ReflexUI - Demo.yy",
   },
   "parentObjectId":null,
   "persistent":false,

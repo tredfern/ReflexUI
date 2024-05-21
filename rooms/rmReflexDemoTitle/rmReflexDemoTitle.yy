@@ -17,8 +17,8 @@
   ],
   "name":"rmReflexDemoTitle",
   "parent":{
-    "name":"Demo",
-    "path":"folders/Demo.yy",
+    "name":"ReflexUI - Demo",
+    "path":"folders/ReflexUI - Demo.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -39,6 +39,8 @@ function reflexLayoutComponent(_component) {
 			var _maxHeight = boxModel.contentHeight;
 			var _childContentWidth = 0;
 			var _childContentHeight = 0;
+			var _focusGrid = [[]];
+			var _row = 0;
 			
 		
 			for(var _i = 0; _i < array_length(children); _i++) {
@@ -54,6 +56,8 @@ function reflexLayoutComponent(_component) {
 					_x = 0;
 					_y += _lineHeight;
 					_lineHeight = 0;
+					_row++;
+					array_push(_focusGrid, []);
 				}
 				_lineHeight = max(_lineHeight, _h);
 				
@@ -67,6 +71,25 @@ function reflexLayoutComponent(_component) {
 				_childContentWidth = max(_childContentWidth, _x);
 				_childContentHeight = max(_childContentHeight, _y + _lineHeight);
 				
+				//Assign component focus
+				if(_child.focusOrder == ReflexProperty.auto) {
+					var _col = array_length(_focusGrid[_row]);
+					array_push(_focusGrid[_row], _child);
+					
+					if(_row > 0) {
+						var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]))];
+					
+						_child.focusUp = _upControl;
+						_upControl.focusDown = _child;
+					}
+					
+					if(_col > 0) {
+						var _leftControl = _focusGrid[_row][_col - 1];
+						_child.focusLeft = _leftControl;
+						_leftControl.focusRight = _child;
+						
+					}
+				}
 			}
 			
 			boxModel.contentWidth = _childContentWidth;

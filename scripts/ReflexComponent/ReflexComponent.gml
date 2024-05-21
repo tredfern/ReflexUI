@@ -7,6 +7,10 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	layout = ReflexLayout.block;
 	isLoaded = false;
 	styleCache = {};
+	focusUp = undefined;
+	focusDown = undefined;
+	focusRight = undefined;
+	focusLeft = undefined;
 	
 	drawingColors = {
 		color: c_white,

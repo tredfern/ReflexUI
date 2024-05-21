@@ -1,4 +1,10 @@
 reflexStyleSheet({
+	ReflexMenu: {
+		font: fntMenuButtons	
+	},
+	ReflexMenuItem: {
+		padding: 10	
+	},
 	pink: {
 		backgroundColor: #FF33CC,
 		color: #E8E8E8,

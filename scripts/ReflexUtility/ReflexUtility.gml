@@ -31,7 +31,7 @@ function reflexGetPercentage(_stringValue) {
 	return 	_num / 100;
 }
 
-function reflexPropertyOn(_struct, _property) {
+function reflexPropertyOn(_property, _struct = self) {
 	return _struct[$ _property] != ReflexProperty.off;
 }
 
@@ -74,4 +74,19 @@ function reflexArrayMissing(_array, _searchArray) {
 	}
 	
 	return _out;
+}
+
+function reflexArrayFindFirst(_array, _function) {
+	for(var _i = 0; _i < array_length(_array); _i++) {
+		if(_function(_array[_i]))
+			return _array[_i];
+	}
+}
+
+function reflexEnsureArray(_value) {
+	if(!is_array(_value)) {
+		return [ _value ];	
+	}
+	
+	return _value;
 }

@@ -7,7 +7,7 @@ function ReflexBoxModel(_component) constructor {
 	padding = reflexBoundaryRect(component[$ REFLEX_PROPERTY_PADDING]);
 	margin = reflexBoundaryRect(component[$ REFLEX_PROPERTY_MARGIN]);
 	border = reflexBoundaryRect(component[$ REFLEX_PROPERTY_BORDER]);
-	__cached = undefined;
+	cached = undefined;
 	
 	static maximize = function() {
 		var _wMargin = margin.totalLR - border.totalLR - padding.totalLR;
@@ -38,25 +38,25 @@ function ReflexBoxModel(_component) constructor {
 	/// FullRects represent the entire space in the UI the component is occupying
 	/// This is all the margin, padding, border, and content
 	static getFullRect = function() {
-		if(!is_undefined(__cached))
-			return __cached.full;
+		if(!is_undefined(cached))
+			return cached.full;
 			
-		var width = margin.totalLR + border.totalLR + padding.totalLR + contentWidth;
-		var height = margin.totalTB + border.totalTB + padding.totalTB + contentHeight;
+		var _width = margin.totalLR + border.totalLR + padding.totalLR + contentWidth;
+		var _height = margin.totalTB + border.totalTB + padding.totalTB + contentHeight;
 		
 		if(!is_undefined(component.parent)) {
 			var _pRect = component.parent.boxModel.getContentRect();
-			return new ReflexLayoutRect(_pRect.left + x, _pRect.top + y, width, height);
+			return new ReflexLayoutRect(_pRect.left + x, _pRect.top + y, _width, _height);
 		}
 		
-		return new ReflexLayoutRect(x, y, width, height);
+		return new ReflexLayoutRect(x, y, _width, _height);
 	}
 	
 	///
 	/// Screen Rects are p
 	static getScreenRect = function() {
-		if(!is_undefined(__cached))
-			return __cached.screen;
+		if(!is_undefined(cached))
+			return cached.screen;
 			
 		var _x = x + margin.left;
 		var _y = y + margin.top;
@@ -74,8 +74,8 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static getContentRect = function() {
-		if(!is_undefined(__cached))
-			return __cached.content;
+		if(!is_undefined(cached))
+			return cached.content;
 			
 		var _x = x + margin.left + border.left + padding.left;
 		var _y = y + margin.top + border.top + padding.top;
@@ -93,7 +93,7 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static cache = function() {
-		__cached = {
+		cached = {
 			full: getFullRect(),
 			screen: getScreenRect(),
 			content: getContentRect()

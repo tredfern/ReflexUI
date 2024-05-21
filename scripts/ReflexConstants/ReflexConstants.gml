@@ -19,6 +19,20 @@
 #macro REFLEX_STYLE_HOVER				"hover"
 #macro REFLEX_STYLE_FOCUS				"focus"
 
+// Events
+
+#macro REFLEX_EVENT_ON_CANCEL		"onCancel"
+#macro REFLEX_EVENT_ON_CLICK		"onClick"
+#macro REFLEX_EVENT_ON_DRAW			"onDraw"
+#macro REFLEX_EVENT_ON_FOCUS		"onFocus"
+#macro REFLEX_EVENT_ON_FOCUS_OUT	"onFocusOut"
+#macro REFLEX_EVENT_ON_LAYOUT		"onLayout"
+#macro REFLEX_EVENT_ON_LOAD			"onLoad"
+#macro REFLEX_EVENT_MOUSE_ENTER		"onMouseEnter"
+#macro REFLEX_EVENT_MOUSE_EXIT		"onMouseExit"
+#macro REFLEX_EVENT_MOUSE_OVER		"onMouseOver"
+#macro REFLEX_EVENT_ON_STEP			"onStep"
+#macro REFLEX_EVENT_ON_UPDATE		"onUpdate"
 
 enum ReflexLayout {
 	block,

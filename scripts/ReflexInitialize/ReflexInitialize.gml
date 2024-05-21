@@ -12,6 +12,7 @@ function reflexInitialize() {
 	REFLEX_COLORS = {};
 	REFLEX_MOUSE_DEVICE = 0;
 	REFLEX_INPUT = new ReflexInput();
+	REFLEX_GLOBAL.__inputCooldown = 0;
 	
 	//Load the configuration
 	ReflexConfiguration();

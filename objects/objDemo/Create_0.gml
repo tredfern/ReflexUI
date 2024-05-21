@@ -6,33 +6,11 @@ counter = 0;
 
 Reflex(
 	new ReflexMenu({}, [
-		new ReflexMenuItem({ text: "Menu 1" }),
-		new ReflexMenuItem({ text: "Menu 2" }),
-		new ReflexMenuItem({ text: "Menu 3" })
-	]),
-	new ReflexBlock({}, [
-		new ReflexBlock({ styles: "pink" }, [
-			new FrameCounter(),
-			"Hello World2"
-		]),
-		new ReflexBlock({ styles: "big_blue"}, [
-			new ReflexText({ text: "Hello World3" }),
-			new ReflexText({ text: "Hello World4" })
-		]),
-		new ReflexBlock({ styles: "big_blue pink"}, [
-			new ReflexText({ text: "Hello World5" }),
-			new ReflexText({ text: "Hello World6" })
-		]),
-		new ReflexBlock({ margin: 10, height: 15, backgroundColor: c_fuchsia }),
-		new ReflexBlock({ margin: 10, backgroundColor: c_navy}, [
-			new ReflexBlock({ margin: 10, backgroundColor: c_fuchsia }, [
-				new ReflexBlock({ margin: 10, height: 15, backgroundColor: c_green }),
-				new ReflexBlock({ margin: 10, height: 15, backgroundColor: c_green }),
-			]),
-			new ReflexBlock({ margin: 10, height: 15, backgroundColor: c_fuchsia }),
-			new ReflexBlock({ margin: 10, height: 15, backgroundColor: c_fuchsia })
-		])
-	]),
-	
-	
+		new ReflexMenuItem({ text: "Layout Demo" }),
+		new ReflexMenuItem({ text: "Binding Properties" }),
+		new ReflexMenuItem({ text: "Gamepad Navigation" }),
+		new ReflexMenuItem({ text: "Animations" }),
+		new ReflexMenuItem({ text: "Game Screen" }),
+		new ReflexMenuItem({ text: "Quit", onClick: game_end })
+	])
 );

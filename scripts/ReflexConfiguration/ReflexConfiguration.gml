@@ -1,4 +1,17 @@
 function ReflexConfiguration() {
+	REFLEX_GLOBAL.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
+	
+	
+	reflexInputVerbs({
+		click: "click",
+		accept: "accept",
+		cancel: "cancel",
+		up: "up",
+		down: "down",
+		right: "right",
+		left: "left"
+	});
+	
 	reflexColors({
 		textDark: c_black,
 		textLight: c_ltgray,
@@ -6,21 +19,22 @@ function ReflexConfiguration() {
 		lightAccent: c_yellow,
 		darkShade: c_navy,
 		darkAccent: c_olive,
-		primary: c_purple
+		primary: c_purple,
+		focus: c_lime
 	});
 		
 	
 	// Default styles for components
 	reflexStyleSheet({
 		__default: {
-			// Position Properties
+			//	Position Properties
 			position:						ReflexPosition.relative,	// Relative positions will use X/Y to move component in specified direction.
 			x:								0,							// X & Y will move the component 
 			y:								0,
 			width:							ReflexProperty.auto,		// Auto properties will be calculated by the engine	
 			height:							ReflexProperty.auto,		// Width/Height can accept percentage strings to specify a certain amount of width of the parent
 			
-			//Layout Properties
+			//	Layout Properties
 			layout:							ReflexLayout.block,			// Block elements extend as far to the right as possible
 			margin:							0,							// Margin defines space between this component and others
 			border:							0,							// Border is for any drawing of a border around the content
@@ -28,14 +42,22 @@ function ReflexConfiguration() {
 			halign:							fa_left,					// How this component should layout within it's parent
 			valign:							fa_top,						// ...
 				
-			//Visual Properties
+			//	Visual Properties
 			alpha:							1,							// Opacity for drawing commands			
 			font:							ReflexProperty.inherit,		// Use the font set to your parent
 			color:							ReflexProperty.inherit,		// Use the foreground color of your parent
 			backgroundColor:				ReflexProperty.off,			// Disable background color
 			borderColor:					ReflexProperty.off,			// Disable border color
 			isVisible:						true,						// By default all components should be seen
-			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1				
+			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1	
+			
+			// Input Properties
+			canFocus:						false,						// Whether this component can receive focus		
+			focusOrder:						ReflexProperty.auto,		// Sets whether the layout should figure out how to navigate around controls. Set to off to disable
+			focusUp:						undefined,					// The focus direction properties should only be set if focusOrder is set to off
+			focusDown:						undefined,					// These will determine what control to navigate to if direction input is provided
+			focusLeft:						undefined,
+			focusRight:						undefined,
 		},
 		
 		// Root is a container wrapped around any render
@@ -57,12 +79,18 @@ function ReflexConfiguration() {
 		
 		ReflexMenuItem: {
 			colorChangeRate: 0.1,
-			backgroundColor: REFLEX_COLORS.lightShade,
+			backgroundColor: "lightShade",
 			margin: 5,
+			border: 2,
 			hover: {
-				backgroundColor: REFLEX_COLORS.lightAccent,
-				color: merge_color(REFLEX_COLORS.lightShade, REFLEX_COLORS.textDark, 0.01)
-			}
+				backgroundColor: "lightAccent",
+				color: "textDark"
+			},
+			focus: {
+				borderColor: "focus",
+				color: "textLight"
+			},
+			canFocus: true
 		},
 		
 		ReflexMenuOptionText: {
