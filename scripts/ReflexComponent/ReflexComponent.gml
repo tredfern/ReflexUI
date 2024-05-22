@@ -69,4 +69,8 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		if(!struct_exists(self, _propName))
 			self[$ _propName] = _default;
 	}
+	
+	static bind = function(_propName, _fromObject, _fromProperty) {
+		reflexBindProperty(self, _propName, _fromObject, _fromProperty);	
+	}
 }

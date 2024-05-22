@@ -35,7 +35,7 @@ function reflexPropertyOn(_property, _struct = self) {
 	return _struct[$ _property] != ReflexProperty.off;
 }
 
-function reflexTemplatizeText(_struct, _text) {
+function reflexTemplatizeText(_component, _text) {
 	var _index = string_pos("{", _text);
 	while(_index != 0) {
 		var _endPos = string_pos_ext("}", _text, _index);

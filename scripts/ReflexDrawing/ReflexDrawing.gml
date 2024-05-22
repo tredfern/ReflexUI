@@ -14,13 +14,14 @@ function reflexDraw(_component) {
 	reflexSetDrawingColors(_component);
 		
 	var _screenRect = _component.boxModel.getScreenRect();
+	var _contentRect = _component.boxModel.getContentRect();
 	
 	with(_component) {
 		
 		//	Painters draw component
 		reflexDrawBackground(_component, _screenRect);
 		reflexDrawBorder(_component, _screenRect);
-		reflexSafeEvent(_component, REFLEX_EVENT_ON_DRAW, { location: _screenRect, colors: drawingColors });
+		reflexSafeEvent(_component, REFLEX_EVENT_ON_DRAW, { location: _contentRect, colors: drawingColors });
 
 		//	Draw children
 		array_foreach(_component.children, reflexDraw);
@@ -42,9 +43,9 @@ function reflexDrawBorder(_component, _screenRect) {
 			draw_set_color(drawingColors.borderColor);
 			var _borderSizes = _component.boxModel.border;
 			
-			draw_line_width(_screenRect.left, _screenRect.top + _borderSizes.top / 2, _screenRect.right, _screenRect.top + _borderSizes.top / 2, _borderSizes.top);
+			draw_line_width(_screenRect.left, _screenRect.top - 1 + _borderSizes.top / 2, _screenRect.right, _screenRect.top - 1 + _borderSizes.top / 2, _borderSizes.top);
 			draw_line_width(_screenRect.left, _screenRect.bottom - _borderSizes.bottom / 2, _screenRect.right, _screenRect.bottom - _borderSizes.bottom / 2, _borderSizes.bottom);
-			draw_line_width(_screenRect.left + _borderSizes.left / 2, _screenRect.top, _screenRect.left + _borderSizes.left / 2, _screenRect.bottom, _borderSizes.left);
+			draw_line_width(_screenRect.left + _borderSizes.left / 2 - 1, _screenRect.top - 1, _screenRect.left + _borderSizes.left / 2 - 1, _screenRect.bottom, _borderSizes.left);
 			draw_line_width(_screenRect.right - _borderSizes.right / 2, _screenRect.top, _screenRect.right - _borderSizes.right / 2, _screenRect.bottom, _borderSizes.right);
 
 		}

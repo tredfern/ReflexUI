@@ -22,5 +22,15 @@ reflexStyleSheet({
 		},
 		margin: { top: 5, bottom: 5, right: 10 },
 		halign: fa_right
+	},
+	outlined: {
+		border: 1,
+		borderColor: c_black
+	},
+	padded: {
+		padding: 3
+	},
+	panel: {
+		backgroundColor: c_ltgray	
 	}
 })

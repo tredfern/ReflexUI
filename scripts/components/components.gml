@@ -7,12 +7,32 @@ function demoHeader() {
 function demoLayout() {
 	return new ReflexBlock({}, [
 		new ReflexBlock({ margin: 10, backgroundColor: c_blue, color: c_white }, [
-			new ReflexText("Some text\n going to a new line"),
-			new ReflexText("Another text segment"),
+			new ReflexText({ text: "Some text with a \n line break", styles: "outlined padded" }),
+			new ReflexText({ text: "Another text segment", styles: "outlined padded" }),
+			new ReflexText({ text: "I'm aligned middle", styles: "outlined padded", valign: fa_middle }),
+			new ReflexText({ text: "I'm aligned bottom", styles: "outlined padded", valign: fa_bottom }),
+		
 			new ReflexBlock({ margin: 10, backgroundColor: c_ltgray, color: c_black }, [
-				new ReflexText("Some text inside this block")
+				new ReflexText({ text: "Block inside a block", styles: "outlined padded" }),
+				new ReflexText({ text: "Align Center", styles: "outlined padded", halign: fa_center }),
+				new ReflexText({ text: "Pulled Right", styles: "outlined padded", halign: fa_right })
 			])
-		])
+		]),
+	]);
+}
+
+function demoBindingProperties() {
+	return new ReflexBlock({ styles: "panel" }, [
+		new FrameCounter()
 	]);
 	
+}
+
+function FrameCounter() : ReflexComponent() constructor {
+	frameNumber = 0;
+	bind("frameNumber", objDemo, "counter");
+	
+	static render = function() {
+		return new ReflexText({ text: "Frames: {frameNumber}" });	
+	}	
 }

@@ -73,7 +73,8 @@ function ReflexConfiguration() {
 		
 		ReflexButton: {
 			layout: ReflexLayout.inline,
-			padding: { left: 15, top: 10 }
+			padding: { left: 15, top: 10 },
+			colorChangeRate: 0.1,
 		},
 		
 		
