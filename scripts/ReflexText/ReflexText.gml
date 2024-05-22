@@ -1,4 +1,5 @@
-function ReflexText(_props, _children) : ReflexComponent(_props, _children, "ReflexText") constructor {
+function ReflexText(_text, _props) : ReflexComponent(_props, [], "ReflexText") constructor {
+	text = _text;
 	textMgr = undefined;
 	layout = ReflexLayout.inline;
 	templateText = undefined;

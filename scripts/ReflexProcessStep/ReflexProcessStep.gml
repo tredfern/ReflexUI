@@ -3,6 +3,7 @@ function reflexProcessStep() {
 	
 	// Load and perform any layouts
 	if(REFLEX_GLOBAL.needsRefresh) {
+		// Perform layout of all components
 		array_foreach(REFLEX_ROOTS, reflexPerformLayout);
 		REFLEX_GLOBAL.needsRefresh = false;
 		REFLEX_GLOBAL.canCache = true;
@@ -25,9 +26,7 @@ function reflexProcessStep() {
 }
 
 function reflexTreeStepEvent(_component) {
-	if(_component.isLoaded) {
-		reflexSafeEvent(_component, REFLEX_EVENT_ON_STEP);
-	}
+	reflexSafeEvent(_component, REFLEX_EVENT_ON_STEP);
 }
 
 function reflexCacheLayouts(_component) {

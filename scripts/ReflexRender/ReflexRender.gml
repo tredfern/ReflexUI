@@ -3,9 +3,8 @@ function reflexRender(_components) {
 		_components = [_components];	
 	}
 	var _root = new ReflexRoot(_components);
-	// Convert any strings to ReflexText components
-	ReflexTreeOperator(_root, reflexReplaceStringWithText);
-	//ReflexTreeOperator(_root, reflexPerformRender);
+	
+	ReflexTreeOperator(_root, reflexPerformRender, 0, undefined);
 	
 	array_push(REFLEX_ROOTS, _root);
 	reflexFlagRefresh();
@@ -13,13 +12,6 @@ function reflexRender(_components) {
 
 function reflexFlagRefresh() {
 	REFLEX_GLOBAL.needsRefresh = true;	
-}
-
-function reflexReplaceStringWithText(_component, _index, _parent) {
-	if(is_string(_component)) {
-		var _text = new ReflexText({ text: _component });
-		_parent.children[_index] = _text;
-	}
 }
 
 function reflexClearAll() {
@@ -32,8 +24,16 @@ function reflexRemove(_component) {
 	delete _component;
 }
 
-function reflexPerformRender(_component) {
+function reflexPerformRender(_component, _index, _parent) {
+	// First off, swap out any strings with text elements
+	_component.parent = _parent;
+	
+	// Load the component
+	_component.loadComponent();
+	
+	//Render if necessary
 	if(struct_exists(_component, "render")) {
-		_component.children = _component.render();	
+		_component.children = reflexEnsureArray(_component.render());	
+		_component.setChildrenParent();
 	}
 }

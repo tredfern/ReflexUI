@@ -11,13 +11,10 @@ function ReflexOperationOnAll(_operation) {
 /// Operation is a callback with these parameters (_component, _itsIndex, _parent)
 ///
 ///
-function ReflexTreeOperator(_component, _operation) {
+function ReflexTreeOperator(_component, _operation, _index, _parent) {
+	_operation(_component, _index, _parent);
+	
 	for(var _i = 0; _i < array_length(_component.children); _i++) {
-		// Run the operation, check response code
-		_operation(_component.children[_i], _i, _component);
-		
-		//Cascade to children
-		if(_component.children[_i].hasChildren())
-			ReflexTreeOperator(_component.children[_i], _operation);
+		ReflexTreeOperator(_component.children[_i], _operation, _i, _component);
 	}
 }

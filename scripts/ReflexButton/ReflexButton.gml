@@ -2,8 +2,6 @@ function ReflexButton(_props = {}, _children = []) : ReflexComponent(_props, _ch
 	text = "";
 	
 	static render = function() {
-		return [
-			new ReflexText({ text: text, styles: "ReflexButtonText" })
-		]
+		return new ReflexText(text, { styles: "ReflexButtonText" });
 	}
 }

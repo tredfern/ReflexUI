@@ -30,12 +30,6 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		reflexStructMergeValues(self, properties);
 		calculateInheritedPropertyValues();
 		
-		if(struct_exists(self, "render"))
-			children = render();
-	
-		//Connect children to parent in hierarchy
-		setChildrenParent();
-		
 		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
 		
 		isLoaded = true;

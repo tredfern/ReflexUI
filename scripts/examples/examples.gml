@@ -16,5 +16,7 @@ function demoShowLayout() {
 	ReflexClear();
 	Reflex(
 		demoHeader(),
+		demoLayout(),
+	
 	);
 }
