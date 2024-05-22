@@ -71,6 +71,13 @@ function ReflexConfiguration() {
 				
 		},
 		
+		ReflexButton: {
+			layout: ReflexLayout.inline,
+			padding: { left: 15, top: 10 }
+		},
+		
+		
+		
 		ReflexMenu: {
 			halign: fa_center,
 			valign: fa_middle,
@@ -102,12 +109,4 @@ function ReflexConfiguration() {
 			layout:	ReflexLayout.inline
 		}
 	});
-}
-
-function Reflex() {
-	var _components = [];
-	for(var _c = 0; _c < argument_count; _c++) {
-		array_push(_components, argument[_c]);
-	}
-	reflexRender(_components);
 }

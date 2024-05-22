@@ -1,3 +1,8 @@
+reflexColors({
+	
+});
+
+
 reflexStyleSheet({
 	ReflexMenu: {
 		font: fntMenuButtons	
@@ -5,16 +10,17 @@ reflexStyleSheet({
 	ReflexMenuItem: {
 		padding: 10	
 	},
-	pink: {
-		backgroundColor: #FF33CC,
-		color: #E8E8E8,
-		font: fntText,
+	demo_header: {
+		backgroundColor: "lightShade"
 	},
-	big_blue: {
-		backgroundColor: #3399EE,
-		padding: 10,
-		margin: 5,
+	demo_back_button: {
 		border: 1,
-		borderColor: #00FF00
+		borderColor: "darkAccent",
+		backgroundColor: "lightShade",
+		hover: {
+			backgroundColor: "lightAccent"	
+		},
+		margin: { top: 5, bottom: 5, right: 10 },
+		halign: fa_right
 	}
 })

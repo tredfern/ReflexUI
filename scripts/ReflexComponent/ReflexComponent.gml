@@ -29,6 +29,9 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		
 		reflexStructMergeValues(self, properties);
 		calculateInheritedPropertyValues();
+		
+		if(struct_exists(self, "render"))
+			children = render();
 	
 		//Connect children to parent in hierarchy
 		setChildrenParent();
@@ -66,5 +69,10 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	static addChild = function(_component) {
 		_component.parent = self;
 		array_push(children, _component);
+	}
+	
+	static ensureProperty = function(_propName, _default) {
+		if(!struct_exists(self, _propName))
+			self[$ _propName] = _default;
 	}
 }

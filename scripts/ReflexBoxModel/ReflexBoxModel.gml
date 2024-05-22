@@ -10,8 +10,8 @@ function ReflexBoxModel(_component) constructor {
 	cached = undefined;
 	
 	static maximize = function() {
-		var _wMargin = margin.totalLR - border.totalLR - padding.totalLR;
-		var _hMargin = margin.totalTB - border.totalTB - padding.totalTB;
+		var _wMargin = margin.totalLR() - border.totalLR() - padding.totalLR();
+		var _hMargin = margin.totalTB() - border.totalTB() - padding.totalTB();
 		
 		if(!is_undefined(component.parent)) {
 			var _w = component.parent.boxModel.contentWidth;
@@ -27,11 +27,11 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static getFullWidth = function() {
-		return contentWidth + margin.totalLR + border.totalLR + padding.totalLR;
+		return contentWidth + margin.totalLR() + border.totalLR() + padding.totalLR();
 	}
 	
 	static getFullHeight = function() {
-		return contentHeight + margin.totalTB + border.totalTB + padding.totalTB;
+		return contentHeight + margin.totalTB() + border.totalTB() + padding.totalTB();
 	}
 	
 	///
@@ -41,8 +41,8 @@ function ReflexBoxModel(_component) constructor {
 		if(!is_undefined(cached))
 			return cached.full;
 			
-		var _width = margin.totalLR + border.totalLR + padding.totalLR + contentWidth;
-		var _height = margin.totalTB + border.totalTB + padding.totalTB + contentHeight;
+		var _width = margin.totalLR() + border.totalLR() + padding.totalLR() + contentWidth;
+		var _height = margin.totalTB() + border.totalTB() + padding.totalTB() + contentHeight;
 		
 		if(!is_undefined(component.parent)) {
 			var _pRect = component.parent.boxModel.getContentRect();
@@ -60,8 +60,8 @@ function ReflexBoxModel(_component) constructor {
 			
 		var _x = x + margin.left;
 		var _y = y + margin.top;
-		var _w = border.totalLR + padding.totalLR + contentWidth;
-		var _h = border.totalTB + padding.totalTB + contentHeight;
+		var _w = border.totalLR() + padding.totalLR() + contentWidth;
+		var _h = border.totalTB() + padding.totalTB() + contentHeight;
 		
 		if(!is_undefined(component.parent)) {
 			var _pRect = component.parent.boxModel.getContentRect();
@@ -128,8 +128,8 @@ function ReflexBoundaryRect(_left, _top, _right, _bottom) constructor {
 	right = _right;
 	bottom = _bottom;
 	
-	totalLR = left + right;
-	totalTB = top + bottom;
+	static totalLR = function() { return left + right; }
+	static totalTB = function() { return top + bottom; }
 }
 
 function reflexBoundaryRect(_value) {
@@ -143,6 +143,13 @@ function reflexBoundaryRect(_value) {
 	
 	if(is_struct(_value)) {
 		reflexStructMergeValues(_default, _value);
+		// If only left is set, set it for right as well
+		if(struct_exists(_value, "left") && !struct_exists(_value, "right"))
+			_default.right = _default.left;
+		
+		if(struct_exists(_value, "top") && !struct_exists(_value, "bottom"))
+			_default.bottom = _default.top;
+			
 		return _default; 	
 	}
 }

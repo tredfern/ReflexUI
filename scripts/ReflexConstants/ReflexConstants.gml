@@ -33,6 +33,7 @@
 #macro REFLEX_EVENT_MOUSE_OVER		"onMouseOver"
 #macro REFLEX_EVENT_ON_STEP			"onStep"
 #macro REFLEX_EVENT_ON_UPDATE		"onUpdate"
+#macro REFLEX_EVENT_UNLOAD			"onUnload"
 
 enum ReflexLayout {
 	block,

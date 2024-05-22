@@ -115,7 +115,7 @@ function reflexCalculateWidth(_component) {
 		if(!is_undefined(parent))
 			_maxContentWidth = parent.boxModel.contentWidth;
 	
-		_maxContentWidth = _maxContentWidth - boxModel.margin.totalLR - boxModel.border.totalLR - boxModel.padding.totalLR;
+		_maxContentWidth = _maxContentWidth - boxModel.margin.totalLR() - boxModel.border.totalLR() - boxModel.padding.totalLR();
 	
 		//If we are not an "auto" width, we need to set our width to the settings provided
 		if(width != ReflexProperty.auto) {
