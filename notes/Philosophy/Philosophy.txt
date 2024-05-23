@@ -1,10 +1,22 @@
 Since video games are all UI. It makes sense to scope down what problem we are trying to solve with a library for UI.
-1. Simplify the tedium of laying out UI
-2. Allow customization to make the UI look great for games
-3. Integrate controllers and Keyboard/Mouse easily. 
+1. Laying out UIs is tedious, especially early in the game process. 
+	Simplifying down how to layout and wire up components should make it easier to prototype and build.
+	
+	Reflex uses a Box Model and Component system that is a complete Frankenstein implementation of HTML/CSS/React. Sounds great right?
+	The best parts are that it allows for quickly laying out the components with responsive designs. Eliminating the
+	need to worry about resolutions. It also allows for quick customization of components through styles to make things look
+	consistent or change as necessary. 
 
+2. By using code in components we allow the developer the control to do whatever they need to do. You can completely mess with
+	everything if you really, really want to. But the goal is by providing a framework, you don't need to.
+	
+	You have ability to adjust/nudge positions and perform any manual drawing commands necessary. Let the framework do it's thing,
+	while you build the components that do the fun stuff.
 
-* Easy to use and set up components
-* Smart layouts by default using a system similar to how browsers structure content
-* Support animations and UI juiciness
-* Let the people figure out what they want to draw
+3. Using a render method, components basically create more components that describe their area. This allows chunking the UI
+	into little bits that can be assembled together, reused, or moved elsewhere easily without everything knowing about everything else.
+	
+4. The ability to bind properties to game objects or structs allows the framework to update any component specific data without the
+	need for the gameobjects to care about what is happening with the UI.
+	
+5. By laying components out through code, we can smartly configure keyboard or controller navigation through the controls. 

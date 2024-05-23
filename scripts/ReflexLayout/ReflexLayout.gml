@@ -75,7 +75,7 @@ function reflexLayoutComponent(_component) {
 					array_push(_focusGrid[_row], _child);
 					
 					if(_row > 0) {
-						var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]))];
+						var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]) - 1)];
 					
 						_child.focusUp = _upControl;
 						_upControl.focusDown = _child;

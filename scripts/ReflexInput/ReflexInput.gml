@@ -157,7 +157,9 @@ function ReflexInput() constructor {
 	}
 	
 	static findClosestFocusableComponent = function(_searchArea, _direction) {
-		var _candidates = reflexTreeFindAll(canHaveFocus, {}, _searchArea[$ _direction]);
+		//If we are searching 
+		
+		var _candidates = reflexTreeFindAll(canHaveFocus);
 		var _best = undefined;
 		var _bestScore = infinity;
 		
