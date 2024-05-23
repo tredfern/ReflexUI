@@ -11,6 +11,7 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	focusDown = undefined;
 	focusRight = undefined;
 	focusLeft = undefined;
+	dead = false;
 	
 	drawingColors = {
 		color: c_white,
@@ -29,6 +30,11 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		
 		reflexStructMergeValues(self, properties);
 		calculateInheritedPropertyValues();
+		
+		
+		if(self[$ REFLEX_PROPERTY_HOT_VERB] != undefined) {
+			reflexRegisterHotVerb(self, self[$ REFLEX_PROPERTY_HOT_VERB]);		
+		}
 		
 		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
 		
@@ -73,4 +79,5 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	static bind = function(_propName, _fromObject, _fromProperty) {
 		reflexBindProperty(self, _propName, _fromObject, _fromProperty);	
 	}
+	
 }

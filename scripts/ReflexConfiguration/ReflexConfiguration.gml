@@ -2,14 +2,17 @@ function ReflexConfiguration() {
 	REFLEX_GLOBAL.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
 	
 	
+	//
+	// 
 	reflexInputVerbs({
-		click: "click",
-		accept: "accept",
-		cancel: "cancel",
-		up: "up",
+		// These are the critical verbs for reflex
+		// How to navigate the focus and what to check for "click" events
+		click: "click",	
+		accept: "accept",	// Accept behaves similiar to a click by default
+		up: "up",							
 		down: "down",
 		right: "right",
-		left: "left"
+		left: "left",		
 	});
 	
 	reflexColors({

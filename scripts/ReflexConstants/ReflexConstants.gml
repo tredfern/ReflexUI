@@ -14,6 +14,7 @@
 #macro REFLEX_PROPERTY_BACKGROUNDCOLOR	"backgroundColor"
 #macro REFLEX_PROPERTY_BORDERCOLOR		"borderColor"
 #macro REFLEX_PROPERTY_STYLES			"styles"
+#macro REFLEX_PROPERTY_HOT_VERB			"hotVerb"
 
 // Styles
 #macro REFLEX_STYLE_HOVER				"hover"

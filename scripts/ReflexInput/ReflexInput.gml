@@ -1,28 +1,9 @@
-function reflexIsPointInControl(_component, _params) {
-	return _component.boxModel.inScreenRect(_params.x, _params.y);
-}
-
-function ReflexCoordinateSearch(_searchOp, _params) constructor {
-	params = _params;
-	matches = [];
-	searchOp = _searchOp;
-	
-	static runSearch = function() {
-		ReflexOperationOnAll(self.performSearchOp);
-		return matches;
-	}
-	
-	static performSearchOp = function(_component) {
-		if(searchOp(_component, params))
-			array_push(matches, _component);
-	}
-}
-
 function ReflexInput() constructor {
 	mouseOver = [];
 	verbs = {};
 	focus = undefined;
 	mousePos = { x: 0, y: 0 };
+	hotVerbs = ds_map_create();
 	
 	static step = function() {
 		// Mouse Input
@@ -71,6 +52,16 @@ function ReflexInput() constructor {
 			if (checkVerbPressed(verbs.accept)) {
 				reflexSafeEvent(focus, REFLEX_EVENT_ON_CLICK);	
 			}
+		}
+		
+		// Handle any "hotkey" verbs for controls that have special bindings
+		var _verbs = ds_map_keys_to_array(hotVerbs);
+		
+		for(var _hv = 0; _hv < array_length(_verbs); _hv++) {
+			if(checkVerbPressed(_verbs[_hv])) {
+				reflexSafeEvent(hotVerbs[? _verbs[_hv]], REFLEX_EVENT_ON_CLICK);
+			}
+			
 		}
 	}
 	
@@ -206,6 +197,32 @@ function ReflexInput() constructor {
 	}
 }
 
+function reflexIsPointInControl(_component, _params) {
+	return _component.boxModel.inScreenRect(_params.x, _params.y);
+}
+
+function ReflexCoordinateSearch(_searchOp, _params) constructor {
+	params = _params;
+	matches = [];
+	searchOp = _searchOp;
+	
+	
+	static runSearch = function() {
+		ReflexOperationOnAll(self.performSearchOp);
+		return matches;
+	}
+	
+	static performSearchOp = function(_component) {
+		if(searchOp(_component, params))
+			array_push(matches, _component);
+	}
+}
+
+
 function reflexInputVerbs(_verbs) {
 	reflexStructMergeValues(REFLEX_INPUT.verbs, _verbs);
+}
+
+function reflexRegisterHotVerb(_component, _verb) {
+	REFLEX_INPUT.hotVerbs[? _verb] = _component;
 }
