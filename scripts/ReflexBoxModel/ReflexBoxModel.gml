@@ -116,6 +116,8 @@ function ReflexLayoutRect(_left, _top, _width, _height) constructor {
 	height = _height;
 	right = _left + _width;
 	bottom = _top + _height;
+	midX = _left + _width / 2;
+	midY = _top + _height / 2;
 }
 
 ///

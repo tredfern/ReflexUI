@@ -1,9 +1,10 @@
 
-function reflexTreeFindFirst(_search, _params = REFLEX_EMPTY) {
+function reflexTreeFindFirst(_search, _params = REFLEX_EMPTY, _startPoint = REFLEX_ROOTS) {
+	_startPoint = reflexEnsureArray(_startPoint);
 	var _out = undefined;
 	//Trigger any step events
-	for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
-		_out = __reflexTreeFindFirstImp(REFLEX_ROOTS[_i], _search, _params);
+	for(var _i = 0; _i < array_length(_startPoint); _i++) {
+		_out = __reflexTreeFindFirstImp(_startPoint[_i], _search, _params);
 		
 		if(_out != undefined)
 			return _out;

@@ -15,12 +15,18 @@ function reflexFlagRefresh() {
 }
 
 function reflexClearAll() {
-	ReflexOperationOnAll(reflexRemove);	
+	ReflexOperationBottomUp(reflexRemove);	
 	REFLEX_ROOTS = [];
 }
 
 function reflexRemove(_component) {
 	reflexSafeEvent(_component, REFLEX_EVENT_UNLOAD);
+	_component.parent = undefined;
+	_component.children = undefined;
+	
+	if(_component == REFLEX_INPUT.focus)
+		REFLEX_INPUT.focus = undefined;
+		
 	delete _component;
 }
 

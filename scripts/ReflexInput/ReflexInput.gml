@@ -124,21 +124,83 @@ function ReflexInput() constructor {
 	static changeFocus = function(_direction) {
 		if(is_undefined(focus))
 			return;
-			
-		if(!is_undefined(focus[$ _direction])) {
+		
+		//First check direct navigation
+		if(canHaveFocus(focus[$ _direction]) ) {
 			setFocus(focus[$ _direction]);
 		} else {
+			//Bubble to parent to try....
+			var _p = focus.parent;
+			
+			
+			while(_p != undefined) {
+				var _focusEnabledComp = findClosestFocusableComponent(_p, _direction);
+				if(canHaveFocus(_focusEnabledComp)) {
+					setFocus(_focusEnabledComp)
+					break;
+				}
+				
+				_p = _p.parent;
+			}
+			
 			show_debug_message($"Cannot change focus {_direction}");
 		}
 		
 	}
 	
 	static canHaveFocus = function(_component) {
-		return _component.canFocus;	
+		return !is_undefined(_component) && _component.canFocus;	
 	}
 	
 	static findFirstFocusControl = function() {
 		return reflexTreeFindFirst(canHaveFocus);
+	}
+	
+	static findClosestFocusableComponent = function(_searchArea, _direction) {
+		var _candidates = reflexTreeFindAll(canHaveFocus, {}, _searchArea[$ _direction]);
+		var _best = undefined;
+		var _bestScore = infinity;
+		
+		var _xDir = 0;
+		var _yDir = 0;
+		switch(_direction) {
+			case "focusUp":
+				_yDir = -1;
+				break;
+			case "focusDown":
+				_yDir = 1;
+				break;
+			case "focusRight":
+				_xDir = 1;
+				break;
+			case "focusLeft":
+				_xDir = -1;
+				break;
+		}
+		
+		var _fScreen = focus.boxModel.getScreenRect();
+		
+		
+		for(var _i = 0; _i < array_length(_candidates); _i++) {
+			var _c = _candidates[_i];
+			var _cScreen = _c.boxModel.getScreenRect();
+			
+			// First ensure we are in the right direction
+			var _x = sign(_cScreen.midX - _fScreen.midX);
+			var _y = sign(_cScreen.midY - _fScreen.midY);
+			
+			if(_xDir == 0 || _x == _xDir) {
+				if(_yDir == 0 || _y == _yDir) {
+					var _score = point_distance(_cScreen.midX, _cScreen.midY , _fScreen.midX, _fScreen.midY);
+					if(_score < _bestScore) {
+						_bestScore = _score;
+						_best = _c;
+					}
+				}
+			}
+		}
+		
+		return _best;
 	}
 }
 

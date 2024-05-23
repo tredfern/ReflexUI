@@ -36,3 +36,31 @@ function FrameCounter() : ReflexComponent() constructor {
 		return new ReflexText({ text: "Frames: {frameNumber}" });	
 	}	
 }
+
+function Description(_text) : ReflexComponent() constructor {
+	text = _text;
+	
+	static render = function() {
+		return new ReflexText({ text: text, styles: "demo_description" });	
+	}
+}
+
+function LotsOfBlocks() : ReflexComponent() constructor {
+	static render = function() {
+		return array_create_ext(50, function(_index) {
+			var _sprites = [ sprOne, sprTwo, sprThree, sprFour, sprFive, sprSix, sprSeven, sprEight, sprNine ];
+			var _pick = _index % array_length(_sprites);
+			
+			return new ReflexImage({ sprite: _sprites[_pick], styles: "focus_enabled outlined padded" });
+		});
+	}
+}
+
+function demoGamepadNavigation() {
+	return new ReflexBlock({ styles: "panel" }, [
+		new Description("This demo creates a bunch of controls with focus enabled turned on. Reflex automatically calculates the navigation and arrow keys or gamepad should work intuitively."),
+		new LotsOfBlocks(),
+		new LotsOfBlocks()
+	]);
+	
+}

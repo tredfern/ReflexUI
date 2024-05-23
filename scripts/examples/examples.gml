@@ -4,7 +4,7 @@ function demoShowMenu() {
 		new ReflexMenu({}, [
 			new ReflexMenuItem({ text: "Layout Demo", onClick: demoShowLayout }),
 			new ReflexMenuItem({ text: "Binding Properties", onClick: demoShowBindingProperties }),
-			new ReflexMenuItem({ text: "Gamepad Navigation" }),
+			new ReflexMenuItem({ text: "Gamepad Navigation", onClick: demoShowGamepadNavigation }),
 			new ReflexMenuItem({ text: "Animations" }),
 			new ReflexMenuItem({ text: "Game Screen" }),
 			new ReflexMenuItem({ text: "Quit", onClick: game_end })
@@ -27,4 +27,12 @@ function demoShowBindingProperties() {
 		demoHeader(),
 		demoBindingProperties()
 	)
+}
+
+function demoShowGamepadNavigation() {
+	ReflexClear();
+	Reflex(
+		demoHeader(),
+		demoGamepadNavigation()
+	);
 }

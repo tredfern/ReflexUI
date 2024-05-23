@@ -77,6 +77,10 @@ function ReflexConfiguration() {
 			colorChangeRate: 0.1,
 		},
 		
+		ReflexImage: {
+			layout: ReflexLayout.inline,
+			color: c_white
+		},
 		
 		
 		ReflexMenu: {

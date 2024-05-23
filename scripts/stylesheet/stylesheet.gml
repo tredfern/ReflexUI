@@ -1,5 +1,5 @@
 reflexColors({
-	
+	focus: c_yellow,
 });
 
 
@@ -22,6 +22,12 @@ reflexStyleSheet({
 		},
 		margin: { top: 5, bottom: 5, right: 10 },
 		halign: fa_right
+	},
+	focus_enabled: {
+		canFocus: true,
+		focus: {
+			backgroundColor: "focus"
+		}
 	},
 	outlined: {
 		border: 1,
