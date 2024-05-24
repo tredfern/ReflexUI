@@ -1,5 +1,10 @@
 * Animated sprites for backgrounds and images
-* Moving controls through animations
-* Changing colors through animations (pulse effects, etc...)
-* Option list control
+	- If sprite is animated, need to configure animation. Maybe this is a specific animation type???
+* Option list control	- For things like dropdowns, but to start maybe just the ability to cycle through options
+* Slider control	- needed to set up Options screen demo
+* Progressbar component		- For game screen demo
 * Scrollable controls for text etc...
+	- This means components that figure out what elements to render. Easiest might be components that support surfaces...
+* Form based components
+	- Adding components that make it easy to collect the information from forms/UIs
+* Textbox component - Support simple editing of text. Single line is fine

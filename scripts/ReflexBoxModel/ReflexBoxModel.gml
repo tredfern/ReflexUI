@@ -10,8 +10,8 @@ function ReflexBoxModel(_component) constructor {
 	cached = undefined;
 	
 	static maximize = function() {
-		var _wMargin = margin.totalLR() - border.totalLR() - padding.totalLR();
-		var _hMargin = margin.totalTB() - border.totalTB() - padding.totalTB();
+		var _wMargin = margin.totalLR() + border.totalLR() + padding.totalLR();
+		var _hMargin = margin.totalTB() + border.totalTB() + padding.totalTB();
 		
 		if(!is_undefined(component.parent)) {
 			var _w = component.parent.boxModel.contentWidth;

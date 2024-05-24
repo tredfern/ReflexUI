@@ -63,6 +63,10 @@ function ReflexConfiguration() {
 			focusDown:						undefined,					// These will determine what control to navigate to if direction input is provided
 			focusLeft:						undefined,
 			focusRight:						undefined,
+			
+			// Animation Properties
+			animation:						undefined,
+			animationDuration:				0,
 		
 		},
 		
