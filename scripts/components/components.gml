@@ -57,7 +57,7 @@ function LotsOfBlocks(_count = 50) : ReflexComponent() constructor {
 			var _sprites = [ sprOne, sprTwo, sprThree, sprFour, sprFive, sprSix, sprSeven, sprEight, sprNine ];
 			var _pick = _index % array_length(_sprites);
 			
-			return new ReflexImage({ sprite: _sprites[_pick], styles: "focus_enabled outlined padded" });
+			return new ReflexImage({ sprite: _sprites[_pick], styles: "focus_enabled die_block" });
 		});
 	}
 }

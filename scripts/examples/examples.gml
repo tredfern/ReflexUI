@@ -7,6 +7,7 @@ function demoShowMenu() {
 			new ReflexMenuItem({ text: "Gamepad Navigation", onClick: demoShowGamepadNavigation }),
 			new ReflexMenuItem({ text: "Animations" }),
 			new ReflexMenuItem({ text: "Game Screen" }),
+			new ReflexMenuItem({ text: "An Options Screen" }),
 			new ReflexMenuItem({ text: "Quit", onClick: game_end })
 		])
 	);

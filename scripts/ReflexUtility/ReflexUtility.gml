@@ -31,10 +31,6 @@ function reflexGetPercentage(_stringValue) {
 	return 	_num / 100;
 }
 
-function reflexPropertyOn(_property, _struct = self) {
-	return _struct[$ _property] != ReflexProperty.off;
-}
-
 function reflexTemplatizeText(_component, _text) {
 	var _index = string_pos("{", _text);
 	while(_index != 0) {

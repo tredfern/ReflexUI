@@ -1,17 +1,19 @@
-#macro REFLEX_GLOBAL global.__reflex
-#macro REFLEX_ROOTS REFLEX_GLOBAL.roots
-#macro REFLEX_STYLESHEET REFLEX_GLOBAL.stylesheet
-#macro REFLEX_EMPTY REFLEX_GLOBAL.emptyStruct
-#macro REFLEX_STATE REFLEX_GLOBAL.stateManager
-#macro REFLEX_INPUT REFLEX_GLOBAL.inputManager
-#macro REFLEX_COLORS REFLEX_GLOBAL.colors
-#macro REFLEX_MOUSE_DEVICE REFLEX_GLOBAL.mouseDevice
+#macro REFLEX_GLOBAL			global.__reflex
+#macro REFLEX_ROOTS				REFLEX_GLOBAL.roots
+#macro REFLEX_STYLESHEET		REFLEX_GLOBAL.stylesheet
+#macro REFLEX_EMPTY				REFLEX_GLOBAL.emptyStruct
+#macro REFLEX_STATE				REFLEX_GLOBAL.stateManager
+#macro REFLEX_INPUT				REFLEX_GLOBAL.inputManager
+#macro REFLEX_COLORS			REFLEX_GLOBAL.colors
+#macro REFLEX_MOUSE_DEVICE		REFLEX_GLOBAL.mouseDevice
+#macro REFLEX_ANIMATIONS		REFLEX_GLOBAL.animations
 
 // Properties
 #macro REFLEX_PROPERTY_PADDING			"padding"
 #macro REFLEX_PROPERTY_MARGIN			"margin"
 #macro REFLEX_PROPERTY_BORDER			"border"
 #macro REFLEX_PROPERTY_BACKGROUNDCOLOR	"backgroundColor"
+#macro REFLEX_PROPERTY_BACKGROUND_IMAGE	"backgroundImage"
 #macro REFLEX_PROPERTY_BORDERCOLOR		"borderColor"
 #macro REFLEX_PROPERTY_STYLES			"styles"
 #macro REFLEX_PROPERTY_HOT_VERB			"hotVerb"
@@ -50,4 +52,10 @@ enum ReflexProperty {
 enum ReflexPosition {
 	relative,
 	absolute
+}
+
+enum ReflexAnimationType {
+	OneShot,
+	Loop,
+	PingPong
 }

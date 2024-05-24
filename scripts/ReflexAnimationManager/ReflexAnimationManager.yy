@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexAnimationManager",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexAnimationManager",
+  "parent":{
+    "name":"System",
+    "path":"folders/ReflexUI/System.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

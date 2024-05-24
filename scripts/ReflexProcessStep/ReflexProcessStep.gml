@@ -21,14 +21,18 @@ function reflexProcessStep() {
 	// Process input commands
 	REFLEX_INPUT.step();
 	
-	// Trigger any component custom step events
-	ReflexOperationOnAll(reflexTreeStepEvent)
-}
-
-function reflexTreeStepEvent(_component) {
-	reflexSafeEvent(_component, REFLEX_EVENT_ON_STEP);
+	for(var _i = 0; _i < array_length(REFLEX_GLOBAL.stepEvents); _i++) {
+		var _c = REFLEX_GLOBAL.stepEvents[_i];	
+		reflexSafeEvent(_c, REFLEX_EVENT_ON_STEP);
+	}
+	
+	REFLEX_ANIMATIONS.step();
 }
 
 function reflexCacheLayouts(_component) {
 	_component.boxModel.cache();	
+}
+
+function reflexRegisterStepEvent() {
+	
 }

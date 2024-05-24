@@ -39,7 +39,7 @@ function ReflexStateManager() constructor {
 		}
 		
 		// Clean up dead entries in bindings
-		for(var _i = array_length(deleteList) - 1; _i >= 0; _i++) {
+		for(var _i = array_length(deleteList) - 1; _i >= 0; _i--) {
 			array_delete(mappings, deleteList[_i], 1);
 		}
 		

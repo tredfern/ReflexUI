@@ -13,6 +13,8 @@ function reflexInitialize() {
 	REFLEX_MOUSE_DEVICE = 0;
 	REFLEX_INPUT = new ReflexInput();
 	REFLEX_GLOBAL.__inputCooldown = 0;
+	REFLEX_GLOBAL.stepEvents = [];
+	REFLEX_ANIMATIONS = new ReflexAnimationManager();
 	
 	//Load the configuration
 	ReflexConfiguration();

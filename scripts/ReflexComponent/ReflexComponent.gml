@@ -32,10 +32,15 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		calculateInheritedPropertyValues();
 		
 		
+		// Register hot verb
 		if(self[$ REFLEX_PROPERTY_HOT_VERB] != undefined) {
 			reflexRegisterHotVerb(self, self[$ REFLEX_PROPERTY_HOT_VERB]);		
 		}
 		
+		if(self[$ REFLEX_EVENT_ON_STEP] != undefined) {
+			reflexRegisterStepEvent(self);
+		}
+		checkAnimations();
 		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
 		
 		isLoaded = true;
@@ -80,4 +85,41 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		reflexBindProperty(self, _propName, _fromObject, _fromProperty);	
 	}
 	
+	static checkAnimations = function() {
+		if(self[$ "animation"] != undefined) {
+			reflexRegisterAnimation(self, animation, animationDuration);
+			
+			// Remove animation properties as we have triggered the animation
+			animation = undefined;
+			animationDuration = undefined;
+		}
+	}
+
+	static update = function(_changes) {
+		reflexStructMergeValues(self, _changes);
+	}
+	
+	static getX = function() {
+		var _x = x;
+		
+		var _p = parent;
+		while(_p != undefined) {
+			_x += _p.x;
+			_p = _p.parent;
+		}
+		
+		return _x;
+	}
+	
+	static getY = function() {
+		var _y = y;
+		
+		var _p = parent;
+		while(_p != undefined) {
+			_y += _p.y;
+			_p = _p.parent;
+		}
+		
+		return _y;
+	}
 }

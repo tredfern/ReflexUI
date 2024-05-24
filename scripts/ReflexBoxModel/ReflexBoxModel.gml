@@ -118,6 +118,19 @@ function ReflexLayoutRect(_left, _top, _width, _height) constructor {
 	bottom = _top + _height;
 	midX = _left + _width / 2;
 	midY = _top + _height / 2;
+	
+	static copy = function() {
+		return new ReflexLayoutRect(left, top, width, height);
+	}
+	
+	static move = function(_x, _y) {
+		left += _x;
+		right += _x;
+		top += _y;
+		bottom += _y;
+		midX += _x;
+		midY += _y;
+	}
 }
 
 ///

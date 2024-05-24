@@ -25,6 +25,12 @@ function reflexRemove(_component) {
 	_component.children = undefined;
 	_component.dead = true;
 	
+	//Unregister step event if necessary
+	if(_component[$ REFLEX_EVENT_ON_STEP] != undefined) {
+		var _i = array_get_index(REFLEX_GLOBAL.stepEvents, _component);
+		array_delete(REFLEX_GLOBAL.stepEVents, _i, 1);
+	}
+	
 	if(_component == REFLEX_INPUT.focus)
 		REFLEX_INPUT.focus = undefined;
 		

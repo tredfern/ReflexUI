@@ -31,9 +31,10 @@ function ReflexConfiguration() {
 	reflexStyleSheet({
 		__default: {
 			//	Position Properties
-			position:						ReflexPosition.relative,	// Relative positions will use X/Y to move component in specified direction.
-			x:								0,							// X & Y will move the component 
+			x:								0,							// X & Y will draw the component in an offset relative to it's normal position
 			y:								0,
+			
+			//	Size Properties
 			width:							ReflexProperty.auto,		// Auto properties will be calculated by the engine	
 			height:							ReflexProperty.auto,		// Width/Height can accept percentage strings to specify a certain amount of width of the parent
 			

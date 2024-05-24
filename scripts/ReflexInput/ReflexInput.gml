@@ -10,8 +10,7 @@ function ReflexInput() constructor {
 		mousePos.x = mouseX();
 		mousePos.y = mouseY();
 	
-		var _mouseSearch = new ReflexCoordinateSearch(reflexIsPointInControl, mousePos);
-		var _currentMouseOver = _mouseSearch.runSearch();
+		var _currentMouseOver = reflexTreeFindAll(reflexIsPointInControl, mousePos, undefined, true);
 		
 		var _exiting = reflexArrayMissing(mouseOver, _currentMouseOver);
 		var _entering = reflexArrayMissing(_currentMouseOver, mouseOver);
@@ -200,24 +199,6 @@ function ReflexInput() constructor {
 function reflexIsPointInControl(_component, _params) {
 	return _component.boxModel.inScreenRect(_params.x, _params.y);
 }
-
-function ReflexCoordinateSearch(_searchOp, _params) constructor {
-	params = _params;
-	matches = [];
-	searchOp = _searchOp;
-	
-	
-	static runSearch = function() {
-		ReflexOperationOnAll(self.performSearchOp);
-		return matches;
-	}
-	
-	static performSearchOp = function(_component) {
-		if(searchOp(_component, params))
-			array_push(matches, _component);
-	}
-}
-
 
 function reflexInputVerbs(_verbs) {
 	reflexStructMergeValues(REFLEX_INPUT.verbs, _verbs);

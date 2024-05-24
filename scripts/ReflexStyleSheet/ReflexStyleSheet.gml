@@ -26,7 +26,8 @@ function reflexApplyStyle(_component, _style) {
 	var _s = REFLEX_STYLESHEET[$ _style];
 	
 	if(!is_undefined(_s)) {
-		reflexStructMergeValues(_component, _s);	
+		reflexStructMergeValues(_component, _s);
+		_component.checkAnimations();
 	} else {
 		show_debug_message($"Could not apply style: {_style}");	
 	}
@@ -56,6 +57,7 @@ function reflexApplyTempStyle(_components, _style) {
 		if (struct_exists(_c, _style)) {	
 			var _changes = reflexStructMergeValues(_c, _c[$ _style]);
 			_c.styleCache[$ _style] = _changes;
+			_c.checkAnimations();
 		}
 	}
 }
@@ -67,8 +69,15 @@ function reflexRemoveTempStyle(_components, _style) {
 		var _c = _array[_i];
 		
 		if (struct_exists(_c.styleCache, _style)) {	
+			var _oldStyle = _c[$ _style];
+			
 			reflexStructMergeValues(_c, _c.styleCache[$ _style]);
 			struct_remove(_c.styleCache, _style);
+			
+			//Check if there were animations with this temp style that we need to disable
+			if(_oldStyle[$ "animation"] != undefined) {
+				reflexStopAnimations(_c, _oldStyle[$ "animation"])
+			}
 		}
 	}
 }

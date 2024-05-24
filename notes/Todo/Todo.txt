@@ -1,0 +1,5 @@
+* Animated sprites for backgrounds and images
+* Moving controls through animations
+* Changing colors through animations (pulse effects, etc...)
+* Option list control
+* Scrollable controls for text etc...
