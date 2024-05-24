@@ -27,7 +27,6 @@ function reflexApplyStyle(_component, _style) {
 	
 	if(!is_undefined(_s)) {
 		reflexStructMergeValues(_component, _s);
-		_component.checkAnimations();
 	} else {
 		show_debug_message($"Could not apply style: {_style}");	
 	}

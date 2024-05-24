@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"ReflexAnimation",
   "parent":{
-    "name":"System",
-    "path":"folders/ReflexUI/System.yy",
+    "name":"Animations",
+    "path":"folders/ReflexUI/System/Animations.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

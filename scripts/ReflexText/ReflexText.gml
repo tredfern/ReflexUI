@@ -14,10 +14,7 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 		}
 	}
 	
-	static onDraw = function(_params) {
-		var _drawArea = _params.location;
-		var _colors = _params.colors;
-		
+	static onDraw = function(_drawArea, _colors) {
 		if(isTemplated()) {
 			ScribblejrDrawNative(_drawArea.left, _drawArea.top, getFinalText(), _colors.color);
 		} else {

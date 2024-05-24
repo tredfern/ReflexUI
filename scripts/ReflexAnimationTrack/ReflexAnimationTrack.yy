@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"ReflexAnimationManager",
+  "%Name":"ReflexAnimationTrack",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"ReflexAnimationManager",
+  "name":"ReflexAnimationTrack",
   "parent":{
     "name":"Animations",
     "path":"folders/ReflexUI/System/Animations.yy",

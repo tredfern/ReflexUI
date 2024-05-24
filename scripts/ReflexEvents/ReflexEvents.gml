@@ -2,10 +2,8 @@
 
 
 function reflexSafeEvent(_component, _event, _params = REFLEX_EMPTY) {	
-	if(struct_exists(_component, _event)) {
-		with(_component) {
-			_component[$ _event](_params);	
-		}
+	if(!is_undefined(_component[$ _event])) {
+		_component[$ _event](_params);		
 	}
 }
 

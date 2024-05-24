@@ -11,15 +11,6 @@ function ReflexAnimationManager() constructor {
 	}
 }
 
-
-function ReflexAnimationTrack(_component, _animationName,  _animation, _speed) constructor {
-	component = _component;
-	name = _animationName;
-	speed = _speed;
-	animation = _animation;
-	position = 0;
-}
-
 function reflexAnimations(_animations) {
 	reflexStructMergeValues(REFLEX_ANIMATIONS.animationList, _animations);	
 }
@@ -30,7 +21,7 @@ function reflexRegisterAnimation(_component, _animationNames, _duration) {
 		var _name = _animationNames[_i];
 		var _animation = REFLEX_ANIMATIONS.animationList[$ _name];
 	
-		var _track = new ReflexAnimationTrack(_component, _name, _animation, 1 / _duration);
+		var _track = new ReflexAnimationTrack(_component, _name, _animation, 1 / _duration, _component[$ REFLEX_PROPERTY_ANIMATION_DELAY]);
 		array_push(REFLEX_ANIMATIONS.activeAnimations, _track);
 		_animation.start(_track);
 	}

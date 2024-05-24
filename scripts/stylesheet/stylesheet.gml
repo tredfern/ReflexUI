@@ -3,9 +3,9 @@ reflexColors({
 });
 
 reflexAnimations({
-	slideOn: new ReflexAnimation("x", reflexAnimBack, -1000, 0),
+	slideOn: new ReflexAnimation("x", reflexAnimBack, -1400, 0),
 	bounceOn: new ReflexAnimation("y", reflexAnimBounce, -100, 0),
-	colorPulse: new ReflexAnimation("backgroundColor", reflexAnimMidSlow, c_ltgray, c_yellow, ReflexAnimationType.PingPong),
+	colorPulse: new ReflexAnimation("backgroundColor", reflexAnimMidSlow, c_orange, c_yellow, ReflexAnimationType.PingPong),
 });
 
 reflexStyleSheet({
@@ -13,15 +13,17 @@ reflexStyleSheet({
 		font: fntMenuButtons	
 	},
 	ReflexMenuItem: {
-		padding: 10,
-		animation: ["slideOn", "bounceOn"],
-		animationDelay: 0,
-		animationDuration: 60,
+		padding: 10,	
 		focus: {
 			animation: "colorPulse",
 			animationDuration: 45
 		}
 
+	},
+	animate_in: {
+		animation: ["slideOn", "bounceOn"],
+		animationDelay: 0,
+		animationDuration: 60,
 	},
 	demo_header: {
 		backgroundColor: "lightShade"

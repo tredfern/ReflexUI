@@ -13,6 +13,20 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	focusLeft = undefined;
 	dead = false;
 	
+	// Events
+	static onClick =						undefined;					// Triggered when "click" verb is pressed while mouse is over control OR when focus is set and the "accept" verb is pressed
+	static onDraw =							undefined;					// Triggered after drawing the background and border
+	static onFocus =						undefined;					// Triggered when component receives focus
+	static onFocusOut =						undefined;					// Triggered when component loses focus
+	static onLayout =						undefined;					// Triggered when laying out component. IMPORTANT: This is an opportunity to define the content size for the component. See ReflexText or ReflexImage
+	static onLoad =							undefined;					// Triggered after styles and loading properties are all set for the component before layout has triggered
+	static onMouseEnter =					undefined;					// Triggered when mouse enter the screen boundary for the control
+	static onMouseExit = 					undefined;					// Triggered when mouse exits the screen boundary for the control
+	static onMouseOver =					undefined;					// Triggered while mouse is over the component
+	static onStep =							undefined;					// Triggered each frame during the Step event
+	static onUnload =						undefined;					// Triggered when the component is removed from the engine
+	static onUpdate =						undefined;					// Triggered when values are changed via the "update" method on the component
+	
 	drawingColors = {
 		color: c_white,
 		backgroundColor: c_white,
@@ -97,6 +111,7 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 
 	static update = function(_changes) {
 		reflexStructMergeValues(self, _changes);
+		reflexSafeEvent(self, REFLEX_EVENT_ON_UPDATE, _changes);
 	}
 	
 	static getX = function() {

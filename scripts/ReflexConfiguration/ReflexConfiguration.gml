@@ -51,6 +51,7 @@ function ReflexConfiguration() {
 			font:							ReflexProperty.inherit,		// Use the font set to your parent
 			color:							ReflexProperty.inherit,		// Use the foreground color of your parent
 			backgroundColor:				ReflexProperty.off,			// Disable background color
+			backgroundImage:				undefined,
 			borderColor:					ReflexProperty.off,			// Disable border color
 			isVisible:						true,						// By default all components should be seen
 			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1	
@@ -62,6 +63,7 @@ function ReflexConfiguration() {
 			focusDown:						undefined,					// These will determine what control to navigate to if direction input is provided
 			focusLeft:						undefined,
 			focusRight:						undefined,
+		
 		},
 		
 		// Root is a container wrapped around any render

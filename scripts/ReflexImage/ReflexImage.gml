@@ -7,10 +7,7 @@ function ReflexImage(_props) : ReflexComponent(_props, [], "ReflexImage") constr
 		_contentSize.height = sprite_get_height(sprite);
 	}
 	
-	static onDraw = function(_params) {
-		var _drawArea = _params.location;
-		var _colors = _params.colors;
-		
+	static onDraw = function(_drawArea, _colors) {
 		draw_sprite_stretched_ext(
 			sprite, 
 			frameNumber, 

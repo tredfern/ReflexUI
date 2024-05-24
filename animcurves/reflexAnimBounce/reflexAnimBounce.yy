@@ -14,7 +14,7 @@
   "name":"reflexAnimBounce",
   "parent":{
     "name":"AnimationCurves",
-    "path":"folders/ReflexUI/AnimationCurves.yy",
+    "path":"folders/ReflexUI/System/Animations/AnimationCurves.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

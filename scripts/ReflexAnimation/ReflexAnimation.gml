@@ -20,6 +20,11 @@ function ReflexAnimation(_property, _curve, _lowValue, _highValue, _type = Refle
 		
 		_params.component.update(_update);
 		
+		//Do the delay after setting the property to make sure that the first frame is set
+		_params.delay--;
+		if(_params.delay > 0)
+			return;
+		
 		_params.position += _params.speed;
 		
 		if(_params.position >= 1 || _params.position < 0) {

@@ -9,6 +9,7 @@
 #macro REFLEX_ANIMATIONS		REFLEX_GLOBAL.animations
 
 // Properties
+#macro REFLEX_PROPERTY_ANIMATION_DELAY	"animationDelay"
 #macro REFLEX_PROPERTY_PADDING			"padding"
 #macro REFLEX_PROPERTY_MARGIN			"margin"
 #macro REFLEX_PROPERTY_BORDER			"border"
@@ -24,7 +25,6 @@
 
 // Events
 
-#macro REFLEX_EVENT_ON_CANCEL		"onCancel"
 #macro REFLEX_EVENT_ON_CLICK		"onClick"
 #macro REFLEX_EVENT_ON_DRAW			"onDraw"
 #macro REFLEX_EVENT_ON_FOCUS		"onFocus"
