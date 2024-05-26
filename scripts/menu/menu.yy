@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"examples",
+  "%Name":"menu",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"examples",
+  "name":"menu",
   "parent":{
     "name":"ReflexUI - Demo",
     "path":"folders/ReflexUI - Demo.yy",

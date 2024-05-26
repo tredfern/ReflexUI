@@ -16,7 +16,7 @@ function ReflexImage(_props) : ReflexComponent(_props, [], "ReflexImage") constr
 			_drawArea.width, 
 			_drawArea.height, 
 			_colors.color, 
-			1
+			alpha
 		);
 	}
 }

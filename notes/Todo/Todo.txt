@@ -8,3 +8,8 @@
 * Form based components
 	- Adding components that make it easy to collect the information from forms/UIs
 * Textbox component - Support simple editing of text. Single line is fine
+* Use visible property to track whether to draw the component or not, also effects layout
+* Tooltip component for easily laying out UIs that flow with the mouse or other controls
+
+BUGS:
+- Why does the first menu in the demo not release the "focus" animation?

@@ -7,9 +7,9 @@ function demoShowMenu() {
 			new ReflexMenuItem({ text: "Binding Properties", onClick: demoShowBindingProperties, styles: "animate_in", animationDelay: _animInc * 1  }),
 			new ReflexMenuItem({ text: "Gamepad Navigation", onClick: demoShowGamepadNavigation, styles: "animate_in", animationDelay: _animInc * 2  }),
 			new ReflexMenuItem({ text: "Animations", styles: "animate_in", animationDelay: _animInc * 3, onClick: demoShowAnimations  }),
-			new ReflexMenuItem({ text: "Game Screen", styles: "animate_in", animationDelay: _animInc * 4  }),
-			new ReflexMenuItem({ text: "An Options Screen", styles: "animate_in", animationDelay: _animInc * 5  }),
-			new ReflexMenuItem({ text: "Quit", onClick: game_end, styles: "animate_in", animationDelay: _animInc * 6  })
+			new ReflexMenuItem({ text: "Game Screen", styles: "animate_in", animationDelay: _animInc * 4, onClick: demoGameScreen  }),
+			new ReflexMenuItem({ text: "An Options Screen", styles: "animate_in", animationDelay: _animInc * 5, onClick: demoShowOptions }),
+			new ReflexMenuItem({ text: "Quit", styles: "animate_in", animationDelay: _animInc * 6, onClick: game_end  })
 		])
 	);
 }
@@ -46,3 +46,13 @@ function demoShowAnimations() {
 		demoAnimations()
 	);
 }
+
+function demoShowOptions() {
+	ReflexClear();
+	Reflex(
+		demoHeader("Options"),
+		demoOptions()
+	);
+}
+
+

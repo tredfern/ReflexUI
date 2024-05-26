@@ -43,8 +43,7 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		}
 		
 		reflexStructMergeValues(self, properties);
-		calculateInheritedPropertyValues();
-		
+		finalizePropertyValues();
 		
 		// Register hot verb
 		if(self[$ REFLEX_PROPERTY_HOT_VERB] != undefined) {
@@ -63,6 +62,9 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	static setChildrenParent = function() {
 		for(var _i = 0; _i < array_length(children); _i++) {
 			children[_i].parent = self;	
+			if(children[_i][$ "id"] != undefined) {
+				self[$ $"id:{children[_i].id}"] = children[_i];	
+			}
 		}
 	}
 	
@@ -73,14 +75,18 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		
 	}
 	
-	static calculateInheritedPropertyValues = function() {
+	static finalizePropertyValues = function() {
 		//Inherit any property values	
 		var _properties = struct_get_names(self);
 		for(var _i = 0; _i < array_length(_properties); _i++) {
 			var _property = _properties[_i];
 			
-			if(self[$ _property] == ReflexProperty.inherit) {
+			var _v = self[$ _property];
+			if(_v == ReflexProperty.inherit) {
 				self[$ _property] = parent[$ _property];
+			} else if(is_struct(_v) && is_instanceof(_v, ReflexPropertyBinder)) {
+				reflexBindProperty(self, _property, _v.from, _v.fromProp);	
+				self[$ _property] = _v.defaultValue;
 			}
 		}
 	}
@@ -136,5 +142,22 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		}
 		
 		return _y;
+	}
+	
+	static getById = function(_id) {
+		for(var _i = 0; _i < array_length(children); _i++) {
+			if(children[_i][$ "id"] == _id)
+				return children[_i];
+			
+			var _searchChild = children[_i].getById(_id);
+			if(_searchChild != undefined)
+				return _searchChild;
+		}
+		
+		return undefined;
+	}
+	
+	static bind = function(_from, _fromProp, _default) {
+		return new ReflexPropertyBinder(_from, _fromProp, _default);
 	}
 }

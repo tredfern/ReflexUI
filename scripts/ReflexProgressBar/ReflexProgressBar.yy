@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"ReflexProgressBar",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexProgressBar",
+  "parent":{
+    "name":"Components",
+    "path":"folders/ReflexUI/Components.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

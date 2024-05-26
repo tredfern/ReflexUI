@@ -1,22 +1,27 @@
-Since video games are all UI. It makes sense to scope down what problem we are trying to solve with a library for UI.
-1. Laying out UIs is tedious, especially early in the game process. 
-	Simplifying down how to layout and wire up components should make it easier to prototype and build.
-	
-	Reflex uses a Box Model and Component system that is a complete Frankenstein implementation of HTML/CSS/React. Sounds great right?
-	The best parts are that it allows for quickly laying out the components with responsive designs. Eliminating the
-	need to worry about resolutions. It also allows for quick customization of components through styles to make things look
-	consistent or change as necessary. 
+Since video games are all UI from your little character jumping to the buttons on the menu, it makes sense to scope down what 
+problem we are trying to solve with a library framework for UI.
 
-2. By using code in components we allow the developer the control to do whatever they need to do. You can completely mess with
-	everything if you really, really want to. But the goal is by providing a framework, you don't need to.
-	
-	You have ability to adjust/nudge positions and perform any manual drawing commands necessary. Let the framework do it's thing,
-	while you build the components that do the fun stuff.
+The primary problem for me is: Laying out UIs, especially in the early development is tedious but it's also essential for things
+	to look good (enough) to collect meaningful feedback from users. 
 
-3. Using a render method, components basically create more components that describe their area. This allows chunking the UI
-	into little bits that can be assembled together, reused, or moved elsewhere easily without everything knowing about everything else.
+1. Simplifying down how to layout and wire up components should make it easier to prototype and build.
 	
-4. The ability to bind properties to game objects or structs allows the framework to update any component specific data without the
-	need for the gameobjects to care about what is happening with the UI.
+	Reflex uses a Box Model and Component system that is a complete Frankenstein implementation of HTML/CSS/React. 
+	If that isn't scary, then you haven't dealt with enough HTML/CSS fiascos. On the positive side, this allows
+	for using established conventions to reach a (minimal) level of consistency. 
 	
-5. By laying components out through code, we can smartly configure keyboard or controller navigation through the controls. 
+	HTML/CSS is really good at organizing information. And that's what this library is intended to do. Provide
+	the ability to organize the informational elements of UI easily and quickly. The components will layout with responsive
+	designs similar to how browsers approach the problem. This eliminates many resolution specific challenges and allows
+	for the UI to be adaptive to the content that is being rendered.
+	
+	A final motivation, I hate dragging and sizing UIs in an editor and trying to get them to look right. Been doing that 
+	since VB3 and it's always kind of sucked. 
+	
+2. Encapsulate UI logic into components to organize code specific to UIs. This is nothing more than OOP, but by using
+	some of the conventions of tools like React, we can piece together our UI in small functional ways without
+	building giant controller objects trying to handle the whole thing.
+
+3. Using styles to allow setting properties on groups of components easily for more consistency. 
+
+4. Keep it optimized enough to work on a variety of platforms. Targets to work on HTML/GX.games + desktops.

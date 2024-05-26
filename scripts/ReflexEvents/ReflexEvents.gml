@@ -1,9 +1,11 @@
 
 
 
-function reflexSafeEvent(_component, _event, _params = REFLEX_EMPTY) {	
-	if(!is_undefined(_component[$ _event])) {
-		_component[$ _event](_params);		
+function reflexSafeEvent(_component, _event, _params = REFLEX_EMPTY) {
+	with(_component) {
+		if(!is_undefined(self[$ _event])) {
+			self[$ _event](_params);		
+		}
 	}
 }
 

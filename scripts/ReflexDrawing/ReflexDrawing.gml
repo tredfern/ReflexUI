@@ -47,18 +47,27 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 
 function reflexDrawBackground(_screenRect) {
 	drawingColors.backgroundColor = merge_color(drawingColors.backgroundColor, reflexGetColor(backgroundColor), colorChangeRate);
+	
+	var _showShader = !is_undefined(backgroundShader);
+	if(_showShader)
+		shader_set(backgroundShader);
 			
 	if(sprite_exists(backgroundImage)) {
-		draw_sprite_stretched_ext(backgroundImage, 0, _screenRect.left, _screenRect.top, _screenRect.width, _screenRect.height, drawingColors.backgroundColor, 1);
+		draw_sprite_stretched_ext(backgroundImage, 0, _screenRect.left, _screenRect.top, _screenRect.width, _screenRect.height, drawingColors.backgroundColor, alpha);
 	} else {
 		draw_set_color(drawingColors.backgroundColor);
+		draw_set_alpha(alpha);
 		draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.right, _screenRect.bottom, false);
 	}
+	
+	if(_showShader)
+		shader_reset();
 }
 
 function reflexDrawBorder(_screenRect) {
 	drawingColors.borderColor = merge_color(drawingColors.borderColor, reflexGetColor(borderColor), colorChangeRate);
 	draw_set_color(drawingColors.borderColor);
+	draw_set_alpha(alpha);
 	var _borderSizes = boxModel.border;
 			
 	draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.right, _screenRect.top + _borderSizes.top, false);

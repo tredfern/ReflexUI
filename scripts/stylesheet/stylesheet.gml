@@ -27,13 +27,17 @@ reflexStyleSheet({
 	ReflexRoot: {
 		font: fntText	
 	},
+	DemoLabelValue: {
+		layout: ReflexLayout.inline,
+	},	
 	animate_in: {
 		animation: ["slideOn", "bounceOn"],
 		animationDelay: 0,
 		animationDuration: 60,
 	},
 	demo_header: {
-		backgroundColor: "lightShade"
+		backgroundColor: "lightShade",
+		backgroundShader: shRainbow
 	},
 	demo_back_button: {
 		border: 1,
@@ -45,6 +49,11 @@ reflexStyleSheet({
 		margin: { top: 5, bottom: 5, right: 10 },
 		halign: fa_right
 	},
+	demoGameHUDPanel: {
+		backgroundColor: c_white,
+		backgroundImage: sprGrayPanel,
+		padding: 10
+	},
 	die_block: {
 		backgroundColor: c_white,
 		backgroundImage: sprSquarePanel,
@@ -53,19 +62,29 @@ reflexStyleSheet({
 	},
 	focus_enabled: {
 		canFocus: true,
+		alpha: 0.5,
 		focus: {
 			backgroundColor: "focus",
-			color: c_white
+			color: c_white,
+			alpha: 1
 		}
 	},
 	header1: {
 		fontScale: 1,
-		font: fntTitle
+		font: fntTitle,
+		padding: 5
+	},
+	label: {
+		
+	},
+	label_value: {
+		margin: { left: 15 }
 	},
 	outlined: {
 		border: 1,
 		borderColor: c_black
 	},
+	
 	padded: {
 		padding: 3
 	},
@@ -73,5 +92,11 @@ reflexStyleSheet({
 		backgroundColor: c_white,
 		backgroundImage: sprGrayPanel,
 		padding: 10
+	},
+	xpBar: {
+		backgroundImage: sprXPFillImage,
+		backgroundColor: c_dkgray,
+		fillImage: sprXPFillImage,
+		color: c_teal
 	}
 })

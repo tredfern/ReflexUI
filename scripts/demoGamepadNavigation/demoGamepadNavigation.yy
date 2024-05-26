@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"components",
+  "%Name":"demoGamepadNavigation",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"components",
+  "name":"demoGamepadNavigation",
   "parent":{
     "name":"ReflexUI - Demo",
     "path":"folders/ReflexUI - Demo.yy",
