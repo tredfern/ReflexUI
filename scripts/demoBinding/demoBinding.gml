@@ -8,8 +8,7 @@ function demoBindingProperties() {
 }
 
 function FrameCounter() : ReflexComponent() constructor {
-	frameNumber = 0;
-	bind("frameNumber", objDemo, "counter");
+	frameNumber = bind(objDemo, "counter", 0);
 	
 	static render = function() {
 		return new ReflexText({ text: "Frames: {frameNumber}" });	

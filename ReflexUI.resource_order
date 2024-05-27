@@ -58,6 +58,8 @@
   ],
   "ResourceOrderSettings":[
     {"name":"reflexAnimBounce","order":1,"path":"animcurves/reflexAnimBounce/reflexAnimBounce.yy",},
+    {"name":"reflexAnimEase","order":4,"path":"animcurves/reflexAnimEase/reflexAnimEase.yy",},
+    {"name":"reflexAnimFastToSlow","order":5,"path":"animcurves/reflexAnimFastToSlow/reflexAnimFastToSlow.yy",},
     {"name":"reflexAnimMidSlow","order":3,"path":"animcurves/reflexAnimMidSlow/reflexAnimMidSlow.yy",},
     {"name":"reflexAnimWave","order":2,"path":"animcurves/reflexAnimWave/reflexAnimWave.yy",},
     {"name":"fntMenuButtons","order":1,"path":"fonts/fntMenuButtons/fntMenuButtons.yy",},

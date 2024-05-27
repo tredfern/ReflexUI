@@ -2,7 +2,6 @@
 	- If sprite is animated, need to configure animation. Maybe this is a specific animation type???
 * Option list control	- For things like dropdowns, but to start maybe just the ability to cycle through options
 * Slider control	- needed to set up Options screen demo
-* Progressbar component		- For game screen demo
 * Scrollable controls for text etc...
 	- This means components that figure out what elements to render. Easiest might be components that support surfaces...
 * Form based components
@@ -10,6 +9,14 @@
 * Textbox component - Support simple editing of text. Single line is fine
 * Use visible property to track whether to draw the component or not, also effects layout
 * Tooltip component for easily laying out UIs that flow with the mouse or other controls
+* Implement helper for validating that component is in the proper state to perform it's work. Progressbar for example needs numbers
+	to do math to draw. It should just not draw if it's values are not configured properly instead of killing the program.
 
 BUGS:
 - Why does the first menu in the demo not release the "focus" animation?
+
+
+IMPROVE:
+- Default values for binding is a bit of a hack. Binding a property should get that property. 
+- What is the proper expectation when values are not set properly on a component? Probably not to crash ->
+	but how should it deal with informing the user?

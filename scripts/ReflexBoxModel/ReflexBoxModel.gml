@@ -18,7 +18,7 @@ function ReflexBoxModel(_component) constructor {
 			var _h = component.parent.boxModel.contentHeight;
 		
 			contentWidth = __reflexCalcMaxSize(component.width, _w) - _wMargin;
-			contentheight = __reflexCalcMaxSize(component.height, _h) - _hMargin;
+			contentHeight = __reflexCalcMaxSize(component.height, _h) - _hMargin;
 		} else {
 			// We have no parent, get the whole screen!
 			contentWidth = display_get_gui_width() - _wMargin;

@@ -8,6 +8,7 @@ function reflexInitialize() {
 	REFLEX_STYLESHEET = {};
 	REFLEX_EMPTY = {};
 	REFLEX_GLOBAL.canCache = false;
+	REFLEX_GLOBAL.needsRefresh = false;
 	REFLEX_STATE = new ReflexStateManager();
 	REFLEX_COLORS = {};
 	REFLEX_MOUSE_DEVICE = 0;

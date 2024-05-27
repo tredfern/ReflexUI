@@ -13,8 +13,7 @@ function demoGameScreen() {
 function DemoLabelValue(_label, _value, _bindRef, _bindProp) : ReflexComponent() constructor {
 	reflexBaseStyle(self, "DemoLabelValue");
 	label = _label;
-	value = _value;
-	reflexBindProperty(self, "value", _bindRef, _bindProp);
+	value = bind(_bindRef, _bindProp);
 	
 	static render = function() {
 		return [

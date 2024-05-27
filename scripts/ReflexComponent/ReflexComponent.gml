@@ -157,7 +157,7 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		return undefined;
 	}
 	
-	static bind = function(_from, _fromProp, _default) {
+	static bind = function(_from, _fromProp, _default = undefined) {
 		return new ReflexPropertyBinder(_from, _fromProp, _default);
 	}
 }

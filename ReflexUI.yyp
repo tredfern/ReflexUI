@@ -83,6 +83,8 @@
   "resources":[
     {"id":{"name":"reflexAnimBack","path":"animcurves/reflexAnimBack/reflexAnimBack.yy",},},
     {"id":{"name":"reflexAnimBounce","path":"animcurves/reflexAnimBounce/reflexAnimBounce.yy",},},
+    {"id":{"name":"reflexAnimEase","path":"animcurves/reflexAnimEase/reflexAnimEase.yy",},},
+    {"id":{"name":"reflexAnimFastToSlow","path":"animcurves/reflexAnimFastToSlow/reflexAnimFastToSlow.yy",},},
     {"id":{"name":"reflexAnimMidSlow","path":"animcurves/reflexAnimMidSlow/reflexAnimMidSlow.yy",},},
     {"id":{"name":"reflexAnimWave","path":"animcurves/reflexAnimWave/reflexAnimWave.yy",},},
     {"id":{"name":"fntButton","path":"fonts/fntButton/fntButton.yy",},},

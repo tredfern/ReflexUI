@@ -40,6 +40,7 @@ function reflexLayoutComponent(_component) {
 			var _childContentHeight = 0;
 			var _focusGrid = [[]];
 			var _row = 0;
+			var _vAlignLineHeight = height == ReflexProperty.auto;
 			
 		
 			for(var _i = 0; _i < array_length(children); _i++) {
@@ -49,6 +50,16 @@ function reflexLayoutComponent(_component) {
 				
 				var _w = _child.boxModel.getFullWidth();
 				var _h = _child.boxModel.getFullHeight();
+				
+				if(_w > _maxWidth) {
+					_child.boxModel.contentWidth = _maxWidth;
+					_w = _maxWidth;
+				}
+				
+				if(_h > _maxHeight) {
+					_child.boxModel.contentHeight = _maxHeight;
+					_h = _maxHeight;
+				}
 				
 				// Set up a new line
 				if(_x + _w > _maxWidth && _x > 0) {
@@ -62,7 +73,7 @@ function reflexLayoutComponent(_component) {
 				
 				// Set Child Position
 				_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
-				_child.boxModel.y = reflexAlign(_child.valign, _y, _lineHeight, _h);
+				_child.boxModel.y = reflexAlign(_child.valign, _y, _vAlignLineHeight ? _lineHeight : _maxHeight , _h);
 				
 				_x += _w;
 				
