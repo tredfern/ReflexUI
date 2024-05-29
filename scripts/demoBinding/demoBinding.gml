@@ -2,7 +2,7 @@
 function demoBindingProperties() {
 	return new ReflexBlock({ styles: "panel" }, [
 		new Description("This counter is bound to a property in an object instance. Reflex is transferring the data over"),
-		new FrameCounter(),
+		FrameCounter(),
 		new Description("This is a list of items. The item list is defined in objDemo. To be honest, lists are a pain and still require a bit of manual love."),
 		new ListOfItems(),
 		new ReflexButton({ text: "Add Item", onClick: function() { array_push(objDemo.list, { image: sprEight, name: "new item" }); }, border: 1, borderColor: c_black })
@@ -10,12 +10,14 @@ function demoBindingProperties() {
 	
 }
 
-function FrameCounter() : ReflexComponent() constructor {
-	frameNumber = bind(objDemo, "counter", 0);
+function FrameCounter() {
+	return {
+		frameNumber: reflexCreateBind(objDemo, "counter", 0),
 	
-	static render = function() {
-		return new ReflexText({ text: "Frames: {frameNumber}" });	
-	}	
+		render: function() {
+			return new ReflexText({ text: "Frames: {frameNumber}" });	
+		}	
+	}
 }
 
 function ListOfItems() : ReflexComponent() constructor {

@@ -1,6 +1,6 @@
 function ReflexImage(_props) : ReflexComponent(_props, [], "ReflexImage") constructor {
-	layout = ReflexLayout.inline;
 	frameNumber = 0;
+	
 	
 	static onLayout = function(_contentSize) {
 		_contentSize.width = sprite_get_width(sprite);

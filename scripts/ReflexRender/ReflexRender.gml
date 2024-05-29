@@ -60,6 +60,24 @@ function reflexPerformRender(_component) {
 			children = reflexEnsureArray(render());
 		}
 		
+		//Make sure all children are ReflexComponents
+		
+		for(var _i = 0; _i < array_length(children); _i++) {
+			if(!is_instanceof(children[_i], ReflexComponent)) {
+				
+				var _child = children[_i];
+				
+				// Convert structs into components
+				if(is_struct(_child)) {
+					var _comp = new ReflexComponent();
+					reflexStructMergeValues(_comp, _child);
+					_child = _comp;
+				}
+				
+				children[_i] = _child;
+			}
+		}	
+		
 		setChildrenParent();
 		array_foreach(children, reflexPerformRender);
 	}

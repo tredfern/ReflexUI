@@ -24,7 +24,7 @@ function ReflexStateManager() constructor {
 				if(_comp.isLoaded) {
 					var _v = _binding.from[$ _binding.fromProp];
 				
-					if(_v != _binding.value) {
+					if(hasChanges(_binding.value, _v)) {
 						_comp[$ _binding.toProp] = _v;
 					
 						//Track updated components
@@ -33,6 +33,7 @@ function ReflexStateManager() constructor {
 						}
 
 						_updates[? _comp][$ _binding.toProp] = _v;
+						_binding.value = storeValue(_v);
 					}
 				}
 			}
@@ -50,6 +51,24 @@ function ReflexStateManager() constructor {
 		}
 		
 		ds_map_destroy(_updates);
+	}
+	
+	static hasChanges = function(_original, _new) {
+		if(is_array(_original)) {
+			return !array_equals(_original, _new);
+		}
+
+		return _original != _new;
+	}
+	
+	static storeValue = function(_value) {
+		if(is_array(_value)) {
+			var _new = []
+			array_copy(_new, 0, _value, 0, array_length(_value));
+			return _new;
+		}
+		
+		return _value;
 	}
 }
 

@@ -4,7 +4,7 @@ problem we are trying to solve with a library framework for UI.
 The primary problem for me is: Laying out UIs, especially in the early development is tedious but it's also essential for things
 	to look good (enough) to collect meaningful feedback from users. 
 
-1. Simplifying down how to layout and wire up components should make it easier to prototype and build.
+1. Make it simple to create layouts of components.
 	
 	Reflex uses a Box Model and Component system that is a complete Frankenstein implementation of HTML/CSS/React. 
 	If that isn't scary, then you haven't dealt with enough HTML/CSS fiascos. On the positive side, this allows
@@ -15,13 +15,35 @@ The primary problem for me is: Laying out UIs, especially in the early developme
 	designs similar to how browsers approach the problem. This eliminates many resolution specific challenges and allows
 	for the UI to be adaptive to the content that is being rendered.
 	
-	A final motivation, I hate dragging and sizing UIs in an editor and trying to get them to look right. Been doing that 
-	since VB3 and it's always kind of sucked. 
+2. Keep layout, display, and logic separate and make state management easier
+
+	Layout is defined by the organization of the UI Tree. The foundational component is the root which encapsulates the screen.
+	Multiple roots are allowed, allowing for multiple independent UI Trees to allow the UI layouts as necessary. For example,
+	a HUD might be in one UI tree displaying the important information, and another UI tree might be displaying a pause menu. They
+	are independent and don't need to understand each other.
 	
-2. Encapsulate UI logic into components to organize code specific to UIs. This is nothing more than OOP, but by using
-	some of the conventions of tools like React, we can piece together our UI in small functional ways without
-	building giant controller objects trying to handle the whole thing.
+	Display is the drawing and display of components. This is tied to layout in that each component is given a certain box
+	area on the screen to draw. Basic drawing properties for components can be defined in stylesheets allowing the 
+	colors, animations, backgrounds to be defined external to the core logic of the component. Components can provide
+	custom drawing logic by defining an onDraw method. 
+	
+	Logic is encapsulated into the component struct itself. Most logic for UIs are usually via interactions: clicks, etc...
+	
+	State is managed through binding to your game objects. Instead of having objects that have to update the UI, or having the 
+	UI contain references directly to your objects, you can create binds to object properties. The state manager will transfer
+	any updates and notify the component when the value has changed in case any special logic should be performed.
+	
+3.  It should be optimized - enough and work across all platforms
 
-3. Using styles to allow setting properties on groups of components easily for more consistency. 
+	Current performance is so-so. Drawing is the most problematic and takes around 1ms for 100 UI components. This likely can be
+	optimized further once the API has settled down and more streamlining can occur.
+	
+4. It's better to be opionated and do something well then do everything bad. 
 
-4. Keep it optimized enough to work on a variety of platforms. Targets to work on HTML/GX.games + desktops.
+	This isn't the only way to build UIs. There are other solutions that might be better. The foundations of this is a componentized
+	box model layout. And it will do that kind of UI effectively. If you want flexible windows that can be moved around,
+	this isn't the UI framework that will achieve that easily. 
+	
+
+Alternatives:
+There are alternatives to this library,
