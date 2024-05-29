@@ -16,6 +16,11 @@ function reflexLayoutComponent(_component) {
 	with(_component) {
 		reflexAssert(isLoaded, "Component must be loaded to perform layout");
 		
+		if(forceRefresh) {
+			reflexPerformRender(_component, _component.parent);
+			forceRefresh = false;
+		}
+		
 		//Need to recompute the box model
 		boxModel = new ReflexBoxModel(_component);
 		

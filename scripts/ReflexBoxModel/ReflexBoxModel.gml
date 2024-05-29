@@ -17,8 +17,8 @@ function ReflexBoxModel(_component) constructor {
 			var _w = component.parent.boxModel.contentWidth;
 			var _h = component.parent.boxModel.contentHeight;
 		
-			contentWidth = __reflexCalcMaxSize(component.width, _w) - _wMargin;
-			contentHeight = __reflexCalcMaxSize(component.height, _h) - _hMargin;
+			contentWidth = __reflexCalcMaxSize(component.width, _w - _wMargin);
+			contentHeight = __reflexCalcMaxSize(component.height, _h - _hMargin);
 		} else {
 			// We have no parent, get the whole screen!
 			contentWidth = display_get_gui_width() - _wMargin;
@@ -158,12 +158,6 @@ function reflexBoundaryRect(_value) {
 	
 	if(is_struct(_value)) {
 		reflexStructMergeValues(_default, _value);
-		// If only left is set, set it for right as well
-		if(struct_exists(_value, "left") && !struct_exists(_value, "right"))
-			_default.right = _default.left;
-		
-		if(struct_exists(_value, "top") && !struct_exists(_value, "bottom"))
-			_default.bottom = _default.top;
 			
 		return _default; 	
 	}

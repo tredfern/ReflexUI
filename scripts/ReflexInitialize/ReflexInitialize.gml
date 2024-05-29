@@ -16,6 +16,7 @@ function reflexInitialize() {
 	REFLEX_GLOBAL.__inputCooldown = 0;
 	REFLEX_GLOBAL.stepEvents = [];
 	REFLEX_ANIMATIONS = new ReflexAnimationManager();
+	REFLEX_GLOBAL.drawBoxModel = false;
 	
 	//Load the configuration
 	ReflexConfiguration();

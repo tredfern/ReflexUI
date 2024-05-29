@@ -86,3 +86,8 @@ function reflexEnsureArray(_value) {
 	
 	return _value;
 }
+
+function reflexArrayRemove(_array, _value) {
+	var _i = array_get_index(_array, _value);
+	array_delete(_array, _i, 1);
+}

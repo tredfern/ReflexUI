@@ -12,6 +12,9 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 		return;
 		
 	with(_component) {
+		if(_component.forceRefresh)
+			reflexFlagRefresh();
+			
 		var _screenRect = boxModel.getScreenRect();
 		var _contentRect = boxModel.getContentRect();
 	
@@ -41,6 +44,18 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 		//	Draw children
 		for(var _child = 0; _child < array_length(children); _child++) {
 			reflexDraw(children[_child], _x, _y);	
+		}
+		
+		if(REFLEX_GLOBAL.drawBoxModel) {
+			draw_set_color(c_fuchsia);
+			draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.right, _screenRect.bottom, true);
+			draw_set_color(c_red);
+			draw_rectangle(_contentRect.left, _contentRect.top, _contentRect.right, _contentRect.bottom, true);
+			
+			var _fullRect = boxModel.getFullRect();
+			draw_set_color(c_lime);
+			draw_rectangle(_fullRect.left, _fullRect.top, _fullRect.right, _fullRect.bottom, true);
+			
 		}
 	}
 }

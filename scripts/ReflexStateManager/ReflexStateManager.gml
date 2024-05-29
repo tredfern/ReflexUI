@@ -56,4 +56,7 @@ function ReflexStateManager() constructor {
 
 function reflexBindProperty(_structTo, _toPropName, _from, _fromPropName) {
 	REFLEX_STATE.bind(_structTo, _toPropName, _from, _fromPropName);
+	
+	// return the current value
+	return _from[$ _fromPropName];
 }

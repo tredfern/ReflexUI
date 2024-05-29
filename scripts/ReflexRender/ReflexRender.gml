@@ -3,8 +3,9 @@ function reflexRender(_components) {
 		_components = [_components];	
 	}
 	var _root = new ReflexRoot(_components);
+	reflexPerformRender(_root);
 	
-	ReflexTreeOperator(_root, reflexPerformRender, 0, undefined);
+	//ReflexTreeOperator(_root, reflexPerformRender, undefined);
 	
 	array_push(REFLEX_ROOTS, _root);
 	reflexFlagRefresh();
@@ -15,12 +16,21 @@ function reflexFlagRefresh() {
 }
 
 function reflexClearAll() {
-	ReflexOperationBottomUp(reflexRemove);	
+	array_foreach(REFLEX_ROOTS, reflexRemove);
+	//ReflexOperationBottomUp(reflexRemove);	
 	REFLEX_ROOTS = [];
 }
 
+//TODO: Making a real house of cards operation on this clean up
 function reflexRemove(_component) {
 	reflexSafeEvent(_component, REFLEX_EVENT_UNLOAD);
+	_component.isLoaded = false;
+	
+	array_foreach(_component.children, reflexRemove);
+	
+	if(_component.parent != undefined && _component.parent.isLoaded)
+		_component.parent.removeChild(_component);
+	
 	_component.parent = undefined;
 	_component.children = undefined;
 	_component.dead = true;
@@ -37,16 +47,20 @@ function reflexRemove(_component) {
 	delete _component;
 }
 
-function reflexPerformRender(_component, _index, _parent) {
-	// First off, swap out any strings with text elements
-	_component.parent = _parent;
+function reflexPerformRender(_component) {
+	with(_component) {
+		// First off, swap out any strings with text elements
+		//parent = _parent;
 	
-	// Load the component
-	_component.loadComponent();
+		// Load the component
+		loadComponent();
 	
-	//Render if necessary
-	if(struct_exists(_component, "render")) {
-		_component.children = reflexEnsureArray(_component.render());	
-		_component.setChildrenParent();
+		//Render if necessary
+		if(is_callable(_component[$ "render"])) {
+			children = reflexEnsureArray(render());
+		}
+		
+		setChildrenParent();
+		array_foreach(children, reflexPerformRender);
 	}
 }

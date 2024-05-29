@@ -12,6 +12,7 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	focusRight = undefined;
 	focusLeft = undefined;
 	dead = false;
+	forceRefresh = false;
 	
 	// Events
 	static onClick =						undefined;					// Triggered when "click" verb is pressed while mouse is over control OR when focus is set and the "accept" verb is pressed
@@ -34,6 +35,9 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 	}
 
 	static loadComponent = function() {
+		// Only load once
+		if(isLoaded) return;	
+		
 		// Apply default styles
 		reflexApplyDefaultStyles(self);
 
@@ -86,7 +90,8 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 				self[$ _property] = parent[$ _property];
 			} else if(is_struct(_v) && is_instanceof(_v, ReflexPropertyBinder)) {
 				reflexBindProperty(self, _property, _v.from, _v.fromProp);	
-				self[$ _property] = _v.defaultValue;
+				var _currentValue = _v.from[$ _v.fromProp];
+				self[$ _property] = _currentValue ?? _v.defaultValue;
 			}
 		}
 	}
@@ -96,14 +101,15 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		array_push(children, _component);
 	}
 	
+	static removeChild = function(_component) {
+		reflexArrayRemove(children, _component);	
+	}
+	
 	static ensureProperty = function(_propName, _default) {
 		if(!struct_exists(self, _propName))
 			self[$ _propName] = _default;
 	}
 	
-	static bind = function(_propName, _fromObject, _fromProperty) {
-		reflexBindProperty(self, _propName, _fromObject, _fromProperty);	
-	}
 	
 	static checkAnimations = function() {
 		if(self[$ "animation"] != undefined) {
@@ -113,6 +119,11 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 			animation = undefined;
 			animationDuration = undefined;
 		}
+	}
+	
+	
+	static bind = function(_from, _fromProp, _default = undefined) {
+		return new ReflexPropertyBinder(_from, _fromProp, _default);
 	}
 
 	static update = function(_changes) {
@@ -157,7 +168,11 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		return undefined;
 	}
 	
-	static bind = function(_from, _fromProp, _default = undefined) {
-		return new ReflexPropertyBinder(_from, _fromProp, _default);
+	static baseStyle = function(_baseStyle) {
+		reflexBaseStyle(self, _baseStyle);
+	}
+	
+	static refresh = function() {
+		forceRefresh = true;	
 	}
 }

@@ -20,3 +20,6 @@ IMPROVE:
 - Default values for binding is a bit of a hack. Binding a property should get that property. 
 - What is the proper expectation when values are not set properly on a component? Probably not to crash ->
 	but how should it deal with informing the user?
+- Really define the API in the long run to be cleaner and tighter (with less stuff thrown around)
+
+- Did I finish the registerStepEvent stuff? CAUSE IT DON"T LOOK LIKE IT!
