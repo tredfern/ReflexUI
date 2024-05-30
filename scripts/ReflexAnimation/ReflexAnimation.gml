@@ -4,7 +4,7 @@ function ReflexAnimation(_property, _curve, _lowValue, _highValue, _type = Refle
 	low = _lowValue;
 	high = _highValue;
 	type = _type;
-	channel = animcurve_get_channel(_curve, "magnitude");
+	channel = animcurve_get_channel(_curve, "value");
 	cascade = (property == "x" || property == "y");
 	isColor = string_pos("color", string_lower(property)) > 0;
 

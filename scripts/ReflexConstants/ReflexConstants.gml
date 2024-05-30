@@ -1,12 +1,4 @@
-#macro REFLEX_GLOBAL			global.__reflex
-#macro REFLEX_ROOTS				REFLEX_GLOBAL.roots
-#macro REFLEX_STYLESHEET		REFLEX_GLOBAL.stylesheet
-#macro REFLEX_EMPTY				REFLEX_GLOBAL.emptyStruct
-#macro REFLEX_STATE				REFLEX_GLOBAL.stateManager
-#macro REFLEX_INPUT				REFLEX_GLOBAL.inputManager
-#macro REFLEX_COLORS			REFLEX_GLOBAL.colors
-#macro REFLEX_MOUSE_DEVICE		REFLEX_GLOBAL.mouseDevice
-#macro REFLEX_ANIMATIONS		REFLEX_GLOBAL.animations
+#macro REFLEXUI							global.__reflex			// Global container for internal data for the library
 
 // Properties
 #macro REFLEX_PROPERTY_ANIMATION_DELAY	"animationDelay"
@@ -19,12 +11,11 @@
 #macro REFLEX_PROPERTY_STYLES			"styles"
 #macro REFLEX_PROPERTY_HOT_VERB			"hotVerb"
 
-// Styles
+// Dynamic Styles
 #macro REFLEX_STYLE_HOVER				"hover"
 #macro REFLEX_STYLE_FOCUS				"focus"
 
 // Events
-
 #macro REFLEX_EVENT_ON_CLICK		"onClick"
 #macro REFLEX_EVENT_ON_DRAW			"onDraw"
 #macro REFLEX_EVENT_ON_FOCUS		"onFocus"

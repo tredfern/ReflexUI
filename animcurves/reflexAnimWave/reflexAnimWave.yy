@@ -2,7 +2,7 @@
   "$GMAnimCurve":"",
   "%Name":"reflexAnimWave",
   "channels":[
-    {"$GMAnimCurveChannel":"","%Name":"magnitude","colour":4290799884,"name":"magnitude","points":[
+    {"$GMAnimCurveChannel":"","%Name":"value","colour":4290799884,"name":"value","points":[
         {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
         {"th0":-0.25,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":0.5,"y":1.0,},
         {"th0":0.0,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":0.0,},

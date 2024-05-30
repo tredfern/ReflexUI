@@ -1,6 +1,6 @@
 function reflexDrawAll() {
-	for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
-		reflexDraw(REFLEX_ROOTS[_i]);	
+	for(var _i = 0; _i < array_length(REFLEXUI.roots); _i++) {
+		reflexDraw(REFLEXUI.roots[_i]);	
 	}
 }
 
@@ -46,7 +46,7 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 			reflexDraw(children[_child], _x, _y);	
 		}
 		
-		if(REFLEX_GLOBAL.drawBoxModel) {
+		if(REFLEXUI.drawBoxModel) {
 			draw_set_color(c_fuchsia);
 			draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.right, _screenRect.bottom, true);
 			draw_set_color(c_red);
@@ -92,5 +92,5 @@ function reflexDrawBorder(_screenRect) {
 }
 
 function reflexGetColor(_color) {
-	return is_string(_color) ? REFLEX_COLORS[$_color] : _color;
+	return is_string(_color) ? REFLEXUI.colors[$_color] : _color;
 }

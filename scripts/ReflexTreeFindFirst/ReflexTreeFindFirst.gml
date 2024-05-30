@@ -1,5 +1,5 @@
 
-function reflexTreeFindFirst(_search, _params = REFLEX_EMPTY, _startPoint = REFLEX_ROOTS) {
+function reflexTreeFindFirst(_search, _params = {}, _startPoint = REFLEXUI.roots) {
 	_startPoint = reflexEnsureArray(_startPoint);
 	var _out = undefined;
 	//Trigger any step events

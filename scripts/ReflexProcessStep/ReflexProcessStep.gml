@@ -1,32 +1,32 @@
 function reflexProcessStep() {
-	REFLEX_GLOBAL.__inputCooldown--;
+	REFLEXUI.__inputCooldown--;
 	
 	// Load and perform any layouts
-	if(REFLEX_GLOBAL.needsRefresh) {
+	if(REFLEXUI.needsRefresh) {
 		// Perform layout of all components
-		array_foreach(REFLEX_ROOTS, reflexPerformLayout);
-		REFLEX_GLOBAL.needsRefresh = false;
-		REFLEX_GLOBAL.canCache = true;
-	} else if(REFLEX_GLOBAL.canCache) {
+		array_foreach(REFLEXUI.roots, reflexPerformLayout);
+		REFLEXUI.needsRefresh = false;
+		REFLEXUI.canCache = true;
+	} else if(REFLEXUI.canCache) {
 		//If we haven't needed to update, cache the layouts
-		for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
-			ReflexTreeOperator(REFLEX_ROOTS[_i], reflexCacheLayouts);
+		for(var _i = 0; _i < array_length(REFLEXUI.roots); _i++) {
+			ReflexTreeOperator(REFLEXUI.roots[_i], reflexCacheLayouts);
 		}
-		REFLEX_GLOBAL.canCache = false;
+		REFLEXUI.canCache = false;
 	}
 	
 	// Update any state
-	REFLEX_STATE.step();
+	REFLEXUI.stateManager.step();
 	
 	// Process input commands
-	REFLEX_INPUT.step();
+	REFLEXUI.inputManager.step();
 	
-	for(var _i = 0; _i < array_length(REFLEX_GLOBAL.stepEvents); _i++) {
-		var _c = REFLEX_GLOBAL.stepEvents[_i];	
+	for(var _i = 0; _i < array_length(REFLEXUI.stepEvents); _i++) {
+		var _c = REFLEXUI.stepEvents[_i];	
 		reflexSafeEvent(_c, REFLEX_EVENT_ON_STEP);
 	}
 	
-	REFLEX_ANIMATIONS.step();
+	REFLEXUI.animations.step();
 }
 
 function reflexCacheLayouts(_component) {

@@ -1,8 +1,8 @@
 
 function ReflexOperationOnAll(_operation) {
 	//Trigger any step events
-	for(var _i = 0; _i < array_length(REFLEX_ROOTS); _i++) {
-		ReflexTreeOperator(REFLEX_ROOTS[_i], _operation);
+	for(var _i = 0; _i < array_length(REFLEXUI.roots); _i++) {
+		ReflexTreeOperator(REFLEXUI.roots[_i], _operation);
 	}
 }
 

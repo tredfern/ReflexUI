@@ -77,9 +77,9 @@ function ReflexInput() constructor {
 	}
 	
 	static checkVerbDelayed = function(_verb) {
-		if(REFLEX_GLOBAL.__inputCooldown <= 0) {
+		if(REFLEXUI.__inputCooldown <= 0) {
 			if(input_check(_verb)) {
-				REFLEX_GLOBAL.__inputCooldown = REFLEX_GLOBAL.inputDelay;
+				REFLEXUI.__inputCooldown = REFLEXUI.inputDelay;
 				return true;
 			}
 		}
@@ -201,9 +201,9 @@ function reflexIsPointInControl(_component, _params) {
 }
 
 function reflexInputVerbs(_verbs) {
-	reflexStructMergeValues(REFLEX_INPUT.verbs, _verbs);
+	reflexStructMergeValues(REFLEXUI.inputManager.verbs, _verbs);
 }
 
 function reflexRegisterHotVerb(_component, _verb) {
-	REFLEX_INPUT.hotVerbs[? _verb] = _component;
+	REFLEXUI.inputManager.hotVerbs[? _verb] = _component;
 }

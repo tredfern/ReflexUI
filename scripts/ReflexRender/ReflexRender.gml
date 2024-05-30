@@ -7,18 +7,18 @@ function reflexRender(_components) {
 	
 	//ReflexTreeOperator(_root, reflexPerformRender, undefined);
 	
-	array_push(REFLEX_ROOTS, _root);
+	array_push(REFLEXUI.roots, _root);
 	reflexFlagRefresh();
 }
 
 function reflexFlagRefresh() {
-	REFLEX_GLOBAL.needsRefresh = true;	
+	REFLEXUI.needsRefresh = true;	
 }
 
 function reflexClearAll() {
-	array_foreach(REFLEX_ROOTS, reflexRemove);
+	array_foreach(REFLEXUI.roots, reflexRemove);
 	//ReflexOperationBottomUp(reflexRemove);	
-	REFLEX_ROOTS = [];
+	REFLEXUI.roots = [];
 }
 
 //TODO: Making a real house of cards operation on this clean up
@@ -37,12 +37,12 @@ function reflexRemove(_component) {
 	
 	//Unregister step event if necessary
 	if(_component[$ REFLEX_EVENT_ON_STEP] != undefined) {
-		var _i = array_get_index(REFLEX_GLOBAL.stepEvents, _component);
-		array_delete(REFLEX_GLOBAL.stepEVents, _i, 1);
+		var _i = array_get_index(REFLEXUI.stepEvents, _component);
+		array_delete(REFLEXUI.stepEVents, _i, 1);
 	}
 	
-	if(_component == REFLEX_INPUT.focus)
-		REFLEX_INPUT.focus = undefined;
+	if(_component == REFLEXUI.inputManager.focus)
+		REFLEXUI.inputManager.focus = undefined;
 		
 	delete _component;
 }

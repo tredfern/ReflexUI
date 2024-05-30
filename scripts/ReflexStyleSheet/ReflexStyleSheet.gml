@@ -1,5 +1,5 @@
 function reflexStyleSheet(_styles = {}) {
-	var _globalStyles = REFLEX_STYLESHEET;
+	var _globalStyles = REFLEXUI.stylesheet;
 	var _styleNames = struct_get_names(_styles);
 	
 	for(var _i = 0; _i < array_length(_styleNames); _i++) {
@@ -23,7 +23,7 @@ function reflexApplyStyles(_component, _styleList) {
 }
 
 function reflexApplyStyle(_component, _style) {
-	var _s = REFLEX_STYLESHEET[$ _style];
+	var _s = REFLEXUI.stylesheet[$ _style];
 	
 	if(!is_undefined(_s)) {
 		reflexStructMergeValues(_component, _s);
@@ -44,7 +44,7 @@ function reflexApplyDefaultStyles(_component) {
 }
 
 function reflexColors(_palette) {
-	reflexStructMergeValues(REFLEX_COLORS, _palette);
+	reflexStructMergeValues(REFLEXUI.colors, _palette);
 }
 
 function reflexApplyTempStyle(_components, _style) {

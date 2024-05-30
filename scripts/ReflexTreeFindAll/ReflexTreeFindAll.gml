@@ -1,5 +1,5 @@
 
-function reflexTreeFindAll(_search, _params = {}, _startPoint = REFLEX_ROOTS, _shortCircuit = false) {
+function reflexTreeFindAll(_search, _params = {}, _startPoint = REFLEXUI.roots, _shortCircuit = false) {
 	_startPoint = reflexEnsureArray(_startPoint);
 	_params.searchResults = [];
 

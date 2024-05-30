@@ -1,6 +1,6 @@
 function ReflexConfiguration() {
-	REFLEX_GLOBAL.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
-	REFLEX_GLOBAL.drawBoxModel = false;		// Enable to draw boundaries around components for layout c_fushcia is content, c_red is visible, c_lime is the total area with margins
+	REFLEXUI.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
+	REFLEXUI.drawBoxModel = false;		// Enable to draw boundaries around components for layout c_fushcia is content, c_red is visible, c_lime is the total area with margins
 	
 	//
 	// 
