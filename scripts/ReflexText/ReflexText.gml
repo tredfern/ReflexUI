@@ -2,6 +2,7 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 	textMgr = undefined;
 	layout = ReflexLayout.inline;
 	templateText = undefined;
+	isHTML5 = os_browser != browser_not_a_browser;	// Scribble JR does not support HTML5
 	
 	static onLayout = function(_contentSize) {
 		if(textMgr != undefined) {
@@ -15,8 +16,8 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 	}
 	
 	static onDraw = function(_drawArea, _colors) {
-		if(isTemplated()) {
-			ScribblejrDrawNative(_drawArea.left, _drawArea.top, getFinalText(), _colors.color);
+		if(isTemplated() || isHTML5) {
+			ScribblejrDrawNative(_drawArea.left, _drawArea.top, getFinalText(), _colors.color, alpha,,,font);
 		} else {
 			textMgr.Draw(_drawArea.left, _drawArea.top, _colors.color);
 		}
@@ -46,6 +47,9 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 	}
 	
 	static getFinalText = function() { 
+		if(!isTemplated()) {
+			return text;	
+		}
 		var _text = templateText;
 		var _index = string_pos("{", _text);
 		

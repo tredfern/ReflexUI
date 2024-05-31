@@ -1,2 +1,49 @@
 # ReflexUI
- Reactive UI Library for GameMaker Studio 2
+A Reactive UI Library for GameMaker Studio 2
+
+## Overview
+ReflexUI is a responsive UI library for GameMaker Studio 2 that uses a [Box Model](https://www.w3schools.com/css/css_boxmodel.asp) layout for positioning and drawing components. Components are organized into a UI Tree, similar to React and promotes a model where a series of lightweight components can be utilized together to quickly create a UI system for you game.
+
+Because ReflexUI is managing the layout of components, this allows it to assist in enabling intelligent input support for gamepads, keyboards, or mouse without working through lots of implementation details within the code.
+
+*Dependencies*: Note that this library contains two external dependencies that are included in it's release. 
+* [ScribbleJr](https://www.jujuadams.com/ScribbleJunior/#/1.3/Scribblejr) - for text rendering support
+* [Input](https://offalynne.github.io/Input/#/6.2/) - for gamepad and input support
+
+## Quick Start
+
+### Installation
+1. Download the latest release .yymps
+2. Import the package into your GameMaker Studio 2 project
+3. Add the ReflexUI folder - **required**
+4. *If you have NOT installed ScribbleJr and/or Input in your project*
+    1. Add the "Included Files" folder -> this contains licenses for ScribbleJr, Input, as well as some key supporting files for the Input library
+    1. Add the ScribbleJr and Input folders
+5. *OPTIONAL* Add the ReflexUI - Demo folder for example components
+
+
+## Configuration
+ReflexUI is designed to start without any additional work or configuration on your part. Importing the library into your project and you can use the functionality of ReflexUI.
+
+The default configurations for the library are located in ReflexConfiguration. You are free to make changes to these as you like, but a better way is to provide your own configuration in your own script files. **TIP:** This is a great file to look at for the various layout properties available to components.
+
+```
+ReflexUserConfiguration(function() {
+    reflexColors({ ... });          // Set up any color schemes 
+    reflexAnimations({ ... });      // Animations for your components
+    reflexInputVerbs({ ... });      // Define which verbs to use for input
+    reflexStyleSheet({ ... });      // Define styles for components
+})
+```
+*ReflexUserConfiguration allows you to not worry about execution order of scripts while configuring ReflexUI.*
+
+There are several configuration options available to for setting up the API. This code can be located in your own files. You do not need to adjust anything within the Library folder itself. However, if you are interested in making some low-level configuration changes you can take a look at the ReflexConfiguration script file in the root folder. That contains the basic configurations 
+
+## Creating Components
+
+
+## Events, Styles, and More
+
+
+## Philosophy
+

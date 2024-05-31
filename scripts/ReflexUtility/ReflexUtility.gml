@@ -19,6 +19,13 @@ function reflexStructMergeValues(_base, _override) {
 	return _changes;
 }
 
+function reflexStructCreateUnion(_base, _override) {
+	var _out = {};
+	reflexStructMergeValues(_out, _base);
+	reflexStructMergeValues(_out, _override);
+	return _out;
+}
+
 function reflexIsPercentageString(_stringValue) {
 	return string_ends_with(_stringValue, "%");
 }	

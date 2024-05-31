@@ -2,7 +2,6 @@ reflexInitialize();
 
 function reflexInitialize() {
 	// Setup global states and root container
-
 	REFLEXUI = {};
 	REFLEXUI.roots = [];
 	REFLEXUI.stylesheet = {};
@@ -17,19 +16,28 @@ function reflexInitialize() {
 	REFLEXUI.stepEvents = [];
 	REFLEXUI.animations = new ReflexAnimationManager();
 	REFLEXUI.drawBoxModel = false;
+	REFLEXUI.components = {
+		__definitions: {}
+	};
 	
 	//Load the configuration
-	ReflexConfiguration();
+	ReflexUIDefaultConfiguration();
 	
 	// Create the engine that will drive the GUI experience
-	reflexCreateEngine();
-}
-
-
-function reflexCreateEngine() {
 	REFLEXUI.engineTimeSource = time_source_create(time_source_global, 1, time_source_units_frames, function() {
 		instance_create_depth(0, 0, 1024, ReflexUI);
 	});
 	
 	time_source_start(REFLEXUI.engineTimeSource);
+	
+	REFLEXUI.isLoaded = true;
+	
+	
+	if(global[$ "__reflexUserConfiguration"] != undefined) {
+		REFLEXUI_USER_CONFIGURATION();	
+	}
+}
+
+function ReflexUIIsLoaded() {
+	return global[$ "__reflex"] != undefined && REFLEXUI.isLoaded;
 }

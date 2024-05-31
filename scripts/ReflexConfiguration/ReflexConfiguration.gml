@@ -1,4 +1,4 @@
-function ReflexConfiguration() {
+function ReflexUIDefaultConfiguration() {
 	REFLEXUI.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
 	REFLEXUI.drawBoxModel = false;		// Enable to draw boundaries around components for layout c_fushcia is content, c_red is visible, c_lime is the total area with margins
 	
@@ -129,4 +129,12 @@ function ReflexConfiguration() {
 			layout:	ReflexLayout.inline
 		}
 	});
+}
+
+function ReflexUserConfiguration(_configuration) {
+	if(ReflexUIIsLoaded()) {
+		_configuration();
+	} else {
+		REFLEXUI_USER_CONFIGURATION = _configuration;	
+	}
 }

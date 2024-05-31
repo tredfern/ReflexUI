@@ -1,4 +1,7 @@
 #macro REFLEXUI							global.__reflex			// Global container for internal data for the library
+#macro REFLEXUI_USER_CONFIGURATION		global.__reflexUserConfiguration
+
+
 
 // Properties
 #macro REFLEX_PROPERTY_ANIMATION_DELAY	"animationDelay"

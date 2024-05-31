@@ -4,9 +4,9 @@ function ReflexBoxModel(_component) constructor {
 	y = 0;
 	contentWidth = 0;
 	contentHeight = 0;
-	padding = reflexBoundaryRect(component[$ REFLEX_PROPERTY_PADDING]);
-	margin = reflexBoundaryRect(component[$ REFLEX_PROPERTY_MARGIN]);
-	border = reflexBoundaryRect(component[$ REFLEX_PROPERTY_BORDER]);
+	padding = getBoundaryRect(component[$ REFLEX_PROPERTY_PADDING]);
+	margin = getBoundaryRect(component[$ REFLEX_PROPERTY_MARGIN]);
+	border = getBoundaryRect(component[$ REFLEX_PROPERTY_BORDER]);
 	cached = undefined;
 	
 	static maximize = function() {
@@ -17,8 +17,8 @@ function ReflexBoxModel(_component) constructor {
 			var _w = component.parent.boxModel.contentWidth;
 			var _h = component.parent.boxModel.contentHeight;
 		
-			contentWidth = __reflexCalcMaxSize(component.width, _w - _wMargin);
-			contentHeight = __reflexCalcMaxSize(component.height, _h - _hMargin);
+			contentWidth = calcMaxSize(component.width, _w - _wMargin);
+			contentHeight = calcMaxSize(component.height, _h - _hMargin);
 		} else {
 			// We have no parent, get the whole screen!
 			contentWidth = display_get_gui_width() - _wMargin;
@@ -104,6 +104,33 @@ function ReflexBoxModel(_component) constructor {
 		var _sr = getScreenRect();
 		return _sr.left < _x && _x < _sr.right && _sr.top < _y && _y < _sr.bottom;
 	}
+	
+	static calcMaxSize = function(_value, _parentSize) {
+		if(_value == ReflexProperty.auto) {
+			return _parentSize;	
+		}
+	
+		if(reflexIsPercentageString(_value))
+			return reflexGetPercentage(_value) * _parentSize;
+		
+		return _value;
+	}
+	
+	static getBoundaryRect  = function(_value) {
+		var _default = new ReflexBoundaryRect(0, 0, 0, 0);
+	
+		if(is_undefined(_value))
+			return _default;
+		
+		if(is_numeric(_value))
+			return new ReflexBoundaryRect(_value, _value, _value, _value);
+	
+		if(is_struct(_value)) {
+			reflexStructMergeValues(_default, _value);
+			
+			return _default; 	
+		}
+	}
 }
 
 ///
@@ -147,28 +174,4 @@ function ReflexBoundaryRect(_left, _top, _right, _bottom) constructor {
 	static totalTB = function() { return top + bottom; }
 }
 
-function reflexBoundaryRect(_value) {
-	var _default = new ReflexBoundaryRect(0, 0, 0, 0);
-	
-	if(is_undefined(_value))
-		return _default;
-		
-	if(is_numeric(_value))
-		return new ReflexBoundaryRect(_value, _value, _value, _value);
-	
-	if(is_struct(_value)) {
-		reflexStructMergeValues(_default, _value);
-			
-		return _default; 	
-	}
-}
-function __reflexCalcMaxSize(_value, _parentSize) {
-	if(_value == ReflexProperty.auto) {
-		return _parentSize;	
-	}
-	
-	if(reflexIsPercentageString(_value))
-		return reflexGetPercentage(_value) * _parentSize;
-		
-	return _value;
-}
+

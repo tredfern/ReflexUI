@@ -67,7 +67,7 @@ function reflexDrawBackground(_screenRect) {
 	if(_showShader)
 		shader_set(backgroundShader);
 			
-	if(sprite_exists(backgroundImage)) {
+	if(!is_undefined(backgroundImage) && sprite_exists(backgroundImage)) {
 		draw_sprite_stretched_ext(backgroundImage, 0, _screenRect.left, _screenRect.top, _screenRect.width, _screenRect.height, drawingColors.backgroundColor, alpha);
 	} else {
 		draw_set_color(drawingColors.backgroundColor);
