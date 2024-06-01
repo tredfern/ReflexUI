@@ -86,6 +86,10 @@ function ReflexUIDefaultConfiguration() {
 			layout: ReflexLayout.inline,
 			padding: { left: 15, top: 10, bottom: 10, right: 15 },
 			colorChangeRate: 0.1,
+			ReflexText: {
+				//halign: fa_center,
+				valign: fa_middle
+			}
 		},
 		
 		ReflexImage: {
@@ -113,13 +117,13 @@ function ReflexUIDefaultConfiguration() {
 				borderColor: "focus",
 				color: "textLight"
 			},
-			canFocus: true
+			canFocus: true,
+			ReflexText: {
+				halign: fa_center,
+				valign: fa_middle
+			}
 		},
 		
-		ReflexMenuOptionText: {
-			halign: fa_center,
-			valign: fa_middle
-		},
 		
 		ReflexProgressBar: {
 			height: 10
@@ -133,8 +137,10 @@ function ReflexUIDefaultConfiguration() {
 
 function ReflexUserConfiguration(_configuration) {
 	if(ReflexUIIsLoaded()) {
+		ReflexDebugMessage("Loading custom configuration");
 		_configuration();
 	} else {
+		ReflexDebugMessage("Setting custom configuration to load on initialization");
 		REFLEXUI_USER_CONFIGURATION = _configuration;	
 	}
 }

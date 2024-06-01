@@ -1,4 +1,8 @@
-function ReflexProgressBar(_props, _children) : ReflexComponent(_props, _children) constructor {	
+function ReflexProgressBar(_props, _children) : ReflexComponent(_props, _children, "ReflexProgressBar") constructor {	
+	value = 0;
+	minValue = 0;
+	maxValue = 0;
+	
 	static onLayout = function(_contentSize)  {
 		// If we have a fill image set the content size to that image
 		if(sprite_exists(self[$ "fillImage"])) {

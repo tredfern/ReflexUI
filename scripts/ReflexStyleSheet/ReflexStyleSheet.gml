@@ -32,14 +32,21 @@ function reflexApplyStyle(_component, _style) {
 	}
 }
 
-function reflexBaseStyle(_component, _styleTag) {
-	array_push(_component.baseStyles, _styleTag);
-}
-
 function reflexApplyDefaultStyles(_component) {
-	for(var _i = 0; _i < array_length(_component.baseStyles); _i++) {
-		// go through available styles and see if we find one that 
-		reflexApplyStyles(self, _component.baseStyles[_i]);	
+	with(_component) {
+		for(var _i = 0; _i < array_length(baseStyles); _i++) {
+			// go through available styles and see if we find one that 
+			reflexApplyStyles(_component, baseStyles[_i]);	
+		}
+	
+		if(!is_undefined(parent)) {
+			//Check parent type in stylesheet for a matching child type
+			if(REFLEXUI.stylesheet[$ parent.type] != undefined) {
+				if(REFLEXUI.stylesheet[$ parent.type][$ type] != undefined) {
+					reflexStructMergeValues(_component, REFLEXUI.stylesheet[$ parent.type][$ type]);
+				}
+			}
+		}
 	}
 }
 

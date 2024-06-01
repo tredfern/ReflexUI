@@ -1,3 +1,3 @@
-function ReflexMenu(_props, _children) : ReflexComponent(_props, _children) constructor {
-	reflexBaseStyle(self, "ReflexMenu");
+function ReflexMenu(_props, _children) : ReflexComponent(_props, _children, "ReflexMenu") constructor {
+
 }

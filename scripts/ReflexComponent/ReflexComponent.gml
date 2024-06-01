@@ -1,5 +1,6 @@
-function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexComponent") constructor {
-	baseStyles = ["__default", _baseStyle];
+function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent__") constructor {
+	type = _type;
+	baseStyles = ["__default", _type];
 	properties = _props;
 	parent = undefined;
 	children = _children;
@@ -167,11 +168,7 @@ function ReflexComponent(_props = {}, _children = [], _baseStyle = "ReflexCompon
 		
 		return undefined;
 	}
-	
-	static baseStyle = function(_baseStyle) {
-		reflexBaseStyle(self, _baseStyle);
-	}
-	
+
 	static refresh = function() {
 		forceRefresh = true;	
 	}

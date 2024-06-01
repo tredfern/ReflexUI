@@ -32,12 +32,14 @@ function reflexInitialize() {
 	
 	REFLEXUI.isLoaded = true;
 	
-	
-	if(global[$ "__reflexUserConfiguration"] != undefined) {
+	if(struct_exists(global, "__reflexUserConfiguration")) {
 		REFLEXUI_USER_CONFIGURATION();	
 	}
+	show_debug_message("ReflexUI is loaded and ready for use");
 }
 
 function ReflexUIIsLoaded() {
-	return global[$ "__reflex"] != undefined && REFLEXUI.isLoaded;
+	try {
+		return REFLEXUI.isLoaded;	
+	}
 }

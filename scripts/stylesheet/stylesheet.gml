@@ -1,4 +1,5 @@
 ReflexUserConfiguration(function() {
+	show_debug_message("Load custom configuration")
 	reflexColors({
 		focus: c_yellow,
 	});
@@ -11,6 +12,7 @@ ReflexUserConfiguration(function() {
 		colorPulse2: new ReflexAnimation("backgroundColor", reflexAnimMidSlow, c_lime, c_blue, ReflexAnimationType.PingPong),
 		colorPulse3: new ReflexAnimation("backgroundColor", reflexAnimWave, c_lime, c_blue, ReflexAnimationType.Loop),
 		colorPulse4: new ReflexAnimation("backgroundColor", reflexAnimBounce, c_lime, c_blue, ReflexAnimationType.Loop),
+		popOut: new ReflexAnimation("x", reflexAnimEase, 0, 30, ReflexAnimationType.PingPong)
 	});
 
 	reflexStyleSheet({
@@ -20,10 +22,12 @@ ReflexUserConfiguration(function() {
 		ReflexMenuItem: {
 			padding: 10,	
 			focus: {
-				animation: "colorPulse",
+				animation: ["colorPulse" ],
 				animationDuration: 45
+			},
+			ReflexText: {
+				halign: fa_left	
 			}
-
 		},
 		ReflexRoot: {
 			font: fntText	
@@ -31,6 +35,9 @@ ReflexUserConfiguration(function() {
 		DemoLabelValue: {
 			layout: ReflexLayout.inline,
 		},	
+		Description: {
+			
+		},
 		animate_in: {
 			animation: ["slideOn", "bounceOn"],
 			animationDelay: 0,
@@ -85,7 +92,6 @@ ReflexUserConfiguration(function() {
 			border: 1,
 			borderColor: c_black
 		},
-	
 		padded: {
 			padding: 3
 		},
@@ -94,7 +100,7 @@ ReflexUserConfiguration(function() {
 			backgroundImage: sprGrayPanel,
 			padding: 10
 		},
-		xpBar: {
+		DemoXPBar: {
 			backgroundImage: sprXPFillImage,
 			backgroundColor: c_dkgray,
 			fillImage: sprXPFillImage,

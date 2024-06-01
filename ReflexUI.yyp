@@ -85,6 +85,7 @@
     {"id":{"name":"reflexAnimBounce","path":"animcurves/reflexAnimBounce/reflexAnimBounce.yy",},},
     {"id":{"name":"reflexAnimEase","path":"animcurves/reflexAnimEase/reflexAnimEase.yy",},},
     {"id":{"name":"reflexAnimFastToSlow","path":"animcurves/reflexAnimFastToSlow/reflexAnimFastToSlow.yy",},},
+    {"id":{"name":"reflexAnimLinear","path":"animcurves/reflexAnimLinear/reflexAnimLinear.yy",},},
     {"id":{"name":"reflexAnimMidSlow","path":"animcurves/reflexAnimMidSlow/reflexAnimMidSlow.yy",},},
     {"id":{"name":"reflexAnimWave","path":"animcurves/reflexAnimWave/reflexAnimWave.yy",},},
     {"id":{"name":"fntButton","path":"fonts/fntButton/fntButton.yy",},},
@@ -98,8 +99,10 @@
     {"id":{"name":"input_controller_object","path":"objects/input_controller_object/input_controller_object.yy",},},
     {"id":{"name":"objCoin","path":"objects/objCoin/objCoin.yy",},},
     {"id":{"name":"objDemo","path":"objects/objDemo/objDemo.yy",},},
+    {"id":{"name":"objQuickStartDemo","path":"objects/objQuickStartDemo/objQuickStartDemo.yy",},},
     {"id":{"name":"ReflexUI","path":"objects/ReflexUI/ReflexUI.yy",},},
     {"id":{"name":"rmReflexDemoTitle","path":"rooms/rmReflexDemoTitle/rmReflexDemoTitle.yy",},},
+    {"id":{"name":"rmSimpleDemo","path":"rooms/rmSimpleDemo/rmSimpleDemo.yy",},},
     {"id":{"name":"__input_axis_is_directional","path":"scripts/__input_axis_is_directional/__input_axis_is_directional.yy",},},
     {"id":{"name":"__input_binding_get_label","path":"scripts/__input_binding_get_label/__input_binding_get_label.yy",},},
     {"id":{"name":"__input_class_binding","path":"scripts/__input_class_binding/__input_class_binding.yy",},},
@@ -553,6 +556,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmReflexDemoTitle","path":"rooms/rmReflexDemoTitle/rmReflexDemoTitle.yy",},},
+    {"roomId":{"name":"rmSimpleDemo","path":"rooms/rmSimpleDemo/rmSimpleDemo.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

@@ -74,6 +74,11 @@ function reflexPerformRender(_component) {
 					_child = _comp;
 				}
 				
+				//Convert strings into text
+				if(is_string(_child)) {
+					_child = new ReflexText({ text: _child }); 
+				}
+				
 				children[_i] = _child;
 			}
 		}	

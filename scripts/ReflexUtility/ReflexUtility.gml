@@ -98,3 +98,20 @@ function reflexArrayRemove(_array, _value) {
 	var _i = array_get_index(_array, _value);
 	array_delete(_array, _i, 1);
 }
+
+function ReflexDebugMessage() {
+	var _string = "ReflexUI: ";
+    
+    var _i = 0;
+    repeat(argument_count)
+    {
+        _string += string(argument[_i]);
+        ++_i;
+    }
+    
+    show_debug_message(_string);
+}
+
+function ReflexIsHtml5() {
+	return os_browser != browser_not_a_browser;	
+}

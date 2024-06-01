@@ -34,10 +34,7 @@ function ListOfItems() : ReflexComponent() constructor {
 		
 }
 
-function Item(_item) : ReflexComponent() constructor {
-	baseStyle("Item");
-	item = _item;
-	
+function Item(_item) : ReflexComponent({ item: _item },, "Item") constructor {
 	static render = function() {
 		return [
 			new ReflexImage({ sprite: item.image }),
