@@ -31,6 +31,7 @@ function ReflexUIDefaultConfiguration() {
 	reflexStyleSheet({
 		__default: {
 			//	Position Properties
+			position:						ReflexPosition.relative,	// Relative position means "relative to it's normal position", "absolute", this is the position in relation to the parent
 			x:								0,							// X & Y will draw the component in an offset relative to it's normal position
 			y:								0,
 			

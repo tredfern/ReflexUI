@@ -66,43 +66,49 @@ function reflexLayoutComponent(_component) {
 					_h = _maxHeight;
 				}
 				
-				// Set up a new line
-				if(_x + _w > _maxWidth && _x > 0) {
-					_x = 0;
-					_y += _lineHeight;
-					_lineHeight = 0;
-					_row++;
-					array_push(_focusGrid, []);
-				}
-				_lineHeight = max(_lineHeight, _h);
-				
-				// Set Child Position
-				_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
-				_child.boxModel.y = reflexAlign(_child.valign, _y, _vAlignLineHeight ? _lineHeight : _maxHeight , _h);
-				
-				_x += _w;
-				
-				
-				_childContentWidth = max(_childContentWidth, _x);
-				_childContentHeight = max(_childContentHeight, _y + _lineHeight);
-				
-				//Assign component focus
-				if(_child.focusOrder == ReflexProperty.auto) {
-					var _col = array_length(_focusGrid[_row]);
-					array_push(_focusGrid[_row], _child);
-					
-					if(_row > 0) {
-						var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]) - 1)];
-					
-						_child.focusUp = _upControl;
-						_upControl.focusDown = _child;
+				if(_child.position == ReflexPosition.absolute) {
+					// We are being told to put the control at this location, so put it there!
+					_child.boxModel.x = _child.x;
+					_child.boxModel.y = _child.y;
+				} else {
+					// This is the normal layout
+					// Set up a new line
+					if(_x + _w > _maxWidth && _x > 0) {
+						_x = 0;
+						_y += _lineHeight;
+						_lineHeight = 0;
+						_row++;
+						array_push(_focusGrid, []);
 					}
+					_lineHeight = max(_lineHeight, _h);
+				
+					// Set Child Position
+					_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
+					_child.boxModel.y = reflexAlign(_child.valign, _y, _vAlignLineHeight ? _lineHeight : _maxHeight , _h);
+				
+					_x += _w;
+				
+					_childContentWidth = max(_childContentWidth, _x);
+					_childContentHeight = max(_childContentHeight, _y + _lineHeight);
+				
+					//Assign component focus
+					if(_child.focusOrder == ReflexProperty.auto) {
+						var _col = array_length(_focusGrid[_row]);
+						array_push(_focusGrid[_row], _child);
 					
-					if(_col > 0) {
-						var _leftControl = _focusGrid[_row][_col - 1];
-						_child.focusLeft = _leftControl;
-						_leftControl.focusRight = _child;
+						if(_row > 0) {
+							var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]) - 1)];
+					
+							_child.focusUp = _upControl;
+							_upControl.focusDown = _child;
+						}
+					
+						if(_col > 0) {
+							var _leftControl = _focusGrid[_row][_col - 1];
+							_child.focusLeft = _leftControl;
+							_leftControl.focusRight = _child;
 						
+						}
 					}
 				}
 			}

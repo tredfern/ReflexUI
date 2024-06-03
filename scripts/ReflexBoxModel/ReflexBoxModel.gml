@@ -53,10 +53,11 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	///
-	/// Screen Rects are p
-	static getScreenRect = function() {
+	/// This is the position as defined by the layout
+	//
+	static getLayoutRect = function() {
 		if(!is_undefined(cached))
-			return cached.screen;
+			return cached.layout;
 			
 		var _x = x + margin.left;
 		var _y = y + margin.top;
@@ -92,11 +93,24 @@ function ReflexBoxModel(_component) constructor {
 		}	
 	}
 	
+	static getScreenRect = function() {
+		if(!is_undefined(cached))
+			return cached.screen;
+		
+		return getLayoutRect();
+	}
+	
+	static setScreenRect = function(_screen) {
+		if(!is_undefined(cached))
+			cached.screen = _screen;
+	}
+	
 	static cache = function() {
 		cached = {
 			full: getFullRect(),
-			screen: getScreenRect(),
-			content: getContentRect()
+			layout: getLayoutRect(),
+			content: getContentRect(),
+			screen: getLayoutRect()
 		}
 	}
 	

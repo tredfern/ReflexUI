@@ -15,11 +15,13 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 		if(_component.forceRefresh)
 			reflexFlagRefresh();
 			
-		var _screenRect = boxModel.getScreenRect();
+		var _screenRect = boxModel.getLayoutRect();
 		var _contentRect = boxModel.getContentRect();
 	
-		_x += x;
-		_y += y;
+		if(position == ReflexPosition.relative) {
+			_x += x;
+			_y += y;
+		}
 	
 		if(_x != 0 || _y != 0) {
 			_screenRect = _screenRect.copy();
@@ -27,6 +29,8 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 			_screenRect.move(_x, _y);
 			_contentRect.move(_x, _y);
 		}
+		
+		boxModel.setScreenRect(_screenRect);
 	
 		//	Painters draw 
 		if(backgroundColor != ReflexProperty.off) {

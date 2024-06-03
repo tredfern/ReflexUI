@@ -17,6 +17,11 @@ function demoLayout() {
 		new ReflexBlock({ styles: ["panel", "padded"] }, [
 			new Description("You can manually set the size of images"),
 			new ReflexImage({ sprite: sprOne, width: 120, height: 120 })
+		]),
+		new ReflexBlock({ styles: ["panel", "padded"], height: 150 }, [
+			new Description("Absolute position bypasses automated layouts and positions elements relative to parent"),
+			new ReflexText({ position: ReflexPosition.absolute, x: 230, y: 90, text: "x:230, y:90", hover: { backgroundColor: c_white } }),
+			new ReflexText({ position: ReflexPosition.absolute, x: 530, y: 30, text: "x:530, y:30", hover: { backgroundColor: c_white } })
 		])
 	]);
 }
