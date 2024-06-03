@@ -40,7 +40,8 @@ enum ReflexLayout {
 enum ReflexProperty {
 	inherit = -32500,
 	off = -32499,
-	auto = -32498
+	auto = -32498,
+	expand = -32497
 }
 
 enum ReflexPosition {

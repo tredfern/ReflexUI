@@ -127,7 +127,7 @@ function ReflexUIDefaultConfiguration() {
 		
 		
 		ReflexProgressBar: {
-			height: 10
+			
 		},
 		
 		ReflexText: {

@@ -63,7 +63,7 @@ function reflexLayoutComponent(_component) {
 				
 				if(_h > _maxHeight) {
 					_child.boxModel.contentHeight = _maxHeight;
-					_h = _maxHeight;
+					_h = _child.boxModel.contentHeight;
 				}
 				
 				if(_child.position == ReflexPosition.absolute) {
@@ -83,11 +83,19 @@ function reflexLayoutComponent(_component) {
 						_row++;
 						array_push(_focusGrid, []);
 					}
+					
+					// Stretching the height is a thing that should happen if configured
+					if(_child.height == ReflexProperty.expand) {
+						_child.boxModel.contentHeight = _maxHeight - _y;
+						_h = _child.boxModel.contentHeight;
+					}
+					
 					_lineHeight = max(_lineHeight, _h);
 				
 					// Set Child Position
 					_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
 					_child.boxModel.y = reflexAlign(_child.valign, _y, _vAlignLineHeight ? _lineHeight : _maxHeight , _h);
+				
 				
 					_x += _w;
 				
@@ -142,7 +150,7 @@ function reflexCalculateWidth(_component) {
 		_maxContentWidth = _maxContentWidth - boxModel.margin.totalLR() - boxModel.border.totalLR() - boxModel.padding.totalLR();
 	
 		//If we are not an "auto" width, we need to set our width to the settings provided
-		if(width != ReflexProperty.auto) {
+		if(width != ReflexProperty.auto && width >= 0) {
 			var _w = _component.width;
 		
 			// If we are a percentage, than eat up a percentage of your parent
@@ -171,7 +179,7 @@ function reflexCalculateHeight(_component) {
 	if(!is_undefined(parent))
 		_maxContentHeight = parent.boxModel.contentHeight;
 	
-	if(_component.height != ReflexProperty.auto) {
+	if(_component.height != ReflexProperty.auto && _component.height >= 0) {
 		var _h = _component.height;
 			// If we are a percentage, than eat up a percentage of your parent
 		if(reflexIsPercentageString(_h)) {

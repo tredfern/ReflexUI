@@ -3,13 +3,6 @@ function ReflexProgressBar(_props, _children) : ReflexComponent(_props, _childre
 	minValue = 0;
 	maxValue = 0;
 	
-	static onLayout = function(_contentSize)  {
-		// If we have a fill image set the content size to that image
-		if(sprite_exists(self[$ "fillImage"])) {
-			_contentSize.height = sprite_get_height(self[$ "fillImage"]);
-		}
-	}
-	
 	static onDraw = function(_drawArea, _colors) {
 		//calculate fill percentage
 		var _fill = (value - minValue) / (maxValue - minValue);

@@ -123,6 +123,10 @@ function ReflexBoxModel(_component) constructor {
 		if(_value == ReflexProperty.auto) {
 			return _parentSize;	
 		}
+		
+		if(_value == ReflexProperty.expand) {
+			return _parentSize;
+		}
 	
 		if(reflexIsPercentageString(_value))
 			return reflexGetPercentage(_value) * _parentSize;

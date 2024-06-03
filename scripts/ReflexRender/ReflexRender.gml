@@ -69,8 +69,7 @@ function reflexPerformRender(_component) {
 				
 				// Convert structs into components
 				if(is_struct(_child)) {
-					var _comp = new ReflexComponent();
-					reflexStructMergeValues(_comp, _child);
+					var _comp = new ReflexComponent(_child);
 					_child = _comp;
 				}
 				
@@ -78,6 +77,10 @@ function reflexPerformRender(_component) {
 				if(is_string(_child)) {
 					_child = new ReflexText({ text: _child }); 
 				}
+				
+				if(is_array(_child)) {
+					_child = new ReflexBlock({}, _child);
+				}	
 				
 				children[_i] = _child;
 			}
