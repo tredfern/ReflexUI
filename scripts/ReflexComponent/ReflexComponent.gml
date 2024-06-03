@@ -1,6 +1,6 @@
 function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent__") constructor {
 	type = _type;
-	baseStyles = ["__default", _type];
+	baseStyles = ["__default", _type, "__parentCascade"];
 	properties = _props;
 	parent = undefined;
 	children = _children;
@@ -14,6 +14,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 	focusLeft = undefined;
 	dead = false;
 	forceRefresh = false;
+	fullStyleList = [];
 	
 	// Events
 	static onClick =						undefined;					// Triggered when "click" verb is pressed while mouse is over control OR when focus is set and the "accept" verb is pressed
@@ -39,13 +40,9 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 		// Only load once
 		if(isLoaded) return;	
 		
+		fullStyleList = array_concat(baseStyles, reflexEnsureArray(properties[$ REFLEX_PROPERTY_STYLES]));
 		// Apply default styles
-		reflexApplyDefaultStyles(self);
-
-		// Apply any styles first, properties should override the styles;
-		if(struct_exists(properties, REFLEX_PROPERTY_STYLES)) {
-			reflexApplyStyles(self, properties.styles);	
-		}
+		reflexApplyStyles(self, fullStyleList);
 		
 		reflexStructMergeValues(self, properties);
 		finalizePropertyValues();

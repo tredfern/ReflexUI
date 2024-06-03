@@ -15,10 +15,13 @@ function reflexStyleSheet(_styles = {}) {
 }
 
 function reflexApplyStyles(_component, _styleList) {
-	var _styles = string_split(_styleList, " ", true);
-	
-	for(var _i = 0; _i < array_length(_styles); _i++) {
-		reflexApplyStyle(_component, _styles[_i]);	
+	for(var _i = 0; _i < array_length(_styleList); _i++) {
+		if(!is_undefined(parent) && _styleList[_i] == "__parentCascade") {
+			if(parent[$ type] != undefined) {
+				reflexStructMergeValues(_component, parent[$ type]);	
+			}
+		} else
+			reflexApplyStyle(_component, _styleList[_i]);	
 	}
 }
 
@@ -29,24 +32,6 @@ function reflexApplyStyle(_component, _style) {
 		reflexStructMergeValues(_component, _s);
 	} else {
 		show_debug_message($"Could not apply style: {_style}");	
-	}
-}
-
-function reflexApplyDefaultStyles(_component) {
-	with(_component) {
-		for(var _i = 0; _i < array_length(baseStyles); _i++) {
-			// go through available styles and see if we find one that 
-			reflexApplyStyles(_component, baseStyles[_i]);	
-		}
-	
-		if(!is_undefined(parent)) {
-			//Check parent type in stylesheet for a matching child type
-			if(REFLEXUI.stylesheet[$ parent.type] != undefined) {
-				if(REFLEXUI.stylesheet[$ parent.type][$ type] != undefined) {
-					reflexStructMergeValues(_component, REFLEXUI.stylesheet[$ parent.type][$ type]);
-				}
-			}
-		}
 	}
 }
 

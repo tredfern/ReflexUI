@@ -64,7 +64,7 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 				_value = parent[$ _prop];
 				
 			_text = string_replace(_text, _temp, _value);
-			_index = string_pos_ext("{", _text, _endPos);
+			_index = string_pos_ext("{", _text, 0);
 		}
 	
 		return _text;
