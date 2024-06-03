@@ -70,6 +70,9 @@ function reflexLayoutComponent(_component) {
 					// We are being told to put the control at this location, so put it there!
 					_child.boxModel.x = _child.x;
 					_child.boxModel.y = _child.y;
+					
+					_childContentWidth = max(_childContentWidth, _child.boxModel.x + _child.boxModel.contentWidth);
+					_childContentHeight = max(_childContentHeight, _child.boxModel.y + _child.boxModel.contentHeight);
 				} else {
 					// This is the normal layout
 					// Set up a new line
