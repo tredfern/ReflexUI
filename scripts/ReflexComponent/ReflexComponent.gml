@@ -186,4 +186,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 		REFLEXUI.inputManager.setFocus(self);	
 	}
 	
+	static setAnimation = function(_animation, _animationDuration) {
+		reflexRegisterAnimation(self, _animation, _animationDuration)
+	}
 }
