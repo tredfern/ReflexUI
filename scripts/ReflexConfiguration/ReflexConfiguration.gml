@@ -41,6 +41,7 @@ function ReflexUIDefaultConfiguration() {
 			
 			//	Layout Properties
 			layout:							ReflexLayout.block,			// Block elements extend as far to the right as possible
+			overflow:						ReflexOverflow.Constrain,	// Sets the sizes should be set 
 			margin:							0,							// Margin defines space between this component and others
 			border:							0,							// Border is for any drawing of a border around the content
 			padding:						0,							// Padding is area within the component that has background but pushes any content away from the sides
@@ -131,7 +132,8 @@ function ReflexUIDefaultConfiguration() {
 		},
 		
 		ReflexText: {
-			layout:	ReflexLayout.inline
+			layout:	ReflexLayout.inline,
+			sdfEffects: {}
 		}
 	});
 }

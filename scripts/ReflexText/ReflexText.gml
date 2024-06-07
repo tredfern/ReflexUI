@@ -19,7 +19,7 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 		if(isTemplated() || isHTML5) {
 			ScribblejrDrawNative(_drawArea.left, _drawArea.top, getFinalText(), _colors.color, alpha,,,font);
 		} else {
-			textMgr.Draw(_drawArea.left, _drawArea.top, _colors.color);
+			textMgr.Draw(_drawArea.left, _drawArea.top, _colors.color, alpha, sdfEffects);
 		}
 	}
 	

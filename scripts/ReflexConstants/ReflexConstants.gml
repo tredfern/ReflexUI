@@ -54,3 +54,8 @@ enum ReflexAnimationType {
 	Loop,
 	PingPong
 }
+
+enum ReflexOverflow {
+	Constrain,
+	Visible
+}

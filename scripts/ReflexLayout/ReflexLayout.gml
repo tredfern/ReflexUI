@@ -51,74 +51,79 @@ function reflexLayoutComponent(_component) {
 			for(var _i = 0; _i < array_length(children); _i++) {
 				var _child = children[_i];
 				
-				reflexLayoutComponent(_child);	
+				if(_child.isVisible) {
+					reflexLayoutComponent(_child);	
 				
-				var _w = _child.boxModel.getFullWidth();
-				var _h = _child.boxModel.getFullHeight();
+					var _w = _child.boxModel.getFullWidth();
+					var _h = _child.boxModel.getFullHeight();
 				
-				if(_w > _maxWidth) {
-					_child.boxModel.contentWidth = _maxWidth;
-					_w = _maxWidth;
-				}
+					// Handle constrain overflow 
+					if(_child.overflow == ReflexOverflow.Constrain) {
+						if(_w > _maxWidth) {
+							_child.boxModel.contentWidth = _maxWidth;
+							_w = _maxWidth;
+						}
 				
-				if(_h > _maxHeight) {
-					_child.boxModel.contentHeight = _maxHeight;
-					_h = _child.boxModel.contentHeight;
-				}
-				
-				if(_child.position == ReflexPosition.absolute) {
-					// We are being told to put the control at this location, so put it there!
-					_child.boxModel.x = _child.x;
-					_child.boxModel.y = _child.y;
-					
-					_childContentWidth = max(_childContentWidth, _child.boxModel.x + _child.boxModel.contentWidth);
-					_childContentHeight = max(_childContentHeight, _child.boxModel.y + _child.boxModel.contentHeight);
-				} else {
-					// This is the normal layout
-					// Set up a new line
-					if(_x + _w > _maxWidth && _x > 0) {
-						_x = 0;
-						_y += _lineHeight;
-						_lineHeight = 0;
-						_row++;
-						array_push(_focusGrid, []);
+						if(_h > _maxHeight) {
+							_child.boxModel.contentHeight = _maxHeight;
+							_h = _child.boxModel.contentHeight;
+						}
 					}
+				
+					if(_child.position == ReflexPosition.absolute) {
+						// We are being told to put the control at this location, so put it there!
+						_child.boxModel.x = _child.x;
+						_child.boxModel.y = _child.y;
 					
-					// Stretching the height is a thing that should happen if configured
-					if(_child.height == ReflexProperty.expand) {
-						_child.boxModel.contentHeight = _maxHeight - _y;
-						_h = _child.boxModel.contentHeight;
-					}
-					
-					_lineHeight = max(_lineHeight, _h);
-				
-					// Set Child Position
-					_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
-					_child.boxModel.y = reflexAlign(_child.valign, _y, _vAlignLineHeight ? _lineHeight : _maxHeight , _h);
-				
-				
-					_x += _w;
-				
-					_childContentWidth = max(_childContentWidth, _x);
-					_childContentHeight = max(_childContentHeight, _y + _lineHeight);
-				
-					//Assign component focus
-					if(_child.focusOrder == ReflexProperty.auto) {
-						var _col = array_length(_focusGrid[_row]);
-						array_push(_focusGrid[_row], _child);
-					
-						if(_row > 0) {
-							var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]) - 1)];
-					
-							_child.focusUp = _upControl;
-							_upControl.focusDown = _child;
+						_childContentWidth = max(_childContentWidth, _child.boxModel.x + _child.boxModel.contentWidth);
+						_childContentHeight = max(_childContentHeight, _child.boxModel.y + _child.boxModel.contentHeight);
+					} else {
+						// This is the normal layout
+						// Set up a new line
+						if(_x + _w > _maxWidth && _x > 0) {
+							_x = 0;
+							_y += _lineHeight;
+							_lineHeight = 0;
+							_row++;
+							array_push(_focusGrid, []);
 						}
 					
-						if(_col > 0) {
-							var _leftControl = _focusGrid[_row][_col - 1];
-							_child.focusLeft = _leftControl;
-							_leftControl.focusRight = _child;
+						// Stretching the height is a thing that should happen if configured
+						if(_child.height == ReflexProperty.expand) {
+							_child.boxModel.contentHeight = _maxHeight - _y;
+							_h = _child.boxModel.contentHeight;
+						}
+					
+						_lineHeight = max(_lineHeight, _h);
+				
+						// Set Child Position
+						_child.boxModel.x = reflexAlign(_child.halign, _x, _maxWidth, _w);
+						_child.boxModel.y = reflexAlign(_child.valign, _y, _vAlignLineHeight ? _lineHeight : _maxHeight , _h);
+				
+				
+						_x += _w;
+				
+						_childContentWidth = max(_childContentWidth, _x);
+						_childContentHeight = max(_childContentHeight, _y + _lineHeight);
+				
+						//Assign component focus
+						if(_child.focusOrder == ReflexProperty.auto) {
+							var _col = array_length(_focusGrid[_row]);
+							array_push(_focusGrid[_row], _child);
+					
+							if(_row > 0) {
+								var _upControl = _focusGrid[_row - 1][min(_col, array_length(_focusGrid[_row - 1]) - 1)];
+					
+								_child.focusUp = _upControl;
+								_upControl.focusDown = _child;
+							}
+					
+							if(_col > 0) {
+								var _leftControl = _focusGrid[_row][_col - 1];
+								_child.focusLeft = _leftControl;
+								_leftControl.focusRight = _child;
 						
+							}
 						}
 					}
 				}

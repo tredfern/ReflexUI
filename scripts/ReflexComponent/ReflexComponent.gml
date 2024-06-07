@@ -14,6 +14,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 	focusLeft = undefined;
 	dead = false;
 	forceRefresh = false;
+	rerender = false;
 	fullStyleList = [];
 	
 	// Events
@@ -166,7 +167,23 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 		return undefined;
 	}
 
-	static refresh = function() {
+	static refresh = function(_rerender = false) {
 		forceRefresh = true;	
+		rerender = _rerender;
 	}
+	
+	static show = function() {
+		isVisible = true;
+		refresh();
+	}
+	
+	static hide = function() {
+		isVisible = false;
+		refresh();
+	}
+	
+	static setFocus = function() {
+		REFLEXUI.inputManager.setFocus(self);	
+	}
+	
 }

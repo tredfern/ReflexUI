@@ -4,6 +4,7 @@ function reflexProcessStep() {
 	// Load and perform any layouts
 	if(REFLEXUI.needsRefresh) {
 		// Perform layout of all components
+		array_foreach(REFLEXUI.roots, reflexPerformRender);
 		array_foreach(REFLEXUI.roots, reflexPerformLayout);
 		REFLEXUI.needsRefresh = false;
 		REFLEXUI.canCache = true;
