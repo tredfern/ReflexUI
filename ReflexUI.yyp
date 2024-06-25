@@ -77,7 +77,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.4.0.137",
+    "IDEVersion":"2024.4.1.152",
   },
   "name":"ReflexUI",
   "resources":[
@@ -490,6 +490,7 @@
     {"id":{"name":"ReflexConstants","path":"scripts/ReflexConstants/ReflexConstants.yy",},},
     {"id":{"name":"ReflexDrawing","path":"scripts/ReflexDrawing/ReflexDrawing.yy",},},
     {"id":{"name":"ReflexEvents","path":"scripts/ReflexEvents/ReflexEvents.yy",},},
+    {"id":{"name":"reflexFindByID","path":"scripts/reflexFindByID/reflexFindByID.yy",},},
     {"id":{"name":"ReflexImage","path":"scripts/ReflexImage/ReflexImage.yy",},},
     {"id":{"name":"ReflexInitialize","path":"scripts/ReflexInitialize/ReflexInitialize.yy",},},
     {"id":{"name":"ReflexInput","path":"scripts/ReflexInput/ReflexInput.yy",},},

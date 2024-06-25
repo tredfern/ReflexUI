@@ -5,13 +5,15 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 	isHTML5 = os_browser != browser_not_a_browser;	// Scribble JR does not support HTML5
 	
 	static onLayout = function(_contentSize) {
-		if(textMgr != undefined) {
+		if(!isTemplated()) {
+			textMgr = ScribblejrFit(text, fa_left, fa_top, font, fontScale, _contentSize.maxWidth, _contentSize.maxHeight);
 			_contentSize.width = textMgr.GetWidth();
 			_contentSize.height = textMgr.GetHeight();
 		} else {
-			var _t = getFinalText();
-			_contentSize.width = string_width(_t);
-			_contentSize.height = string_height(_t);
+			templateText = text;
+			text = getFinalText();
+			_contentSize.width = string_width(text);
+			_contentSize.height = string_height(text);
 		}
 	}
 	
@@ -20,15 +22,6 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 			ScribblejrDrawNative(_drawArea.left, _drawArea.top, getFinalText(), _colors.color, alpha,,,font);
 		} else {
 			textMgr.Draw(_drawArea.left, _drawArea.top, _colors.color, alpha, sdfEffects);
-		}
-	}
-	
-	static onLoad = function() {
-		if(!isTemplated()) {
-			textMgr = Scribblejr(text, fa_left, fa_top, font);
-		} else {
-			templateText = text;
-			text = getFinalText();
 		}
 	}
 	

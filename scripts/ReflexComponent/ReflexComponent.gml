@@ -7,6 +7,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 	boxModel = new ReflexBoxModel(self);
 	layout = ReflexLayout.block;
 	isLoaded = false;
+	isLayoutCompleted = false;
 	styleCache = {};
 	focusUp = undefined;
 	focusDown = undefined;
@@ -88,8 +89,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 			if(_v == ReflexProperty.inherit) {
 				self[$ _property] = parent[$ _property];
 			} else if(is_struct(_v) && is_instanceof(_v, ReflexPropertyBinder)) {
-				reflexBindProperty(self, _property, _v.from, _v.fromProp);	
-				var _currentValue = _v.from[$ _v.fromProp];
+				var _currentValue = reflexBindProperty(self, _property, _v.from, _v.fromProp);	
 				self[$ _property] = _currentValue ?? _v.defaultValue;
 			}
 		}

@@ -10,20 +10,30 @@ function ReflexBoxModel(_component) constructor {
 	cached = undefined;
 	
 	static maximize = function() {
+		contentWidth = getMaxWidth();
+		contentHeight = getMaxHeight();
+	}
+	
+	static getMaxWidth = function() {
 		var _wMargin = margin.totalLR() + border.totalLR() + padding.totalLR();
-		var _hMargin = margin.totalTB() + border.totalTB() + padding.totalTB();
+		var _w = display_get_gui_width();
 		
 		if(!is_undefined(component.parent)) {
-			var _w = component.parent.boxModel.contentWidth;
-			var _h = component.parent.boxModel.contentHeight;
-		
-			contentWidth = calcMaxSize(component.width, _w - _wMargin);
-			contentHeight = calcMaxSize(component.height, _h - _hMargin);
-		} else {
-			// We have no parent, get the whole screen!
-			contentWidth = display_get_gui_width() - _wMargin;
-			contentHeight = display_get_gui_height() - _hMargin;
+			_w = component.parent.boxModel.contentWidth;
 		}
+		
+		return calcMaxSize(component.width, _w - _wMargin);
+	}
+	
+	static getMaxHeight = function() {
+		var _hMargin = margin.totalTB() + border.totalTB() + padding.totalTB();
+		
+		var _h = display_get_gui_height();
+		if(!is_undefined(component.parent)) {
+			_h = component.parent.boxModel.contentWidth;
+		}
+		
+		return calcMaxSize(component.height, _h - _hMargin);
 	}
 	
 	static getFullWidth = function() {

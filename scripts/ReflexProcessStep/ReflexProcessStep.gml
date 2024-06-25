@@ -4,7 +4,6 @@ function reflexProcessStep() {
 	// Load and perform any layouts
 	if(REFLEXUI.needsRefresh) {
 		// Perform layout of all components
-		array_foreach(REFLEXUI.roots, reflexPerformRender);
 		array_foreach(REFLEXUI.roots, reflexPerformLayout);
 		REFLEXUI.needsRefresh = false;
 		REFLEXUI.canCache = true;
@@ -15,6 +14,7 @@ function reflexProcessStep() {
 		}
 		REFLEXUI.canCache = false;
 	}
+	REFLEXUI.roots = array_filter(REFLEXUI.roots, function(_root) { return _root.hasChildren(); });
 	
 	// Update any state
 	REFLEXUI.stateManager.step();

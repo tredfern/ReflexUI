@@ -3,11 +3,17 @@ function ReflexImage(_props) : ReflexComponent(_props, [], "ReflexImage") constr
 	
 	
 	static onLayout = function(_contentSize) {
+		if(!sprite_exists(sprite))
+			return;
+			
 		_contentSize.width = sprite_get_width(sprite);
 		_contentSize.height = sprite_get_height(sprite);
 	}
 	
 	static onDraw = function(_drawArea, _colors) {
+		if(!sprite_exists(sprite))
+			return;
+		
 		draw_sprite_stretched_ext(
 			sprite, 
 			frameNumber, 

@@ -421,6 +421,7 @@
     {"name":"ReflexConstants","order":4,"path":"scripts/ReflexConstants/ReflexConstants.yy",},
     {"name":"ReflexDrawing","order":3,"path":"scripts/ReflexDrawing/ReflexDrawing.yy",},
     {"name":"ReflexEvents","order":5,"path":"scripts/ReflexEvents/ReflexEvents.yy",},
+    {"name":"reflexFindByID","order":3,"path":"scripts/reflexFindByID/reflexFindByID.yy",},
     {"name":"ReflexImage","order":8,"path":"scripts/ReflexImage/ReflexImage.yy",},
     {"name":"ReflexInput","order":9,"path":"scripts/ReflexInput/ReflexInput.yy",},
     {"name":"ReflexLayout","order":14,"path":"scripts/ReflexLayout/ReflexLayout.yy",},

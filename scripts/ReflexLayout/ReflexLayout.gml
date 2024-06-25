@@ -24,7 +24,7 @@ function reflexLayoutComponent(_component) {
 		//Need to recompute the box model
 		boxModel = new ReflexBoxModel(_component);
 		
-		var _contentSize = { width: 0, height: 0 }
+		var _contentSize = { width: 0, height: 0, maxWidth: boxModel.getMaxWidth(), maxHeight: boxModel.getMaxHeight() }
 		
 		// Let the component perform any layout calculations for content size
 		reflexSafeEvent(_component, REFLEX_EVENT_ON_LAYOUT, _contentSize);
@@ -136,6 +136,8 @@ function reflexLayoutComponent(_component) {
 		// Finalize our size based on content size and any properties
 		boxModel.contentWidth = reflexCalculateWidth(_component);
 		boxModel.contentHeight = reflexCalculateHeight(_component);
+		
+		isLayoutCompleted = true;
 	}
 }
 

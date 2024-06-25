@@ -115,3 +115,7 @@ function ReflexDebugMessage() {
 function ReflexIsHtml5() {
 	return os_browser != browser_not_a_browser;	
 }
+
+function reflexIsCallableMethod(_v) {
+	return is_callable(_v) && is_method(_v) && !is_real(_v);
+}

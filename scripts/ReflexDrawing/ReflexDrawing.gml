@@ -8,7 +8,7 @@ function reflexDrawAll() {
 // Traverse the component hierarchy rendering each component
 //
 function reflexDraw(_component, _x = 0, _y = 0) {
-	if(!_component.isLoaded || !_component.isVisible)
+	if(!_component.isLoaded || !_component.isVisible || !_component.isLayoutCompleted)
 		return;
 		
 	with(_component) {

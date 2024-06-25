@@ -49,8 +49,9 @@ function ReflexUIDefaultConfiguration() {
 			valign:							fa_top,						// ...
 				
 			//	Visual Properties
-			alpha:							1,							// Opacity for drawing commands			
+			alpha:							ReflexProperty.inherit,							// Opacity for drawing commands			
 			font:							ReflexProperty.inherit,		// Use the font set to your parent
+			fontScale:						1,
 			color:							ReflexProperty.inherit,		// Use the foreground color of your parent
 			backgroundColor:				ReflexProperty.off,			// Disable background color
 			backgroundImage:				undefined,					// Provides an image to be used for the background -> Color still must be set for drawing to occur
@@ -76,8 +77,11 @@ function ReflexUIDefaultConfiguration() {
 		// Root is a container wrapped around any render
 		// It can be used to set default properties that are inherited
 		ReflexRoot: {
+			alpha:	1,
 			color: 	c_black,
-			font: fntReflexDefault,
+			font:	fntReflexDefault,
+			height:	"100%",
+			width:	"100%",
 		},
 		
 		ReflexBlock: {
