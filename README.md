@@ -8,10 +8,6 @@ Because ReflexUI is managing the layout of components, this allows it to assist 
 
 The great thing about ReflexUI is that you don't need to remember and implement a dozen different functions or instantiate a bunch of objects to make it work. Behind the scenes it will convert data to the appropriate objects for rendering. -> NOTE: For robust functionality, it will take digging in, but getting started should be easy.
 
-*Dependencies*: Note that this library contains two external dependencies that are included in it's release. 
-* [ScribbleJr](https://www.jujuadams.com/ScribbleJunior/#/1.3/Scribblejr) - for text rendering support
-* [Input](https://offalynne.github.io/Input/#/6.2/) - for gamepad and input support
-
 ### Installation
 1. Download the latest release .yymps
 2. Import the package into your GameMaker Studio 2 project
