@@ -1,9 +1,4 @@
 function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") constructor {
-	textMgr = undefined;
-	layout = ReflexLayout.inline;
-	isHTML5 = os_browser != browser_not_a_browser;	// Scribble JR does not support HTML5
-	textSize = 0;
-    
 	static onLayout = function(_contentSize) {
         var _text = getFinalText();
         draw_set_font(font);
@@ -24,7 +19,6 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 		return string_pos("{", text) != 0;
 	}
 	
-	//TODO: This should be cleaned up 
 	static onUpdate = function() {		
 		//Check if our size changed, if so, we need to refresh the layout
 		var _size = { width: 0, height: 0 };
