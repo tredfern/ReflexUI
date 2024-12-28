@@ -21,11 +21,11 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 	
 	static onUpdate = function() {		
 		//Check if our size changed, if so, we need to refresh the layout
-		var _size = { width: 0, height: 0 };
-		
-		onLayout(_size);
-		if(_size.width != boxModel.contentWidth || _size.height != boxModel.contentHeight)
-			refresh();
+		//var _size = { width: 0, height: 0 };
+		//
+		//onLayout(_size);
+		//if(_size.width != boxModel.contentWidth || _size.height != boxModel.contentHeight) 
+        refresh();
 	}
 	
 	static getFinalText = function() { 

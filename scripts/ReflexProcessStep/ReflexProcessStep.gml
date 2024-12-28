@@ -1,6 +1,19 @@
 function reflexProcessStep() {
 	REFLEXUI.__inputCooldown--;
 	
+    // Update any state
+    REFLEXUI.stateManager.step();
+    
+    // Process input commands
+    REFLEXUI.inputManager.step();
+    
+    for(var _i = 0; _i < array_length(REFLEXUI.stepEvents); _i++) {
+        var _c = REFLEXUI.stepEvents[_i];	
+        reflexSafeEvent(_c, REFLEX_EVENT_ON_STEP);
+    }
+    
+    REFLEXUI.animations.step();
+    
 	// Load and perform any layouts
 	if(REFLEXUI.needsRefresh) {
 		// Perform layout of all components
@@ -16,18 +29,6 @@ function reflexProcessStep() {
 	}
 	REFLEXUI.roots = array_filter(REFLEXUI.roots, function(_root) { return _root.hasChildren(); });
 	
-	// Update any state
-	REFLEXUI.stateManager.step();
-	
-	// Process input commands
-	REFLEXUI.inputManager.step();
-	
-	for(var _i = 0; _i < array_length(REFLEXUI.stepEvents); _i++) {
-		var _c = REFLEXUI.stepEvents[_i];	
-		reflexSafeEvent(_c, REFLEX_EVENT_ON_STEP);
-	}
-	
-	REFLEXUI.animations.step();
 }
 
 function reflexCacheLayouts(_component) {

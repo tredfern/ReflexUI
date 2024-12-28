@@ -89,7 +89,7 @@ function ReflexInput() constructor {
 		var _verbs = ds_map_keys_to_array(hotVerbs);
 		
 		for(var _hv = 0; _hv < array_length(_verbs); _hv++) {
-			if(checkVerbPressed(_verbs[_hv])) {
+			if(checkVerbPressed(verbs[$ _verbs[_hv]])) {
 				reflexSafeEvent(hotVerbs[? _verbs[_hv]], REFLEX_EVENT_ON_CLICK);
 			}
 			

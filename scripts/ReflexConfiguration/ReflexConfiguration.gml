@@ -9,18 +9,31 @@ function ReflexUIDefaultConfiguration() {
     REFLEXUI.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
     REFLEXUI.hideMouseIfController = false;
     
-    REFLEXUI.inputAdapter = new ReflexInputLibAdapter();            // Adapter for https://github.com/offalynne/Input/
-     //REFLEXUI.inputAdapter = new ReflexBasicInputAdapter();        // Basic adapter that uses GML functions for input
+    //REFLEXUI.inputAdapter = new ReflexInputLibAdapter();            // Adapter for https://github.com/offalynne/Input/
+      //reflexInputVerbs({
+		//// These are the critical verbs for reflex
+		//// How to navigate the focus and what to check for "click" events
+		//click: "click",	
+		//accept: "accept",	        // Accept behaves similiar to a click by default
+		//up: "up",							
+		//down: "down",
+		//right: "right",
+		//left: "left",		
+        //cancel: "cancel"
+	//});
+    
+    REFLEXUI.inputAdapter = new ReflexBasicInputAdapter();        // Basic adapter that uses GML functions for input
     reflexInputVerbs({
-		// These are the critical verbs for reflex
-		// How to navigate the focus and what to check for "click" events
-		click: "click",	
-		accept: "accept",	        // Accept behaves similiar to a click by default
-		up: "up",							
-		down: "down",
-		right: "right",
-		left: "left",		
-	});
+        // These are the critical verbs for reflex
+        // How to navigate the focus and what to check for "click" events
+        click:  mb_left,	
+        accept: vk_enter,	        // Accept behaves similiar to a click by default
+        up:     vk_up,							
+        down:   vk_down,
+        right:  vk_right,
+        left:   vk_left,	
+        cancel: vk_escape,	
+    })
 	
     
     ///

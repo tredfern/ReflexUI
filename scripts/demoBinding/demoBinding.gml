@@ -12,10 +12,8 @@ function demoBindingProperties() {
 
 function FrameCounter() {
 	return {
-		frameNumber: reflexCreateBind(objDemo, "counter", 0),
-	
 		render: function() {
-			return new ReflexText({ text: "Frames: {frameNumber}" });	
+			return new ReflexText({ text: "Frames: {frameNumber}", frameNumber: reflexCreateBind(objDemo, "counter", 0), });	
 		}	
 	}
 }
