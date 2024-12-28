@@ -23,7 +23,7 @@ function ReflexStateManager() constructor {
 				var _comp = _binding.to.ref;
 				if(_comp.isLoaded) {
 					var _v = reflexGetBoundPropertyValue(_binding.from, _binding.fromProp);
-				
+					
 					if(hasChanges(_binding.value, _v)) {
 						_comp[$ _binding.toProp] = _v;
 					
@@ -72,19 +72,26 @@ function ReflexStateManager() constructor {
 	}
 }
 
+
 function reflexGetBoundPropertyValue(_struct, _property) {
 	//show_debug_message($"Fetching Bound Property: {_property}");
+	if(struct_exists(_struct, "ref"))
+		_struct = _struct.ref;
+		
 	var _v = _struct[$ _property];
-	if(reflexIsCallableMethod(_v))
-		return _v();
+	if(reflexIsCallable(_v)) {
+		with(_struct) {
+			return _v();
+		}
+	}
 	
 	return _v;
 }
-
 
 function reflexBindProperty(_structTo, _toPropName, _from, _fromPropName) {
 	REFLEXUI.stateManager.bind(_structTo, _toPropName, _from, _fromPropName);
 	
 	// return the current value
 	return reflexGetBoundPropertyValue(_from, _fromPropName);
+	
 }

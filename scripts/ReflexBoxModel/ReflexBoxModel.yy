@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexBoxModel",
   "isCompatibility":false,
   "isDnD":false,

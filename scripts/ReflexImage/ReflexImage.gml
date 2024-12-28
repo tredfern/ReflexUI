@@ -13,7 +13,7 @@ function ReflexImage(_props) : ReflexComponent(_props, [], "ReflexImage") constr
 	static onDraw = function(_drawArea, _colors) {
 		if(!sprite_exists(sprite))
 			return;
-		
+			
 		draw_sprite_stretched_ext(
 			sprite, 
 			frameNumber, 

@@ -1,4 +1,4 @@
-function ReflexProgressBar(_props, _children) : ReflexComponent(_props, _children, "ReflexProgressBar") constructor {	
+function ReflexProgressBar(_props, _children = []) : ReflexComponent(_props, _children, "ReflexProgressBar") constructor {	
 	value = 0;
 	minValue = 0;
 	maxValue = 0;

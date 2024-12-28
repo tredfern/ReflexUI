@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexAnimationTrack",
   "isCompatibility":false,
   "isDnD":false,

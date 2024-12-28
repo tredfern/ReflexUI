@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexProcessStep",
   "isCompatibility":false,
   "isDnD":false,

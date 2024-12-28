@@ -17,6 +17,10 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 	forceRefresh = false;
 	rerender = false;
 	fullStyleList = [];
+	hasHover = false;
+	hasFocus = false;
+	backgroundImageHandler = undefined;
+	borderImageHandler = undefined;
 	
 	// Events
 	static onClick =						undefined;					// Triggered when "click" verb is pressed while mouse is over control OR when focus is set and the "accept" verb is pressed
@@ -48,6 +52,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 		
 		reflexStructMergeValues(self, properties);
 		finalizePropertyValues();
+		methodizeEvents();
 		
 		// Register hot verb
 		if(self[$ REFLEX_PROPERTY_HOT_VERB] != undefined) {
@@ -57,9 +62,16 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 		if(self[$ REFLEX_EVENT_ON_STEP] != undefined) {
 			reflexRegisterStepEvent(self);
 		}
-		checkAnimations();
-		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
 		
+		checkAnimations();
+		
+		if(backgroundImage != undefined && sprite_exists(backgroundImage))
+			backgroundImageHandler = new ReflexImageHandler(backgroundImage);
+			
+		if(borderImage != undefined && sprite_exists(borderImage))
+			borderImageHandler = new ReflexImageHandler(borderImage);
+		
+		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
 		isLoaded = true;
 	}
 	
@@ -93,6 +105,22 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 				self[$ _property] = _currentValue ?? _v.defaultValue;
 			}
 		}
+	}
+	
+	// Force any functions for events to be placed into context of the component
+	static methodizeEvents = function() {
+		var methodList = [REFLEX_EVENT_ON_CLICK, REFLEX_EVENT_ON_DRAW, REFLEX_EVENT_ON_FOCUS, REFLEX_EVENT_ON_FOCUS_OUT,
+			REFLEX_EVENT_ON_LAYOUT, REFLEX_EVENT_ON_LOAD, REFLEX_EVENT_MOUSE_ENTER, REFLEX_EVENT_MOUSE_EXIT, REFLEX_EVENT_MOUSE_OVER,
+			REFLEX_EVENT_ON_STEP, REFLEX_EVENT_UNLOAD, REFLEX_EVENT_ON_UPDATE];
+			
+		for(var _i = 0; _i < array_length(methodList); _i++) {
+			if(reflexStructExists(self, methodList[_i])) {
+				var _oldFunc = struct_get(self, methodList[_i]);
+				struct_set(self, methodList[_i], method(self, _oldFunc));
+			}
+		}
+		
+		
 	}
 	
 	static addChild = function(_component) {
@@ -173,12 +201,12 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 	}
 	
 	static show = function() {
-		isVisible = true;
+		update({ isVisible: true });
 		refresh();
 	}
 	
 	static hide = function() {
-		isVisible = false;
+		update({ isVisible: false });
 		refresh();
 	}
 	

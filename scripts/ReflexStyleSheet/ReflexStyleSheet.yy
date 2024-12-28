@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexStyleSheet",
   "isCompatibility":false,
   "isDnD":false,

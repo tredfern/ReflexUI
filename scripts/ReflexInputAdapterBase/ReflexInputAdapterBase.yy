@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ReflexInputAdapterBase",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexInputAdapterBase",
+  "parent":{
+    "name":"InputAdapters",
+    "path":"folders/ReflexUI/InputAdapters.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

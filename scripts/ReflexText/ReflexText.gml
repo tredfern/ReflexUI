@@ -1,32 +1,27 @@
 function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") constructor {
 	textMgr = undefined;
 	layout = ReflexLayout.inline;
-	templateText = undefined;
 	isHTML5 = os_browser != browser_not_a_browser;	// Scribble JR does not support HTML5
-	
+	textSize = 0;
+    
 	static onLayout = function(_contentSize) {
-		if(!isTemplated()) {
-			textMgr = ScribblejrFit(text, fa_left, fa_top, font, fontScale, _contentSize.maxWidth, _contentSize.maxHeight);
-			_contentSize.width = textMgr.GetWidth();
-			_contentSize.height = textMgr.GetHeight();
-		} else {
-			templateText = text;
-			text = getFinalText();
-			_contentSize.width = string_width(text);
-			_contentSize.height = string_height(text);
-		}
+        var _text = getFinalText();
+        draw_set_font(font);
+        _contentSize.width = string_width(_text);
+        _contentSize.height = string_height(_text);
 	}
 	
 	static onDraw = function(_drawArea, _colors) {
-		if(isTemplated() || isHTML5) {
-			ScribblejrDrawNative(_drawArea.left, _drawArea.top, getFinalText(), _colors.color, alpha,,,font);
-		} else {
-			textMgr.Draw(_drawArea.left, _drawArea.top, _colors.color, alpha, sdfEffects);
-		}
+        draw_set_font(font);
+        draw_set_color(_colors.color);
+        draw_set_alpha(alpha);
+        draw_set_halign(textHAlign);
+        draw_set_valign(textVAlign);
+        draw_text_ext(_drawArea.left, _drawArea.top, getFinalText(), -1, _drawArea.width);
 	}
 	
 	static isTemplated = function() {
-		return templateText != undefined || string_pos("{", text) != 0;
+		return string_pos("{", text) != 0;
 	}
 	
 	//TODO: This should be cleaned up 
@@ -36,14 +31,14 @@ function ReflexText(_props) : ReflexComponent(_props, [], "ReflexText") construc
 		
 		onLayout(_size);
 		if(_size.width != boxModel.contentWidth || _size.height != boxModel.contentHeight)
-			reflexFlagRefresh();
+			refresh();
 	}
 	
 	static getFinalText = function() { 
 		if(!isTemplated()) {
 			return text;	
 		}
-		var _text = templateText;
+		var _text = text;
 		var _index = string_pos("{", _text);
 		
 		while(_index != 0) {

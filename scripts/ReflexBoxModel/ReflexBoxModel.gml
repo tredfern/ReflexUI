@@ -30,7 +30,7 @@ function ReflexBoxModel(_component) constructor {
 		
 		var _h = display_get_gui_height();
 		if(!is_undefined(component.parent)) {
-			_h = component.parent.boxModel.contentWidth;
+			_h = component.parent.boxModel.contentHeight;
 		}
 		
 		return calcMaxSize(component.height, _h - _hMargin);

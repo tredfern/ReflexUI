@@ -9,6 +9,8 @@ function reflexRender(_components) {
 	
 	array_push(REFLEXUI.roots, _root);
 	reflexFlagRefresh();
+	
+	return _root;
 }
 
 function reflexFlagRefresh() {
@@ -21,8 +23,8 @@ function reflexClearAll() {
 	REFLEXUI.roots = [];
 }
 
-//TODO: Making a real house of cards operation on this clean up
-function reflexRemove(_component) {
+//TODO: Making a real house of Items operation on this clean up
+function reflexRemove(_component) {	
 	reflexSafeEvent(_component, REFLEX_EVENT_UNLOAD);
 	_component.isLoaded = false;
 	
@@ -38,13 +40,14 @@ function reflexRemove(_component) {
 	//Unregister step event if necessary
 	if(_component[$ REFLEX_EVENT_ON_STEP] != undefined) {
 		var _i = array_get_index(REFLEXUI.stepEvents, _component);
-		array_delete(REFLEXUI.stepEVents, _i, 1);
+		array_delete(REFLEXUI.stepEvents, _i, 1);
 	}
 	
 	if(_component == REFLEXUI.inputManager.focus)
 		REFLEXUI.inputManager.focus = undefined;
 		
 	delete _component;
+	
 }
 
 function reflexPerformRender(_component) {
@@ -81,6 +84,9 @@ function reflexPerformRender(_component) {
 				if(is_array(_child)) {
 					_child = new ReflexBlock({}, _child);
 				}	
+				
+				
+				reflexAssert(is_struct(_child), "Must have converted this to a component");
 				
 				children[_i] = _child;
 			}

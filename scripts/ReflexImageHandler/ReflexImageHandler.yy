@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ReflexImageHandler",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ReflexImageHandler",
+  "parent":{
+    "name":"System",
+    "path":"folders/ReflexUI/System.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

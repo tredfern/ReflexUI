@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexText",
   "isCompatibility":false,
   "isDnD":false,

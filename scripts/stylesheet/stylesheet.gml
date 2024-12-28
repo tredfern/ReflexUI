@@ -20,7 +20,8 @@ ReflexUserConfiguration(function() {
 			font: fntMenuButtons	
 		},
 		ReflexMenuItem: {
-			padding: 10,	
+			padding: 10,
+            hover: {},
 			focus: {
 				animation: ["colorPulse" ],
 				animationDuration: 45

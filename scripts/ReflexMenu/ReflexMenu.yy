@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexMenu",
   "isCompatibility":false,
   "isDnD":false,

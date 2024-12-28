@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"demoGameScreen",
   "isCompatibility":false,
   "isDnD":false,

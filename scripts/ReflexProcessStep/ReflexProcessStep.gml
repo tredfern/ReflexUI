@@ -35,5 +35,5 @@ function reflexCacheLayouts(_component) {
 }
 
 function reflexRegisterStepEvent() {
-	
+	throw("not implemented");
 }

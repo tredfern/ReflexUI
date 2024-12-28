@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexInitialize",
   "isCompatibility":false,
   "isDnD":false,

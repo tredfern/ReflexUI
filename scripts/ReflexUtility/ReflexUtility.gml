@@ -99,7 +99,11 @@ function reflexArrayRemove(_array, _value) {
 	array_delete(_array, _i, 1);
 }
 
-function ReflexDebugMessage() {
+function reflexUsingGamepad() {
+	return input_profile_get() == "gamepad"
+}
+
+function reflexDebugMessage() {
 	var _string = "ReflexUI: ";
     
     var _i = 0;
@@ -112,10 +116,21 @@ function ReflexDebugMessage() {
     show_debug_message(_string);
 }
 
-function ReflexIsHtml5() {
+function reflexIsHtml5() {
 	return os_browser != browser_not_a_browser;	
 }
 
-function reflexIsCallableMethod(_v) {
-	return is_callable(_v) && is_method(_v) && !is_real(_v);
+function reflexStructExists(_struct, _name) {
+	return _struct[$ _name] != undefined;	
+}
+    
+    
+function reflexIsCallable(_v) {
+    return is_callable(_v) && is_method(_v) && !is_real(_v);
+}
+    
+function reflexNotImplemented(_method) {
+    return function() {
+        show_error("Not Implemented: " + _method, true);
+    }
 }

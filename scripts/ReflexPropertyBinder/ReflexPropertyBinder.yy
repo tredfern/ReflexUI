@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexPropertyBinder",
   "isCompatibility":false,
   "isDnD":false,

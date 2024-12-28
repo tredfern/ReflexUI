@@ -1,4 +1,4 @@
-function ReflexAnimation(_property, _curve, _lowValue, _highValue, _type = ReflexAnimationType.OneShot) constructor {
+function ReflexAnimation(_property, _curve, _lowValue, _highValue, _type = ReflexAnimationType.OneShot, _resetOnEnd = true) constructor {
 	property = _property;
 	curve = _curve;
 	low = _lowValue;
@@ -7,6 +7,7 @@ function ReflexAnimation(_property, _curve, _lowValue, _highValue, _type = Refle
 	channel = animcurve_get_channel(_curve, "value");
 	cascade = (property == "x" || property == "y");
 	isColor = string_pos("color", string_lower(property)) > 0;
+    resetOnEnd = _resetOnEnd;
 
 	
 	static step = function(_params) {
@@ -48,10 +49,13 @@ function ReflexAnimation(_property, _curve, _lowValue, _highValue, _type = Refle
 	}
 	
 	static stop = function(_animation) {
-		var _update = {};
-		_update[$ property] = _animation.baseValue;
-		//Ensure we are at the end
-		_animation.component.update(_update);
+        //Clean up our values so everything is reset to the way it was originally
+        if(resetOnEnd) {
+            var _update = {};
+            _update[$ property] = _animation.baseValue;
+            _animation.component.update(_update);
+        }
+		
 		
 		// Remove animation from happening on the component
 		reflexRemoveAnimation(_animation);

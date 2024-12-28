@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexAnimationManager",
   "isCompatibility":false,
   "isDnD":false,

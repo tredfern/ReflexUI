@@ -8,13 +8,13 @@ function reflexDrawAll() {
 // Traverse the component hierarchy rendering each component
 //
 function reflexDraw(_component, _x = 0, _y = 0) {
+	if(_component.forceRefresh)
+		reflexFlagRefresh();
+	
 	if(!_component.isLoaded || !_component.isVisible || !_component.isLayoutCompleted)
 		return;
 		
 	with(_component) {
-		if(_component.forceRefresh)
-			reflexFlagRefresh();
-			
 		var _screenRect = boxModel.getLayoutRect();
 		var _contentRect = boxModel.getContentRect();
 	
@@ -72,7 +72,7 @@ function reflexDrawBackground(_screenRect) {
 		shader_set(backgroundShader);
 			
 	if(!is_undefined(backgroundImage) && sprite_exists(backgroundImage)) {
-		draw_sprite_stretched_ext(backgroundImage, 0, _screenRect.left, _screenRect.top, _screenRect.width, _screenRect.height, drawingColors.backgroundColor, alpha);
+		backgroundImageHandler.drawStretchedExt(_screenRect.left, _screenRect.top, _screenRect.width, _screenRect.height, drawingColors.backgroundColor, alpha);
 	} else {
 		draw_set_color(drawingColors.backgroundColor);
 		draw_set_alpha(alpha);
@@ -85,16 +85,24 @@ function reflexDrawBackground(_screenRect) {
 
 function reflexDrawBorder(_screenRect) {
 	drawingColors.borderColor = merge_color(drawingColors.borderColor, reflexGetColor(borderColor), colorChangeRate);
-	draw_set_color(drawingColors.borderColor);
-	draw_set_alpha(alpha);
-	var _borderSizes = boxModel.border;
+	
+	if(borderImage != undefined && sprite_exists(borderImage)) {
+		if(borderImageHandler == undefined || borderImageHandler.sprite != borderImage)
+			borderImageHandler =  new ReflexImageHandler(borderImage);
 			
-	draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.right, _screenRect.top + _borderSizes.top, false);
-	draw_rectangle(_screenRect.left, _screenRect.bottom - _borderSizes.bottom, _screenRect.right, _screenRect.bottom, false);
-	draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.left + _borderSizes.left, _screenRect.bottom, false);
-	draw_rectangle(_screenRect.right - _borderSizes.right, _screenRect.top, _screenRect.right, _screenRect.bottom, false);
+		borderImageHandler.drawStretchedExt(_screenRect.left, _screenRect.top, _screenRect.width, _screenRect.height, drawingColors.borderColor, alpha);
+	} else {
+		draw_set_color(drawingColors.borderColor);
+		draw_set_alpha(alpha);
+		var _borderSizes = boxModel.border;
+			
+		draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.right, _screenRect.top + _borderSizes.top, false);
+		draw_rectangle(_screenRect.left, _screenRect.bottom - _borderSizes.bottom, _screenRect.right, _screenRect.bottom, false);
+		draw_rectangle(_screenRect.left, _screenRect.top, _screenRect.left + _borderSizes.left, _screenRect.bottom, false);
+		draw_rectangle(_screenRect.right - _borderSizes.right, _screenRect.top, _screenRect.right, _screenRect.bottom, false);
+	}
 }
 
 function reflexGetColor(_color) {
-	return is_string(_color) ? REFLEXUI.colors[$_color] : _color;
+	return is_string(_color) ? REFLEXUI.colors[$ _color] : _color;
 }

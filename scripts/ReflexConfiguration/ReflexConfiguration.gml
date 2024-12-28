@@ -1,20 +1,32 @@
 function ReflexUIDefaultConfiguration() {
-	REFLEXUI.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
 	REFLEXUI.drawBoxModel = false;		// Enable to draw boundaries around components for layout c_fushcia is content, c_red is visible, c_lime is the total area with margins
+	REFLEXUI.audioHandler = reflexAudioDefault;		// Called when playing sound, pass a custom handler for your own sound library, e.g. FMOD
 	
-	//
-	// 
-	reflexInputVerbs({
+    ///
+    /// INPUT CONFIGURATIONS
+    ///
+    
+    REFLEXUI.inputDelay = 10;			// Sets how many frames to wait before triggering a focus change or other input event with the gamepad or keyboard
+    REFLEXUI.hideMouseIfController = false;
+    
+    REFLEXUI.inputAdapter = new ReflexInputLibAdapter();            // Adapter for https://github.com/offalynne/Input/
+     //REFLEXUI.inputAdapter = new ReflexBasicInputAdapter();        // Basic adapter that uses GML functions for input
+    reflexInputVerbs({
 		// These are the critical verbs for reflex
 		// How to navigate the focus and what to check for "click" events
 		click: "click",	
-		accept: "accept",	// Accept behaves similiar to a click by default
+		accept: "accept",	        // Accept behaves similiar to a click by default
 		up: "up",							
 		down: "down",
 		right: "right",
 		left: "left",		
 	});
 	
+    
+    ///
+    /// Styles and Colors
+    /// 
+    
 	reflexColors({
 		textDark: c_black,
 		textLight: c_ltgray,
@@ -29,6 +41,9 @@ function ReflexUIDefaultConfiguration() {
 	
 	// Default styles for components
 	reflexStyleSheet({
+        
+        // Default sets the basic properties for all components and ensures that all values are set to sensible defaults.
+        // Not all components are dependent on these values, but these values ensure that layouts and drawing can work out of the box
 		__default: {
 			//	Position Properties
 			position:						ReflexPosition.relative,	// Relative position means "relative to it's normal position", "absolute", this is the position in relation to the parent
@@ -47,7 +62,7 @@ function ReflexUIDefaultConfiguration() {
 			padding:						0,							// Padding is area within the component that has background but pushes any content away from the sides
 			halign:							fa_left,					// How this component should layout within it's parent
 			valign:							fa_top,						// ...
-				
+    			
 			//	Visual Properties
 			alpha:							ReflexProperty.inherit,							// Opacity for drawing commands			
 			font:							ReflexProperty.inherit,		// Use the font set to your parent
@@ -57,8 +72,9 @@ function ReflexUIDefaultConfiguration() {
 			backgroundImage:				undefined,					// Provides an image to be used for the background -> Color still must be set for drawing to occur
 			backgroundShader:				undefined,					// Shader to use while drawing the background
 			borderColor:					ReflexProperty.off,			// Disable border color
+			borderImage:					undefined,					// Image to use drawing the border
 			isVisible:						true,						// By default all components should be seen
-			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1	
+			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1				shader:							undefined,					// Custom Shader to use while drawing
 			
 			// Input Properties
 			canFocus:						false,						// Whether this component can receive focus		
@@ -67,10 +83,16 @@ function ReflexUIDefaultConfiguration() {
 			focusDown:						undefined,					// These will determine what control to navigate to if direction input is provided
 			focusLeft:						undefined,
 			focusRight:						undefined,
+			focusOnHover:					false,
 			
 			// Animation Properties
 			animation:						undefined,
 			animationDuration:				0,
+			
+			// Audio Properties
+			audioFocus:						undefined,
+			audioClick:						undefined,
+			audioMouseEnter:				undefined,
 		
 		},
 		
@@ -115,6 +137,7 @@ function ReflexUIDefaultConfiguration() {
 			backgroundColor: "lightShade",
 			margin: 5,
 			border: 2,
+			focusOnHover: true,
 			hover: {
 				backgroundColor: "lightAccent",
 				color: "textDark"
@@ -137,17 +160,19 @@ function ReflexUIDefaultConfiguration() {
 		
 		ReflexText: {
 			layout:	ReflexLayout.inline,
-			sdfEffects: {}
+			sdfEffects: {},
+            textHAlign: fa_left,                // Specific to text aligning properties, aligns text within element
+            textVAlign: fa_top,
 		}
 	});
 }
 
 function ReflexUserConfiguration(_configuration) {
 	if(ReflexUIIsLoaded()) {
-		ReflexDebugMessage("Loading custom configuration");
+		reflexDebugMessage("Loading custom configuration");
 		_configuration();
 	} else {
-		ReflexDebugMessage("Setting custom configuration to load on initialization");
+		reflexDebugMessage("Setting custom configuration to load on initialization");
 		REFLEXUI_USER_CONFIGURATION = _configuration;	
 	}
 }

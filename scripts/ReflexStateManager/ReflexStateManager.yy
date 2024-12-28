@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ReflexStateManager",
   "isCompatibility":false,
   "isDnD":false,

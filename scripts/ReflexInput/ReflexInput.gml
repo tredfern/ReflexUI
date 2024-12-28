@@ -4,31 +4,63 @@ function ReflexInput() constructor {
 	focus = undefined;
 	mousePos = { x: 0, y: 0 };
 	hotVerbs = ds_map_create();
+	mouseEnabled = true;
+	
+	static clear = function() {
+		focus = undefined;
+		mouseOver = [];
+	}
 	
 	static step = function() {
-		// Mouse Input
-		mousePos.x = mouseX();
-		mousePos.y = mouseY();
-	
-		var _currentMouseOver = reflexTreeFindAll(reflexIsPointInControl, mousePos, undefined, true);
-		
-		var _exiting = reflexArrayMissing(mouseOver, _currentMouseOver);
-		var _entering = reflexArrayMissing(_currentMouseOver, mouseOver);
-		
-		//	Process Mouse Events
-		reflexTriggerEvents(_exiting, REFLEX_EVENT_MOUSE_EXIT, mousePos);
-		reflexRemoveTempStyle(_exiting, REFLEX_STYLE_HOVER);
-		reflexTriggerEvents(_entering, REFLEX_EVENT_MOUSE_ENTER, mousePos);
-		reflexApplyTempStyle(_entering, REFLEX_STYLE_HOVER);
-		reflexTriggerEvents(_currentMouseOver, REFLEX_EVENT_MOUSE_OVER, mousePos);
-		mouseOver = _currentMouseOver;
-		
-		//	Process clicks, mouse buttons
-		if(checkVerbPressed(verbs.click)) {
-			reflexTriggerEvents(mouseOver, REFLEX_EVENT_ON_CLICK);
+		mouseEnabled = !(REFLEXUI.hideMouseIfController && REFLEXUI.inputAdapter.gamepadEnabled());
+
+		if(mouseEnabled) {
+			window_set_cursor(cr_default);
+			// Mouse Input
+			mousePos.x = mouseX();
+			mousePos.y = mouseY();
+
+			var _currentMouseOver = reflexTreeFindAll(reflexIsPointInControl, mousePos, undefined, true);
+			var _exiting = reflexArrayMissing(mouseOver, _currentMouseOver);
+			var _entering = reflexArrayMissing(_currentMouseOver, mouseOver);
+			
+			//	Process Mouse Events
+			array_foreach(_exiting, function(_e) { _e.hasHover = false; });
+			reflexTriggerEvents(_exiting, REFLEX_EVENT_MOUSE_EXIT, mousePos);
+			reflexRemoveTempStyle(_exiting, REFLEX_STYLE_HOVER);
+			
+			array_foreach(_entering, function(_e) { _e.hasHover = true; });
+			reflexTriggerEvents(_entering, REFLEX_EVENT_MOUSE_ENTER, mousePos);
+			reflexApplyTempStyle(_entering, REFLEX_STYLE_HOVER);
+			
+			reflexTriggerEvents(_currentMouseOver, REFLEX_EVENT_MOUSE_OVER, mousePos);
+			
+			array_foreach(_entering, function(_c) { 
+				reflexAudio(_c, "audioMouseEnter");
+			});
+			mouseOver = _currentMouseOver;
+			
+			//	Process clicks, mouse buttons
+			if(checkVerbPressed(verbs.click)) {
+				reflexTriggerEvents(mouseOver, REFLEX_EVENT_ON_CLICK);
+				array_foreach(mouseOver, function(_c) { 
+					reflexAudio(_c, "audioClick");
+				});
+			}
+
+			var _focusMouse = array_find_index(mouseOver, function(_c) { return _c.focusOnHover; });
+			if(_focusMouse >= 0) {
+				setFocus(mouseOver[_focusMouse]);	
+			} 
+		} else {
+			// Mouse disabled, hide and perform any exits
+			array_foreach(mouseOver, function(_e) { _e.hasHover = false; });
+			reflexTriggerEvents(mouseOver, REFLEX_EVENT_MOUSE_EXIT, mousePos);
+			reflexRemoveTempStyle(mouseOver, REFLEX_STYLE_HOVER);
+			mouseOver = [];
+			window_set_cursor(cr_none);
 		}
-		
-		// Keyboard / Gamepad input
+
 		if(focus == undefined) {
 			setFocus(findFirstFocusControl());	
 		} else {
@@ -65,20 +97,20 @@ function ReflexInput() constructor {
 	}
 	
 	static mouseX = function() {
-		return input_mouse_x(INPUT_COORD_SPACE.GUI);
+		return REFLEXUI.inputAdapter.getMouseX();
 	}
 	
 	static mouseY = function() {
-		return input_mouse_y(INPUT_COORD_SPACE.GUI);
+        return REFLEXUI.inputAdapter.getMouseY();
 	}
 	
 	static checkVerbPressed = function(_verb) {
-		return input_check_pressed(_verb);
+        return REFLEXUI.inputAdapter.checkPressed(_verb);
 	}
 	
 	static checkVerbDelayed = function(_verb) {
 		if(REFLEXUI.__inputCooldown <= 0) {
-			if(input_check(_verb)) {
+			if(REFLEXUI.inputAdapter.check(_verb)) {
 				REFLEXUI.__inputCooldown = REFLEXUI.inputDelay;
 				return true;
 			}
@@ -87,7 +119,7 @@ function ReflexInput() constructor {
 	}
 	
 	static setFocus = function(_focusControl) {
-		if(_focusControl == undefined)
+		if(_focusControl == undefined || focus == _focusControl)
 			return;
 			
 		if(_focusControl.canFocus) {
@@ -100,14 +132,20 @@ function ReflexInput() constructor {
 			} 
 			
 			if (focus != undefined) {
+				focus.hasFocus = false;
 				reflexSafeEvent(focus, REFLEX_EVENT_ON_FOCUS_OUT, { nextControl: _focusControl });
 				reflexRemoveTempStyle(focus, REFLEX_STYLE_FOCUS);	
-			}
 				
+			}
+			
+			_focusControl.hasFocus = true;
 			reflexApplyTempStyle(_focusControl, REFLEX_STYLE_FOCUS);
 			reflexSafeEvent(_focusControl, REFLEX_EVENT_ON_FOCUS, { previousControl: focus }); 
-				
+			
+			reflexAudio(_focusControl, "audioFocus");
+			
 			focus = _focusControl;
+			
 		}
 	}
 	

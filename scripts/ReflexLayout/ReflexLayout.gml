@@ -207,7 +207,7 @@ function reflexAlign(_alignment, _min, _max, _size) {
 		return _min;
 	
 	if (_alignment == fa_middle || _alignment == fa_center)
-		return (_max - _min - _size) / 2;
+		return (_max - _min) / 2  - _size / 2;
 		
 	if (_alignment == fa_right || _alignment == fa_bottom)
 		return _max - _size;
