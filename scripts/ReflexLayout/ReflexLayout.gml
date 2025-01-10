@@ -14,6 +14,10 @@ function reflexPerformLayout(_root) {
 ///
 function reflexLayoutComponent(_component) {
 	with(_component) {
+        //Component has been destroyed and will be cleaned up. Ignore
+        if(dead)
+            return;
+
 		reflexAssert(isLoaded, "Component must be loaded to perform layout");
 		
 		if(forceRefresh) {

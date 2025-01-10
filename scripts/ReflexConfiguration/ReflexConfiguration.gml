@@ -138,6 +138,9 @@ function ReflexUIDefaultConfiguration() {
 			color: c_white
 		},
 		
+        ReflexInline: {
+            layout: ReflexLayout.inline
+        },
 		
 		ReflexMenu: {
 			halign: fa_center,
