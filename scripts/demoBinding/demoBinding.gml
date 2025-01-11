@@ -37,9 +37,7 @@ function Item(_item) : ReflexComponent({ item: _item },, "Item") constructor {
 		return [
 			new ReflexImage({ sprite: item.image }),
 			new ReflexText({ text: item.name, valign: fa_middle }),
-			new ReflexButton({ text: "X", onClick: function() {
-                 parent.removeItem(); 
-            }, border: 1, borderColor: c_red })
+			new ReflexButton({ text: "X", onClick: method(self, removeItem), border: 1, borderColor: c_red })
 		];
 	}
 	
