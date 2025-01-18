@@ -22,6 +22,11 @@ function demoLayout() {
 			new Description("Absolute position bypasses automated layouts and positions elements relative to parent"),
 			new ReflexText({ position: ReflexPosition.absolute, x: 230, y: 90, text: "x:230, y:90", hover: { backgroundColor: c_white } }),
 			new ReflexText({ position: ReflexPosition.absolute, x: 530, y: 30, text: "x:530, y:30", hover: { backgroundColor: c_white } })
-		])
+		]),
+        new ReflexBlock({
+            height: ReflexProperty.expand, backgroundColor: c_blue, margin: 10 }, [
+                new ReflexBlock({
+                     height: 10, valign: fa_bottom, backgroundColor: c_aqua })
+            ])
 	]);
 }

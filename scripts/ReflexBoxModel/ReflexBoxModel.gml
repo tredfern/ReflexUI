@@ -1,4 +1,4 @@
-function ReflexBoxModel(_component) constructor {
+function ReflexBoxModel(_component, _availableWidth = display_get_gui_width(), _availableHeight = display_get_gui_height()) constructor {
 	component = _component;
 	x = 0;
 	y = 0;
@@ -8,6 +8,8 @@ function ReflexBoxModel(_component) constructor {
 	margin = getBoundaryRect(component[$ REFLEX_PROPERTY_MARGIN]);
 	border = getBoundaryRect(component[$ REFLEX_PROPERTY_BORDER]);
 	cached = undefined;
+    availableHeight = _availableHeight - margin.totalTB() - border.totalTB() - padding.totalTB();
+    availableWidth = _availableWidth - margin.totalLR() - border.totalLR() - padding.totalLR();
 	
 	static maximize = function() {
 		contentWidth = getMaxWidth();
@@ -15,27 +17,19 @@ function ReflexBoxModel(_component) constructor {
 	}
 	
 	static getMaxWidth = function() {
-		var _wMargin = margin.totalLR() + border.totalLR() + padding.totalLR();
-		var _w = display_get_gui_width();
-		
-		if(!is_undefined(component.parent)) {
-			_w = component.parent.boxModel.contentWidth;
-		}
-		
-		return calcMaxSize(component.width, _w - _wMargin);
+		return calcMaxSize(component.width, availableWidth);
 	}
-	
+    
+    
 	static getMaxHeight = function() {
-		var _hMargin = margin.totalTB() + border.totalTB() + padding.totalTB();
-		
-		var _h = display_get_gui_height();
-		if(!is_undefined(component.parent)) {
-			_h = component.parent.boxModel.contentHeight;
-		}
-		
-		return calcMaxSize(component.height, _h - _hMargin);
+		return calcMaxSize(component.height, availableHeight);
 	}
 	
+    static expandHeight = function(_availableHeight) {
+        availableHeight = _availableHeight - margin.totalTB() - border.totalTB() - padding.totalTB();
+        contentHeight = availableHeight;
+    }
+    
 	static getFullWidth = function() {
 		return contentWidth + margin.totalLR() + border.totalLR() + padding.totalLR();
 	}

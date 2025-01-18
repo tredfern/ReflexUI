@@ -12,7 +12,7 @@ function reflexPerformLayout(_root) {
 ///
 /// Layout the component based on it's layout properties and child content
 ///
-function reflexLayoutComponent(_component) {
+function reflexLayoutComponent(_component, _availableWidth = undefined, _availableHeight = undefined) {
 	with(_component) {
         //Component has been destroyed and will be cleaned up. Ignore
         if(dead)
@@ -26,9 +26,9 @@ function reflexLayoutComponent(_component) {
 		}
 		
 		//Need to recompute the box model
-		boxModel = new ReflexBoxModel(_component);
-		
-		var _contentSize = { width: 0, height: 0, maxWidth: boxModel.getMaxWidth(), maxHeight: boxModel.getMaxHeight() }
+		boxModel = new ReflexBoxModel(_component, _availableWidth, _availableHeight);
+        
+		var _contentSize = { width: 0, height: 0, maxWidth: boxModel.getMaxWidth(), maxHeight: boxModel.getMaxHeight()  }
 		
 		// Let the component perform any layout calculations for content size
 		reflexSafeEvent(_component, REFLEX_EVENT_ON_LAYOUT, _contentSize);
@@ -56,7 +56,7 @@ function reflexLayoutComponent(_component) {
 				var _child = children[_i];
 				
 				if(_child.isVisible) {
-					reflexLayoutComponent(_child);	
+					reflexLayoutComponent(_child, _maxWidth, _maxHeight - _y - _lineHeight);	
 				
 					var _w = _child.boxModel.getFullWidth();
 					var _h = _child.boxModel.getFullHeight();
@@ -94,7 +94,7 @@ function reflexLayoutComponent(_component) {
 					
 						// Stretching the height is a thing that should happen if configured
 						if(_child.height == ReflexProperty.expand) {
-							_child.boxModel.contentHeight = _maxHeight - _y;
+                            _child.boxModel.expandHeight(_maxHeight - _y);
 							_h = _child.boxModel.contentHeight;
 						}
 					
@@ -154,11 +154,7 @@ function reflexMaxWidth(_component) {
 
 function reflexCalculateWidth(_component) {
 	with(_component) {
-		var _maxContentWidth = display_get_gui_width();
-		if(!is_undefined(parent))
-			_maxContentWidth = parent.boxModel.contentWidth;
-	
-		_maxContentWidth = _maxContentWidth - boxModel.margin.totalLR() - boxModel.border.totalLR() - boxModel.padding.totalLR();
+		var _maxContentWidth = boxModel.availableWidth;
 	
 		//If we are not an "auto" width, we need to set our width to the settings provided
 		if(width != ReflexProperty.auto && width >= 0) {
@@ -186,23 +182,23 @@ function reflexCalculateWidth(_component) {
 }
 
 function reflexCalculateHeight(_component) {
-	var _maxContentHeight = display_get_gui_height();
-	if(!is_undefined(parent))
-		_maxContentHeight = parent.boxModel.contentHeight;
-	
-	if(_component.height != ReflexProperty.auto && _component.height >= 0) {
-		var _h = _component.height;
-			// If we are a percentage, than eat up a percentage of your parent
-		if(reflexIsPercentageString(_h)) {
-			_h = reflexGetPercentage(_h);
-			return _maxContentHeight * _h;
-		}
-		
-		// Otherwise, your size is your size
-		return _h; //min(_h, _maxContentHeight); <-- could consider setting to the smaller value
-	}
-	
-	return boxModel.contentHeight;
+	with(_component) {
+        var _maxContentHeight = boxModel.availableHeight;
+        
+        if(height != ReflexProperty.auto && height >= 0) {
+            var _h = height;
+                // If we are a percentage, than eat up a percentage of your parent
+            if(reflexIsPercentageString(_h)) {
+                _h = reflexGetPercentage(_h);
+                return _maxContentHeight * _h;
+            }
+            
+            // Otherwise, your size is your size
+            return _h; //min(_h, _maxContentHeight); <-- could consider setting to the smaller value
+        }
+        
+        return boxModel.contentHeight;
+    }
 }
 
 
