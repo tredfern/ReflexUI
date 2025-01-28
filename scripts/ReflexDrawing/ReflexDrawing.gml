@@ -41,9 +41,15 @@ function reflexDraw(_component, _x = 0, _y = 0) {
 			reflexDrawBorder(_screenRect);
 		}
 		
-		drawingColors.color = merge_color(drawingColors.color, reflexGetColor(color), colorChangeRate);
-		if(is_callable(self[$ REFLEX_EVENT_ON_DRAW])) 
-			onDraw(_contentRect, drawingColors);
+        if(!is_undefined(shader)) 
+            shader_set(shader);
+        
+        drawingColors.color = merge_color(drawingColors.color, reflexGetColor(color), colorChangeRate);
+        if(is_callable(self[$ REFLEX_EVENT_ON_DRAW])) 
+            onDraw(_contentRect, drawingColors);
+
+        if(!is_undefined(shader))
+            shader_reset();
 
 		//	Draw children
 		for(var _child = 0; _child < array_length(children); _child++) {

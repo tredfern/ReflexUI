@@ -88,7 +88,8 @@ function ReflexUIDefaultConfiguration() {
 			borderImage:					undefined,					// Image to use drawing the border
 			isVisible:						true,						// By default all components should be seen
 			colorChangeRate:				1,							// Speed at which a color change will propogate between 0 and 1				shader:							undefined,					// Custom Shader to use while drawing
-			
+			shader:                         undefined,
+
 			// Input Properties
 			canFocus:						false,						// Whether this component can receive focus		
 			focusOrder:						ReflexProperty.auto,		// Sets whether the layout should figure out how to navigate around controls. Set to off to disable

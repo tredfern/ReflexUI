@@ -88,12 +88,15 @@ function ReflexInput() constructor {
 		// Handle any "hotkey" verbs for controls that have special bindings
 		var _verbs = ds_map_keys_to_array(hotVerbs);
 		
-		for(var _hv = 0; _hv < array_length(_verbs); _hv++) {
-			if(checkVerbPressed(verbs[$ _verbs[_hv]])) {
-				reflexSafeEvent(hotVerbs[? _verbs[_hv]], REFLEX_EVENT_ON_CLICK);
-			}
-			
-		}
+        for(var _hv = 0; _hv < array_length(_verbs); _hv++) {
+            var _comp = hotVerbs[? _verbs[_hv]];
+            if(_comp.dead) {
+                ds_map_delete(hotVerbs, _verbs[_hv]);
+            } else if(checkVerbPressed(verbs[$ _verbs[_hv]])) {
+                reflexSafeEvent(_comp, REFLEX_EVENT_ON_CLICK);
+            }
+            
+        }
 	}
 	
 	static mouseX = function() {

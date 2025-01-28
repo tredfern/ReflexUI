@@ -21,6 +21,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 	hasFocus = false;
 	backgroundImageHandler = undefined;
 	borderImageHandler = undefined;
+    componentRef = self;
 	
 	// Events
 	static onClick =						undefined;					// Triggered when "click" verb is pressed while mouse is over control OR when focus is set and the "accept" verb is pressed

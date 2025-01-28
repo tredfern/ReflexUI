@@ -56,7 +56,16 @@ function reflexLayoutComponent(_component, _availableWidth = undefined, _availab
 				var _child = children[_i];
 				
 				if(_child.isVisible) {
-					reflexLayoutComponent(_child, _maxWidth, _maxHeight - _y - _lineHeight);	
+                    //Check if we are at the end of the line
+                    if(_x >= _maxWidth && _x > 0) {
+                        _x = 0;
+                        _y += _lineHeight;
+                        _lineHeight = 0;
+                        _row++;
+                        array_push(_focusGrid, []);
+                    }
+                    
+					reflexLayoutComponent(_child, _maxWidth, _maxHeight - _y);	
 				
 					var _w = _child.boxModel.getFullWidth();
 					var _h = _child.boxModel.getFullHeight();

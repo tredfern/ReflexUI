@@ -14,5 +14,5 @@ function ReflexClear(_components = undefined) {
 	} else {
 		reflexClearAll();
 	}
-	REFLEXUI.inputManager.clear();
+	//REFLEXUI.inputManager.clear();
 }
