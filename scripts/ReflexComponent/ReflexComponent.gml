@@ -73,6 +73,7 @@ function ReflexComponent(_props = {}, _children = [], _type = "__reflexcomponent
 		
 		reflexSafeEvent(self, REFLEX_EVENT_ON_LOAD);
 		isLoaded = true;
+        dead = false;
 	}
 	
 	static setChildrenParent = function() {

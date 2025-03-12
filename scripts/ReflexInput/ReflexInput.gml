@@ -83,6 +83,10 @@ function ReflexInput() constructor {
 			if (checkVerbPressed(verbs.accept)) {
 				reflexSafeEvent(focus, REFLEX_EVENT_ON_CLICK);	
 			}
+            
+            if(focus != undefined && focus.dead) {
+                focus = undefined;    
+            }
 		}
 		
 		// Handle any "hotkey" verbs for controls that have special bindings

@@ -36,6 +36,7 @@ function reflexRemove(_component) {
 	_component.parent = undefined;
 	_component.children = undefined;
 	_component.dead = true;
+    _component.isLoaded = false;
 	
 	//Unregister step event if necessary
 	if(_component[$ REFLEX_EVENT_ON_STEP] != undefined) {
